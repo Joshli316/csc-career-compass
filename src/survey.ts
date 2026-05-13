@@ -1,4 +1,4 @@
-import { t, pickShort, getLang, pickLocalized } from "./i18n";
+import { t, pickShort, getLang, pickLocalized, formatT } from "./i18n";
 import type { SurveyState, LikertValue, AbilityValue, SkillValue } from "./state";
 import { emptyState, loadState, saveState } from "./state";
 import { escapeHtml } from "./util";
@@ -53,43 +53,64 @@ function renderModuleIntro(titleKey: string, whyKey: string): string {
   `;
 }
 
-function renderLikertPage(page: Page & { kind: "interests-likert" }): string {
-  const isFirstOfModule = page.pageOfModule === 1;
-  const intro = isFirstOfModule
-    ? renderModuleIntro("modules.interests_likert.title", "modules.interests_likert.why")
-    : "";
-  const labels = {
-    2: t("scale.like"),
-    1: t("scale.neutral"),
-    0: t("scale.dislike"),
-  };
-  const rows = page.items.map((item) => {
-    const v = state.miniIp[item.id];
-    const label = pickShort(item as unknown as Record<string, unknown>);
+/**
+ * Render a 3-button rating row group. Used by Mini-IP Likert, natural-strengths
+ * ability scale, and NACE soft-skills scale — same structural shape, different
+ * data sources and scale labels.
+ */
+interface RatingItem {
+  id: string;
+  label: string;
+  example?: string;
+}
+function renderRatingPage(opts: {
+  introTitleKey: string;
+  introWhyKey: string;
+  showIntro: boolean;
+  items: RatingItem[];
+  action: "likert" | "strength" | "skill";
+  scale: { 2: string; 1: string; 0: string };
+  selected: (id: string) => 0 | 1 | 2 | undefined;
+}): string {
+  const intro = opts.showIntro ? renderModuleIntro(opts.introTitleKey, opts.introWhyKey) : "";
+  const rows = opts.items.map((item) => {
+    const v = opts.selected(item.id);
+    const hasExample = typeof item.example === "string" && item.example.length > 0;
     return `
       <li class="q-row" data-qid="${item.id}">
-        <span class="label">${escapeHtml(label)}</span>
-        <div class="opts" role="radiogroup" aria-label="${escapeHtml(label)}">
+        ${hasExample
+          ? `<div><div class="label">${escapeHtml(item.label)}</div><div class="ex">${escapeHtml(item.example!)}</div></div>`
+          : `<span class="label">${escapeHtml(item.label)}</span>`}
+        <div class="opts" role="radiogroup" aria-label="${escapeHtml(item.label)}">
           ${[2, 1, 0].map((val) => `
-            <button type="button" class="opt" data-action="likert" data-qid="${item.id}" data-val="${val}"
+            <button type="button" class="opt" data-action="${opts.action}" data-qid="${item.id}" data-val="${val}"
               aria-pressed="${v === val ? "true" : "false"}" role="radio" aria-checked="${v === val ? "true" : "false"}">
-              ${escapeHtml(labels[val as 0 | 1 | 2])}
+              ${escapeHtml(opts.scale[val as 0 | 1 | 2])}
             </button>
           `).join("")}
         </div>
       </li>
     `;
   }).join("");
-  return `
-    ${intro}
-    <ul class="q-list" aria-label="${escapeHtml(t("modules.interests_likert.title"))}">${rows}</ul>
-  `;
+  return `${intro}<ul class="q-list" aria-label="${escapeHtml(t(opts.introTitleKey))}">${rows}</ul>`;
+}
+
+function renderLikertPage(page: Page & { kind: "interests-likert" }): string {
+  return renderRatingPage({
+    introTitleKey: "modules.interests_likert.title",
+    introWhyKey: "modules.interests_likert.why",
+    showIntro: page.pageOfModule === 1,
+    items: page.items.map((item) => ({ id: item.id, label: pickShort(item) })),
+    action: "likert",
+    scale: { 2: t("scale.like"), 1: t("scale.neutral"), 0: t("scale.dislike") },
+    selected: (id) => state.miniIp[id],
+  });
 }
 
 function renderTagsPage(): string {
   const intro = renderModuleIntro("modules.interests_tags.title", "modules.interests_tags.why");
   const chips = tagCloudData.map((tag) => {
-    const label = pickShort(tag as unknown as Record<string, unknown>);
+    const label = pickShort(tag);
     const active = state.tags.includes(tag.id);
     return `
       <button type="button" class="chip" data-action="tag" data-id="${tag.id}" aria-pressed="${active}">
@@ -103,7 +124,7 @@ function renderTagsPage(): string {
 function renderWorkspacePage(): string {
   const intro = renderModuleIntro("modules.interests_visual.title", "modules.interests_visual.why");
   const tiles = workspacesData.map((w) => {
-    const label = pickLocalized(w as unknown as Record<string, unknown>, "label");
+    const label = pickLocalized(w, "label");
     const active = state.workspace === w.id;
     return `
       <button type="button" class="tile" data-action="workspace" data-id="${w.id}" aria-pressed="${active}">
@@ -118,7 +139,7 @@ function renderWorkspacePage(): string {
 function renderPassionsPage(): string {
   const intro = renderModuleIntro("modules.passions.title", "modules.passions.why");
   const tiles = passionsData.map((p) => {
-    const label = pickLocalized(p as unknown as Record<string, unknown>, "label");
+    const label = pickLocalized(p, "label");
     const active = state.passions.includes(p.id);
     const order = state.passions.indexOf(p.id);
     return `
@@ -129,9 +150,7 @@ function renderPassionsPage(): string {
       </button>
     `;
   }).join("");
-  const counter = t("survey.selected_count")
-    .replace("{n}", String(state.passions.length))
-    .replace("{max}", "3");
+  const counter = formatT("survey.selected_count", { n: state.passions.length, max: 3 });
   return `
     ${intro}
     <div class="tile-grid" role="group" aria-label="${escapeHtml(t("modules.passions.title"))}">${tiles}</div>
@@ -140,41 +159,26 @@ function renderPassionsPage(): string {
 }
 
 function renderStrengthsPage(): string {
-  const intro = renderModuleIntro("modules.strengths.title", "modules.strengths.why");
-  const labels = {
-    2: t("scale.comes_easily"),
-    1: t("scale.can_do"),
-    0: t("scale.hard"),
-  };
-  const rows = strengthsData.map((s) => {
-    const v = state.strengths[s.id];
-    const label = pickLocalized(s as unknown as Record<string, unknown>, "label");
-    const example = pickLocalized(s as unknown as Record<string, unknown>, "example");
-    return `
-      <li class="q-row" data-qid="${s.id}">
-        <div>
-          <div class="label">${escapeHtml(label)}</div>
-          <div class="ex">${escapeHtml(example)}</div>
-        </div>
-        <div class="opts" role="radiogroup" aria-label="${escapeHtml(label)}">
-          ${[2, 1, 0].map((val) => `
-            <button type="button" class="opt" data-action="strength" data-qid="${s.id}" data-val="${val}"
-              aria-pressed="${v === val ? "true" : "false"}" role="radio" aria-checked="${v === val ? "true" : "false"}">
-              ${escapeHtml(labels[val as 0 | 1 | 2])}
-            </button>
-          `).join("")}
-        </div>
-      </li>
-    `;
-  }).join("");
-  return `${intro}<ul class="q-list">${rows}</ul>`;
+  return renderRatingPage({
+    introTitleKey: "modules.strengths.title",
+    introWhyKey: "modules.strengths.why",
+    showIntro: true,
+    items: strengthsData.map((s) => ({
+      id: s.id,
+      label: pickLocalized(s, "label"),
+      example: pickLocalized(s, "example"),
+    })),
+    action: "strength",
+    scale: { 2: t("scale.comes_easily"), 1: t("scale.can_do"), 0: t("scale.hard") },
+    selected: (id) => state.strengths[id],
+  });
 }
 
 function renderValuesPage(): string {
   const intro = renderModuleIntro("modules.values.title", "modules.values.why");
   const cards = valuesData.map((v) => {
-    const title = pickShort(v as unknown as Record<string, unknown>);
-    const one = pickLocalized(v as unknown as Record<string, unknown>, "one_liner");
+    const title = pickShort(v);
+    const one = pickLocalized(v, "one_liner");
     const active = state.values.includes(v.id);
     const order = state.values.indexOf(v.id);
     return `
@@ -185,9 +189,7 @@ function renderValuesPage(): string {
       </button>
     `;
   }).join("");
-  const counter = t("survey.selected_count")
-    .replace("{n}", String(state.values.length))
-    .replace("{max}", "3");
+  const counter = formatT("survey.selected_count", { n: state.values.length, max: 3 });
   return `
     ${intro}
     <div class="values-grid">${cards}</div>
@@ -196,40 +198,25 @@ function renderValuesPage(): string {
 }
 
 function renderSkillsPage(): string {
-  const intro = renderModuleIntro("modules.skills.title", "modules.skills.why");
-  const labels = {
-    2: t("scale.have"),
-    1: t("scale.growing"),
-    0: t("scale.not_yet"),
-  };
-  const rows = skillsData.map((s) => {
-    const v = state.skills[s.id];
-    const name = pickLocalized(s as unknown as Record<string, unknown>, "name");
-    const ex = pickLocalized(s as unknown as Record<string, unknown>, "example");
-    return `
-      <li class="q-row" data-qid="${s.id}">
-        <div>
-          <div class="label">${escapeHtml(name)}</div>
-          <div class="ex">${escapeHtml(ex)}</div>
-        </div>
-        <div class="opts" role="radiogroup" aria-label="${escapeHtml(name)}">
-          ${[2, 1, 0].map((val) => `
-            <button type="button" class="opt" data-action="skill" data-qid="${s.id}" data-val="${val}"
-              aria-pressed="${v === val ? "true" : "false"}" role="radio" aria-checked="${v === val ? "true" : "false"}">
-              ${escapeHtml(labels[val as 0 | 1 | 2])}
-            </button>
-          `).join("")}
-        </div>
-      </li>
-    `;
-  }).join("");
-  return `${intro}<ul class="q-list">${rows}</ul>`;
+  return renderRatingPage({
+    introTitleKey: "modules.skills.title",
+    introWhyKey: "modules.skills.why",
+    showIntro: true,
+    items: skillsData.map((s) => ({
+      id: s.id,
+      label: pickLocalized(s, "name"),
+      example: pickLocalized(s, "example"),
+    })),
+    action: "skill",
+    scale: { 2: t("scale.have"), 1: t("scale.growing"), 0: t("scale.not_yet") },
+    selected: (id) => state.skills[id],
+  });
 }
 
 function renderTotPage(page: Page & { kind: "tot" }): string {
   const item = totData[page.index];
-  const aLabel = pickShort(item.a as unknown as Record<string, unknown>);
-  const bLabel = pickShort(item.b as unknown as Record<string, unknown>);
+  const aLabel = pickShort(item.a);
+  const bLabel = pickShort(item.b);
   const chosen = state.tot[item.id];
   return `
     <section class="module-intro">
@@ -248,10 +235,10 @@ function renderTotPage(page: Page & { kind: "tot" }): string {
 function renderConstraintsPage(): string {
   const intro = renderModuleIntro("modules.constraints.title", "modules.constraints.why");
   const rows = constraintsData.map((q) => {
-    const label = pickLocalized(q as unknown as Record<string, unknown>, "label");
+    const label = pickLocalized(q, "label");
     const current = state.constraints[q.id];
     const opts = q.options.map((o) => {
-      const optLabel = pickLocalized(o as unknown as Record<string, unknown>, "label");
+      const optLabel = pickLocalized(o, "label");
       return `
         <button type="button" class="opt" data-action="constraint" data-qid="${q.id}" data-val="${o.id}"
           aria-pressed="${current === o.id ? "true" : "false"}">
@@ -299,15 +286,16 @@ export function renderSurvey(root: HTMLElement): void {
   const isLast = state.pageIndex === TOTAL_PAGES - 1;
   const nextLabel = isLast ? t("survey.finish") : t("survey.next");
   const backLabel = t("survey.back");
-  const stepCounter = t("survey.step_counter")
-    .replace("{current}", String(state.pageIndex + 1))
-    .replace("{total}", String(TOTAL_PAGES));
+  const stepCounter = formatT("survey.step_counter", {
+    current: state.pageIndex + 1,
+    total: TOTAL_PAGES,
+  });
 
   root.innerHTML = `
     <div class="progress">
       <span class="bar" role="progressbar"
             aria-valuenow="${state.pageIndex + 1}" aria-valuemin="1" aria-valuemax="${TOTAL_PAGES}"
-            aria-label="${escapeHtml(t("survey.step_counter").replace("{current}", String(state.pageIndex + 1)).replace("{total}", String(TOTAL_PAGES)))}">
+            aria-label="${escapeHtml(stepCounter)}">
         <span class="fill" style="width:${progressPct()}%"></span>
       </span>
     </div>
@@ -430,6 +418,8 @@ function onClick(ev: Event): void {
   }
 }
 
+// Headings get tabindex=-1 so we can move focus to them on page change
+// without making them tab stops. CSS suppresses the focus ring for these.
 function focusFirstHeading(root: HTMLElement): void {
   const h = root.querySelector<HTMLHeadingElement>("h1, h2");
   if (!h) return;
@@ -437,6 +427,8 @@ function focusFirstHeading(root: HTMLElement): void {
   h.focus({ preventScroll: true });
 }
 
+// Build a stable selector from a button's data-* attrs so we can restore
+// focus to the equivalent element after an in-place re-render.
 function focusKeyFor(el: Element | null): string | null {
   if (!el || !(el instanceof HTMLElement)) return null;
   const action = el.dataset.action;
@@ -444,7 +436,7 @@ function focusKeyFor(el: Element | null): string | null {
   const parts = [`[data-action="${action}"]`];
   for (const key of ["qid", "id", "side", "val", "lang"] as const) {
     const v = el.dataset[key];
-    if (v) parts.push(`[data-${key === "qid" ? "qid" : key}="${v}"]`);
+    if (v) parts.push(`[data-${key}="${v}"]`);
   }
   return parts.join("");
 }
@@ -471,10 +463,6 @@ export function resetSurvey(): void {
   state = emptyState(getLang());
   errorMessage = null;
   saveState(state);
-}
-
-export function getSurveyState(): SurveyState {
-  return state;
 }
 
 export function reloadStateFromStorage(): void {

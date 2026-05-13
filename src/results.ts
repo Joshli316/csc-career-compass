@@ -24,7 +24,7 @@ function renderInterestsBlock(state: SurveyState): string {
   const tops = topLetters(v, 2);
   const desc = riasecDescriptors as Record<Letter, { desc_en: string; desc_zh: string; desc_es: string }>;
   const primary = tops[0];
-  const paragraph = pickLocalized(desc[primary] as unknown as Record<string, unknown>, "desc");
+  const paragraph = pickLocalized(desc[primary], "desc");
   return `
     <section class="summary-block">
       <h3>${escapeHtml(t("results.interests_h"))}</h3>
@@ -38,7 +38,7 @@ function renderPassionsBlock(state: SurveyState): string {
     .map((id) => passionsData.find((p) => p.id === id))
     .filter((p): p is (typeof passionsData)[number] => Boolean(p));
   if (tiles.length === 0) return "";
-  const items = tiles.map((p) => `<li>${escapeHtml(pickLocalized(p as unknown as Record<string, unknown>, "label"))}</li>`).join("");
+  const items = tiles.map((p) => `<li>${escapeHtml(pickLocalized(p, "label"))}</li>`).join("");
   return `
     <section class="summary-block">
       <h3>${escapeHtml(t("results.passions_h"))}</h3>
@@ -54,8 +54,8 @@ function renderAttributesBlock(state: SurveyState): string {
     .filter((v): v is (typeof valuesData)[number] => Boolean(v));
   if (picks.length === 0) return "";
   const items = picks.map((v) => {
-    const title = pickShort(v as unknown as Record<string, unknown>);
-    const one = pickLocalized(v as unknown as Record<string, unknown>, "one_liner");
+    const title = pickShort(v);
+    const one = pickLocalized(v, "one_liner");
     return `<li><strong>${escapeHtml(title)}</strong> <span class="example">— ${escapeHtml(one)}</span></li>`;
   }).join("");
   return `
@@ -71,8 +71,8 @@ function renderStrengthsBlock(state: SurveyState): string {
   const comesEasily = strengthsData.filter((s) => state.strengths[s.id] === 2);
   if (comesEasily.length === 0) return "";
   const items = comesEasily.slice(0, 3).map((s) => {
-    const label = pickLocalized(s as unknown as Record<string, unknown>, "label");
-    const example = pickLocalized(s as unknown as Record<string, unknown>, "example");
+    const label = pickLocalized(s, "label");
+    const example = pickLocalized(s, "example");
     return `<li><strong>${escapeHtml(label)}</strong><span class="example">${escapeHtml(example)}</span></li>`;
   }).join("");
   return `
@@ -88,8 +88,8 @@ function renderSoftSkillsBlock(state: SurveyState): string {
   const have = skillsData.filter((s) => state.skills[s.id] === 2).slice(0, 3);
   if (have.length === 0) return "";
   const items = have.map((s) => {
-    const name = pickLocalized(s as unknown as Record<string, unknown>, "name");
-    const ex = pickLocalized(s as unknown as Record<string, unknown>, "example");
+    const name = pickLocalized(s, "name");
+    const ex = pickLocalized(s, "example");
     return `<li><strong>${escapeHtml(name)}</strong><span class="example">${escapeHtml(ex)}</span></li>`;
   }).join("");
   return `
@@ -105,7 +105,7 @@ function renderGrowingBlock(state: SurveyState): string {
   const growing = skillsData.filter((s) => state.skills[s.id] === 1);
   if (growing.length === 0) return "";
   const items = growing.map((s) => {
-    const name = pickLocalized(s as unknown as Record<string, unknown>, "name");
+    const name = pickLocalized(s, "name");
     return `<li>${escapeHtml(name)}</li>`;
   }).join("");
   return `
@@ -118,14 +118,16 @@ function renderGrowingBlock(state: SurveyState): string {
 }
 
 function renderOccupationCard(occ: OccupationEntry): string {
-  const title = pickLocalized(occ as unknown as Record<string, unknown>, "title");
-  const training = pickLocalized(occ as unknown as Record<string, unknown>, "training_note");
+  const title = pickLocalized(occ, "title");
+  const training = pickLocalized(occ, "training_note");
   const lang = getLang();
   const whyKey = lang === "zh-Hans"
     ? "why_fit_template_zh"
     : lang === "es"
     ? "why_fit_template_es"
     : "why_fit_template_en";
+  // Dynamic-key lookup needs an explicit cast; the keyed value is the
+  // hard-typed string[] from the occupations.json schema.
   const bullets = (occ as unknown as Record<string, string[]>)[whyKey] ?? occ.why_fit_template_en;
   const wage = formatWage(occ.wage_la_median_hourly);
   const months = `${occ.time_to_credential_months} ${t("results.months")}`;

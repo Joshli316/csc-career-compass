@@ -65,6 +65,19 @@ export function onLangChange(fn: Listener): () => void {
   };
 }
 
+/**
+ * Translate `key` and substitute `{var}` placeholders.
+ * formatT("survey.step_counter", { current: 3, total: 15 }) →
+ *   "Step 3 of 15" / "第 3 步，共 15 步" / "Paso 3 de 15"
+ */
+export function formatT(key: string, vars: Record<string, string | number>): string {
+  let out = t(key);
+  for (const [k, v] of Object.entries(vars)) {
+    out = out.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+  }
+  return out;
+}
+
 /** Look up a dotted key like "landing.start" in the current locale. */
 export function t(key: string): string {
   const dict = LOCALES[currentLang] ?? LOCALES.en;
@@ -93,29 +106,32 @@ export function initLang(): void {
   if (currentLang === "zh-Hans") ensureZhFontLoaded();
 }
 
-/** Resolve a trilingual data record { foo_en, foo_zh, foo_es } shape. */
-export function pickLocalized<T extends Record<string, unknown>>(
-  obj: T,
-  prefix: string
-): string {
+/**
+ * Resolve a trilingual data record { foo_en, foo_zh, foo_es } shape.
+ * Accepts `unknown` so callers don't need to launder JSON-import types.
+ */
+export function pickLocalized(obj: unknown, prefix: string): string {
+  if (!obj || typeof obj !== "object") return "";
+  const rec = obj as Record<string, unknown>;
   const map: Record<Lang, string> = {
     en: `${prefix}_en`,
     "zh-Hans": `${prefix}_zh`,
     es: `${prefix}_es`,
   };
-  const key = map[currentLang];
-  const v = obj[key];
+  const v = rec[map[currentLang]];
   if (typeof v === "string" && v) return v;
-  const fallback = obj[`${prefix}_en`];
+  const fallback = rec[`${prefix}_en`];
   return typeof fallback === "string" ? fallback : "";
 }
 
 /** For data entries with short keys: { en, zh, es }. */
-export function pickShort(obj: Record<string, unknown>): string {
+export function pickShort(obj: unknown): string {
+  if (!obj || typeof obj !== "object") return "";
+  const rec = obj as Record<string, unknown>;
   const map: Record<Lang, string> = { en: "en", "zh-Hans": "zh", es: "es" };
-  const v = obj[map[currentLang]];
+  const v = rec[map[currentLang]];
   if (typeof v === "string" && v) return v;
-  const fb = obj["en"];
+  const fb = rec["en"];
   return typeof fb === "string" ? fb : "";
 }
 
