@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="CSC Career Compass">
+  <rect width="1200" height="630" fill="#1d4ed8"/>
+  <g fill="#ffffff" font-family="Inter, system-ui, -apple-system, sans-serif">
+    <text x="80" y="180" font-size="56" font-weight="700">CSC Career Compass</text>
+    <text x="80" y="270" font-size="40" font-weight="400" opacity="0.92">Discover your skills, interests,</text>
+    <text x="80" y="320" font-size="40" font-weight="400" opacity="0.92">and best-fit careers in Los Angeles.</text>
+    <text x="80" y="470" font-size="28" font-weight="600" opacity="0.85">Free · No account · 8 minutes</text>
+    <text x="80" y="540" font-size="22" font-weight="400" opacity="0.7">EN · 中文 · Español</text>
+  </g>
+</svg>

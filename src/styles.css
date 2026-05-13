@@ -147,8 +147,9 @@ a:hover { color: var(--primary-hover); }
   appearance: none;
   background: transparent;
   border: none;
-  padding: 8px 10px;
-  min-height: 40px;
+  padding: 10px 12px;
+  min-height: 44px;
+  min-width: 44px;
   font: inherit;
   font-size: 14px;
   font-weight: 600;
