@@ -70,7 +70,11 @@ CI can run `npm test` cheaply on every push; reserve `test:e2e` for pre-deploy.
 
 ## Production URL
 
-(Filled in after first deploy.)
+**https://csc-career-compass.pages.dev/**
+
+Deployed to Cloudflare Pages, production branch `main`. Headers include CSP
+(SHA-256 hash for the inline lang-bootstrap script), X-Frame-Options DENY,
+nosniff, Permissions-Policy. First deploy: 2026-05-12.
 
 ## Roadmap
 
