@@ -9,7 +9,7 @@ import skillsData from "./data/skills.json";
 import totData from "./data/this-or-that.json";
 import constraintsData from "./data/constraints.json";
 
-export const MINI_IP_PER_PAGE = 5;
+const MINI_IP_PER_PAGE = 5;
 
 export type Page =
   | { kind: "interests-likert"; pageOfModule: number; totalPagesInModule: number; items: typeof miniIpData }
@@ -46,7 +46,7 @@ export function buildPageList(): Page[] {
   return pages;
 }
 
-export type ValidationCode =
+type ValidationCode =
   | null
   | "pick_one_each"
   | "pick_one"

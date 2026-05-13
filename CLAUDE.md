@@ -15,37 +15,39 @@ This is **v0** — a single-day build to put in front of real clients for feedba
 ## Structure
 ```
 csc-career-compass/
-  index.html              entry point
+  index.html              entry point (synchronous html[lang] bootstrap script)
   src/
-    main.ts               app bootstrap + router
-    survey.ts             question rendering + state
-    results.ts            scoring + occupation cards
-    pdf.ts                PDF (window.print + html2pdf fallback)
-    i18n.ts               translation helper (html[lang] aware)
-    styles.css            Civic Plain styles
-    data/
-      mini-ip.json            20 O*NET Mini-IP statements, trilingual (Module 1a)
-      tag-cloud.json          24 RIASEC self-descriptor tags, trilingual (Module 1b)
-      workspaces.json         6 illustrated workspace tiles, inline SVG (Module 1c)
-      passions.json           12 illustrated activity tiles, inline SVG, RIASEC-weighted (Module 2)
-      strengths.json          6 natural-strength items, "comes easily" scale (Module 3)
-      values.json             6 O*NET Work Values, plain-language one-liners (Module 4)
-      skills.json             8 NACE Career Readiness Competencies + examples (Module 5)
-      this-or-that.json       4 forced-choice palate-cleanser pairs
-      constraints.json        4 constraint questions (Module 6)
-      occupations.json        15 LA occupations with RIASEC + wage + training note
-      riasec-descriptors.json 1-paragraph plain-language descriptor per RIASEC letter
-      locales/
-        en.json
-        zh-Hans.json
-        es.json
+    main.ts               app bootstrap + hash router + header/footer/landing
+    survey.ts             page renderers + click delegate + state machine
+    survey-logic.ts       pure (DOM-free) page list + validation + togglePick
+    results.ts            results page rendering (delegates math to scoring.ts)
+    scoring.ts            pure (DOM-free) RIASEC vector + cosine + ranking
+    state.ts              SurveyState type + localStorage persistence
+    pdf.ts                window.print primary + html2pdf fallback (SRI-pinned)
+    i18n.ts               t / formatT / pickLocalized / setLang (lazy ZH font)
+    util.ts               escapeHtml
+    styles.css            Civic Plain styles + print + reduced-motion
+    data/                 (same 11 JSON instruments + 3 locale files)
+  public/
+    _headers              Cloudflare Pages security headers (CSP, X-Frame, etc.)
+    robots.txt            allow all
+    og-image.svg          1200x630 trilingual brand card
+  tests-e2e/
+    survey.spec.ts        Playwright E2E: 6 specs × mobile+desktop = 12 tests
   docs/
-    design.md             why this exists, who it's for, what it isn't
+    design.md             problem, audience, scope, scoring algorithm rationale
+  src/*.test.ts           Vitest unit tests (scoring + state-machine, 55 total)
+  vite.config.ts          dev/build config (target es2020 for older Android)
+  vitest.config.ts        unit-test runner (excludes tests-e2e)
+  playwright.config.ts    E2E runner: mobile + desktop chromium profiles
   dist/                   build output (gitignored)
-  CLAUDE.md
-  plan.md
-  README.md
 ```
+
+## Scripts
+- `npm run dev` — vite dev server on :3000
+- `npm test` — 55 vitest unit tests
+- `npm run test:e2e` — 12 Playwright E2E (needs `test:e2e:install` once)
+- `npm run build` — vite production build → dist/
 
 ## Entry Point
 `index.html` → loads `src/main.ts` via `<script type="module">`. Hash-based routing:

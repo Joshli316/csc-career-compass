@@ -10,7 +10,7 @@ import occupationsData from "./data/occupations.json";
 
 export type Letter = "R" | "I" | "A" | "S" | "E" | "C";
 
-export const LETTERS: Letter[] = ["R", "I", "A", "S", "E", "C"];
+const LETTERS: Letter[] = ["R", "I", "A", "S", "E", "C"];
 export const LETTER_INDEX: Record<Letter, number> = { R: 0, I: 1, A: 2, S: 3, E: 4, C: 5 };
 
 export interface OccupationEntry {
