@@ -71,11 +71,9 @@ export function onLangChange(fn: Listener): () => void {
  *   "Step 3 of 15" / "第 3 步，共 15 步" / "Paso 3 de 15"
  */
 export function formatT(key: string, vars: Record<string, string | number>): string {
-  let out = t(key);
-  for (const [k, v] of Object.entries(vars)) {
-    out = out.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
-  }
-  return out;
+  return t(key).replace(/\{(\w+)\}/g, (_, name: string) =>
+    name in vars ? String(vars[name]) : `{${name}}`
+  );
 }
 
 /** Look up a dotted key like "landing.start" in the current locale. */
@@ -122,6 +120,21 @@ export function pickLocalized(obj: unknown, prefix: string): string {
   if (typeof v === "string" && v) return v;
   const fallback = rec[`${prefix}_en`];
   return typeof fallback === "string" ? fallback : "";
+}
+
+/** Like pickLocalized but for array-valued fields, e.g. why_fit_template_en. */
+export function pickLocalizedArray(obj: unknown, prefix: string): string[] {
+  if (!obj || typeof obj !== "object") return [];
+  const rec = obj as Record<string, unknown>;
+  const map: Record<Lang, string> = {
+    en: `${prefix}_en`,
+    "zh-Hans": `${prefix}_zh`,
+    es: `${prefix}_es`,
+  };
+  const v = rec[map[currentLang]];
+  if (Array.isArray(v)) return v as string[];
+  const fallback = rec[`${prefix}_en`];
+  return Array.isArray(fallback) ? (fallback as string[]) : [];
 }
 
 /** For data entries with short keys: { en, zh, es }. */

@@ -1,4 +1,4 @@
-import { t, pickShort, pickLocalized, getLang, formatWage } from "./i18n";
+import { t, pickShort, pickLocalized, pickLocalizedArray, formatWage } from "./i18n";
 import type { SurveyState } from "./state";
 import { escapeHtml } from "./util";
 import {
@@ -120,15 +120,7 @@ function renderGrowingBlock(state: SurveyState): string {
 function renderOccupationCard(occ: OccupationEntry): string {
   const title = pickLocalized(occ, "title");
   const training = pickLocalized(occ, "training_note");
-  const lang = getLang();
-  const whyKey = lang === "zh-Hans"
-    ? "why_fit_template_zh"
-    : lang === "es"
-    ? "why_fit_template_es"
-    : "why_fit_template_en";
-  // Dynamic-key lookup needs an explicit cast; the keyed value is the
-  // hard-typed string[] from the occupations.json schema.
-  const bullets = (occ as unknown as Record<string, string[]>)[whyKey] ?? occ.why_fit_template_en;
+  const bullets = pickLocalizedArray(occ, "why_fit_template");
   const wage = formatWage(occ.wage_la_median_hourly);
   const months = `${occ.time_to_credential_months} ${t("results.months")}`;
   const items = bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("");

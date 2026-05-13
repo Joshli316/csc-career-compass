@@ -58,6 +58,8 @@ function renderModuleIntro(titleKey: string, whyKey: string): string {
  * ability scale, and NACE soft-skills scale — same structural shape, different
  * data sources and scale labels.
  */
+type RatingAction = "likert" | "strength" | "skill";
+
 interface RatingItem {
   id: string;
   label: string;
@@ -68,7 +70,7 @@ function renderRatingPage(opts: {
   introWhyKey: string;
   showIntro: boolean;
   items: RatingItem[];
-  action: "likert" | "strength" | "skill";
+  action: RatingAction;
   scale: { 2: string; 1: string; 0: string };
   selected: (id: string) => 0 | 1 | 2 | undefined;
 }): string {
@@ -92,7 +94,12 @@ function renderRatingPage(opts: {
       </li>
     `;
   }).join("");
-  return `${intro}<ul class="q-list" aria-label="${escapeHtml(t(opts.introTitleKey))}">${rows}</ul>`;
+  // Only label the list when the heading is not on this page; otherwise the
+  // h2 already names the group and adding aria-label would double-announce.
+  const listLabel = opts.showIntro
+    ? ""
+    : ` aria-label="${escapeHtml(t(opts.introTitleKey))}"`;
+  return `${intro}<ul class="q-list"${listLabel}>${rows}</ul>`;
 }
 
 function renderLikertPage(page: Page & { kind: "interests-likert" }): string {
@@ -326,6 +333,7 @@ function onClick(ev: Event): void {
     case "likert": {
       const qid = actionEl.dataset.qid!;
       const val = Number(actionEl.dataset.val) as LikertValue;
+      if (state.miniIp[qid] === val) break;
       state.miniIp[qid] = val;
       saveState(state);
       rerender();
@@ -334,6 +342,7 @@ function onClick(ev: Event): void {
     case "strength": {
       const qid = actionEl.dataset.qid!;
       const val = Number(actionEl.dataset.val) as AbilityValue;
+      if (state.strengths[qid] === val) break;
       state.strengths[qid] = val;
       saveState(state);
       rerender();
@@ -342,6 +351,7 @@ function onClick(ev: Event): void {
     case "skill": {
       const qid = actionEl.dataset.qid!;
       const val = Number(actionEl.dataset.val) as SkillValue;
+      if (state.skills[qid] === val) break;
       state.skills[qid] = val;
       saveState(state);
       rerender();
@@ -357,7 +367,9 @@ function onClick(ev: Event): void {
       break;
     }
     case "workspace": {
-      state.workspace = actionEl.dataset.id!;
+      const id = actionEl.dataset.id!;
+      if (state.workspace === id) break;
+      state.workspace = id;
       saveState(state);
       rerender();
       break;
@@ -376,14 +388,18 @@ function onClick(ev: Event): void {
     }
     case "tot": {
       const id = actionEl.dataset.id!;
-      state.tot[id] = actionEl.dataset.side as "a" | "b";
+      const side = actionEl.dataset.side as "a" | "b";
+      if (state.tot[id] === side) break;
+      state.tot[id] = side;
       saveState(state);
       rerender();
       break;
     }
     case "constraint": {
       const qid = actionEl.dataset.qid!;
-      state.constraints[qid] = actionEl.dataset.val!;
+      const val = actionEl.dataset.val!;
+      if (state.constraints[qid] === val) break;
+      state.constraints[qid] = val;
       saveState(state);
       rerender();
       break;
@@ -418,8 +434,8 @@ function onClick(ev: Event): void {
   }
 }
 
-// Headings get tabindex=-1 so we can move focus to them on page change
-// without making them tab stops. CSS suppresses the focus ring for these.
+// tabindex=-1 keeps the heading focusable for SR announcements without
+// inserting it into the tab order. styles.css suppresses the outline.
 function focusFirstHeading(root: HTMLElement): void {
   const h = root.querySelector<HTMLHeadingElement>("h1, h2");
   if (!h) return;
@@ -427,8 +443,6 @@ function focusFirstHeading(root: HTMLElement): void {
   h.focus({ preventScroll: true });
 }
 
-// Build a stable selector from a button's data-* attrs so we can restore
-// focus to the equivalent element after an in-place re-render.
 function focusKeyFor(el: Element | null): string | null {
   if (!el || !(el instanceof HTMLElement)) return null;
   const action = el.dataset.action;
