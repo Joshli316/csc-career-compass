@@ -45,9 +45,9 @@ function renderLanding(root: HTMLElement): void {
       <h1 id="l-title">${escapeHtml(t("landing.h1"))}</h1>
       <p class="subhead">${escapeHtml(t("landing.subhead"))}</p>
       <ul class="bullets">
+        <li>${escapeHtml(t("landing.bullet_outcome"))}</li>
         <li>${escapeHtml(t("landing.bullet_free"))}</li>
         <li>${escapeHtml(t("landing.bullet_private"))}</li>
-        <li>${escapeHtml(t("landing.bullet_time"))}</li>
       </ul>
       <button type="button" class="btn block" data-action="start">${escapeHtml(t("landing.start"))}</button>
       ${
@@ -96,6 +96,7 @@ function route(): void {
 
   if (hash === "/" || hash === "") {
     renderLanding(root);
+    document.title = t("page_title.landing");
   } else if (hash.startsWith("/q")) {
     // Survey routes — single state machine; sub-paths just kept for back/forward UX
     reloadStateFromStorage();
@@ -103,10 +104,13 @@ function route(): void {
       setPageIndex(0);
     }
     renderSurvey(root);
+    document.title = t("page_title.survey");
   } else if (hash === "/results") {
     renderResultsView(root);
+    document.title = t("page_title.results");
   } else {
     renderLanding(root);
+    document.title = t("page_title.landing");
   }
   window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
 }

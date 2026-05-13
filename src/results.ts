@@ -154,6 +154,7 @@ export function renderResults(state: SurveyState, root: HTMLElement): void {
 
   root.innerHTML = `
     <article class="results" aria-labelledby="r-title">
+      <p class="complete-badge"><span aria-hidden="true">✓</span> ${escapeHtml(t("results.complete_badge"))}</p>
       <h1 id="r-title">${escapeHtml(t("results.title"))}</h1>
 
       <section class="section" aria-labelledby="sec-a">

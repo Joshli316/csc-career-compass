@@ -12,12 +12,17 @@
   "header": {
     "brand": "CSC Career Compass"
   },
+  "page_title": {
+    "landing": "CSC Career Compass — Discover your career fit in LA",
+    "survey": "Survey · CSC Career Compass",
+    "results": "Your results · CSC Career Compass"
+  },
   "landing": {
     "h1": "Discover your skills, interests, and best-fit careers.",
     "subhead": "An ~8-minute self-discovery tool for Los Angeles. Free. No account. Private.",
-    "bullet_free": "Free — no account needed",
-    "bullet_private": "Private — nothing is sent to a server",
-    "bullet_time": "Takes about 8 to 9 minutes on your phone",
+    "bullet_outcome": "You'll get a 1-page summary of who you are at work, plus 3 LA jobs that fit",
+    "bullet_free": "Free, no account, about 8 minutes",
+    "bullet_private": "Stays on your phone — nothing sent to a server",
     "start": "Start →",
     "resume": "Resume where you left off"
   },
@@ -86,6 +91,7 @@
   },
   "results": {
     "title": "Your Career Compass",
+    "complete_badge": "Survey complete",
     "section_a_title": "Here's what we heard about YOU",
     "section_b_title": "Careers in LA that fit who you are",
     "section_b_intro": "Based on everything above, these 3 LA jobs line up with who you are and the work you can take on right now.",
@@ -101,12 +107,12 @@
     "soft_lead": "These are skills you've built.",
     "growing_h": "Skills you want to grow",
     "growing_lead": "These are skills you said you're still developing.",
-    "no_matches": "We couldn't find matches with these constraints. Try a CSC Specialist appointment for personalized options.",
+    "no_matches": "We couldn't find matches with these constraints. Book a CSC Employment Specialist appointment for personalized options.",
     "pdf_button": "Download PDF",
-    "pdf_helper": "Save the PDF, print it, or share it with your family.",
+    "pdf_helper": "Take this to your CSC appointment. You can also print it or send it to family.",
     "specialist_note": "Bring this to your CSC Employment Specialist — they can help you plan training, funding, and the next steps.",
-    "restart_note": "Want to retake the assessment?",
-    "restart_link": "Start over",
+    "restart_note": "Done? Try it again with different answers:",
+    "restart_link": "Start over →",
     "why_fit_h": "Why this fits you",
     "wage_label": "Median wage in LA",
     "training_label": "How to get there",

@@ -13,12 +13,17 @@
   "header": {
     "brand": "CSC 职业指南针"
   },
+  "page_title": {
+    "landing": "CSC 职业指南针 — 找到适合你的洛杉矶职业",
+    "survey": "测评 · CSC 职业指南针",
+    "results": "你的结果 · CSC 职业指南针"
+  },
   "landing": {
     "h1": "发现你的技能、兴趣，以及最合适的职业。",
     "subhead": "一个约 8 分钟的自我探索工具，专为洛杉矶居民设计。免费。无需注册。完全私密。",
-    "bullet_free": "免费——无需注册",
-    "bullet_private": "私密——不会发送到任何服务器",
-    "bullet_time": "在手机上大约需要 8 到 9 分钟",
+    "bullet_outcome": "你将拿到一份 1 页的「你在工作中是怎样的人」总结，再加 3 个适合你的洛杉矶职业",
+    "bullet_free": "免费、无需注册，大约 8 分钟",
+    "bullet_private": "数据只留在你手机上——不会上传到任何服务器",
     "start": "开始 →",
     "resume": "继续上次未完成的"
   },
@@ -87,6 +92,7 @@
   },
   "results": {
     "title": "你的职业指南针",
+    "complete_badge": "测评完成",
     "section_a_title": "这是我们从你身上听到的",
     "section_b_title": "洛杉矶适合你的职业",
     "section_b_intro": "结合以上所有信息，这 3 个洛杉矶的工作与你这个人，以及你目前能从事的工作相吻合。",
@@ -102,12 +108,12 @@
     "soft_lead": "这些是你已经建立的技能。",
     "growing_h": "你想成长的技能",
     "growing_lead": "这些是你说自己仍在发展的技能。",
-    "no_matches": "在这些条件下没有匹配的职业。请预约 CSC 专员，获得个性化建议。",
+    "no_matches": "在这些条件下没有匹配的职业。请预约 CSC 就业服务专员，获得个性化建议。",
     "pdf_button": "下载 PDF",
-    "pdf_helper": "保存 PDF、打印或分享给家人。",
+    "pdf_helper": "把这份 PDF 带到 CSC 预约。你也可以打印或发给家人看。",
     "specialist_note": "把这份带给你的 CSC 就业服务专员——他们能帮你规划培训、资金和接下来的步骤。",
-    "restart_note": "想重新测评吗？",
-    "restart_link": "重新开始",
+    "restart_note": "想用不同的答案再试一次吗？",
+    "restart_link": "重新开始 →",
     "why_fit_h": "为什么这个适合你",
     "wage_label": "洛杉矶中位时薪",
     "training_label": "如何起步",

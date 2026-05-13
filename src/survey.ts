@@ -2,8 +2,8 @@ import { t, pickShort, getLang, pickLocalized } from "./i18n";
 import type { SurveyState, LikertValue, AbilityValue, SkillValue } from "./state";
 import { emptyState, loadState, saveState } from "./state";
 import { escapeHtml } from "./util";
+import { buildPageList, validatePage, togglePick, type Page } from "./survey-logic";
 
-import miniIpData from "./data/mini-ip.json";
 import tagCloudData from "./data/tag-cloud.json";
 import workspacesData from "./data/workspaces.json";
 import passionsData from "./data/passions.json";
@@ -12,44 +12,6 @@ import valuesData from "./data/values.json";
 import skillsData from "./data/skills.json";
 import totData from "./data/this-or-that.json";
 import constraintsData from "./data/constraints.json";
-
-type Page =
-  | { kind: "interests-likert"; pageOfModule: number; totalPagesInModule: number; items: typeof miniIpData }
-  | { kind: "tot"; index: 0 | 1 | 2 | 3 }
-  | { kind: "interests-tags" }
-  | { kind: "interests-visual" }
-  | { kind: "passions" }
-  | { kind: "strengths" }
-  | { kind: "values" }
-  | { kind: "skills" }
-  | { kind: "constraints" };
-
-const MINI_IP_PER_PAGE = 5;
-
-function buildPageList(): Page[] {
-  const pages: Page[] = [];
-  // Module 1a: 4 Likert pages of 5 items each
-  for (let i = 0; i < 4; i++) {
-    pages.push({
-      kind: "interests-likert",
-      pageOfModule: i + 1,
-      totalPagesInModule: 4,
-      items: miniIpData.slice(i * MINI_IP_PER_PAGE, (i + 1) * MINI_IP_PER_PAGE),
-    });
-  }
-  pages.push({ kind: "tot", index: 0 });
-  pages.push({ kind: "interests-tags" });
-  pages.push({ kind: "tot", index: 1 });
-  pages.push({ kind: "interests-visual" });
-  pages.push({ kind: "passions" });
-  pages.push({ kind: "tot", index: 2 });
-  pages.push({ kind: "strengths" });
-  pages.push({ kind: "values" });
-  pages.push({ kind: "tot", index: 3 });
-  pages.push({ kind: "skills" });
-  pages.push({ kind: "constraints" });
-  return pages;
-}
 
 const PAGES = buildPageList();
 const TOTAL_PAGES = PAGES.length;
@@ -67,7 +29,9 @@ function getCurrentPage(): Page {
 }
 
 function progressPct(): number {
-  return Math.round((state.pageIndex / Math.max(1, TOTAL_PAGES)) * 100);
+  // (pageIndex + 1) / TOTAL_PAGES so page 1 shows a visible sliver
+  // rather than a 0% empty container.
+  return Math.round(((state.pageIndex + 1) / Math.max(1, TOTAL_PAGES)) * 100);
 }
 
 function setError(msg: string | null) {
@@ -308,38 +272,8 @@ function renderConstraintsPage(): string {
 // ===== Validation per page =====
 
 function validateCurrent(): string | null {
-  const page = getCurrentPage();
-  switch (page.kind) {
-    case "interests-likert": {
-      const unanswered = page.items.some((i) => state.miniIp[i.id] === undefined);
-      return unanswered ? t("survey.pick_one_each") : null;
-    }
-    case "interests-tags":
-      // Plan: "tap any, no max" — allow 0.
-      return null;
-    case "interests-visual":
-      return state.workspace === null ? t("survey.pick_one") : null;
-    case "passions":
-      return state.passions.length !== 3 ? t("survey.pick_exact_3") : null;
-    case "strengths": {
-      const unanswered = strengthsData.some((s) => state.strengths[s.id] === undefined);
-      return unanswered ? t("survey.pick_one_each") : null;
-    }
-    case "values":
-      return state.values.length !== 3 ? t("survey.pick_exact_3") : null;
-    case "skills": {
-      const unanswered = skillsData.some((s) => state.skills[s.id] === undefined);
-      return unanswered ? t("survey.pick_one_each") : null;
-    }
-    case "tot": {
-      const id = totData[page.index].id;
-      return state.tot[id] === undefined ? t("survey.pick_one") : null;
-    }
-    case "constraints": {
-      const unanswered = constraintsData.some((c) => state.constraints[c.id] === undefined);
-      return unanswered ? t("survey.pick_one_each") : null;
-    }
-  }
+  const code = validatePage(state, getCurrentPage());
+  return code === null ? null : t(`survey.${code}`);
 }
 
 // ===== Main render =====
@@ -441,30 +375,13 @@ function onClick(ev: Event): void {
       break;
     }
     case "passion": {
-      const id = actionEl.dataset.id!;
-      const idx = state.passions.indexOf(id);
-      if (idx >= 0) {
-        state.passions.splice(idx, 1);
-      } else {
-        if (state.passions.length >= 3) {
-          // replace oldest to honor "pick 3"
-          state.passions.shift();
-        }
-        state.passions.push(id);
-      }
+      state.passions = togglePick(state.passions, actionEl.dataset.id!, 3);
       saveState(state);
       rerender();
       break;
     }
     case "value": {
-      const id = actionEl.dataset.id!;
-      const idx = state.values.indexOf(id);
-      if (idx >= 0) {
-        state.values.splice(idx, 1);
-      } else {
-        if (state.values.length >= 3) state.values.shift();
-        state.values.push(id);
-      }
+      state.values = togglePick(state.values, actionEl.dataset.id!, 3);
       saveState(state);
       rerender();
       break;
@@ -488,7 +405,7 @@ function onClick(ev: Event): void {
         clearError();
         state.pageIndex -= 1;
         saveState(state);
-        rerender();
+        rerender({ scrollToTop: true, focusHeading: true });
       }
       break;
     }
@@ -507,18 +424,47 @@ function onClick(ev: Event): void {
       }
       state.pageIndex += 1;
       saveState(state);
-      rerender();
+      rerender({ scrollToTop: true, focusHeading: true });
       break;
     }
   }
 }
 
-function rerender(): void {
+function focusFirstHeading(root: HTMLElement): void {
+  const h = root.querySelector<HTMLHeadingElement>("h1, h2");
+  if (!h) return;
+  if (!h.hasAttribute("tabindex")) h.setAttribute("tabindex", "-1");
+  h.focus({ preventScroll: true });
+}
+
+function focusKeyFor(el: Element | null): string | null {
+  if (!el || !(el instanceof HTMLElement)) return null;
+  const action = el.dataset.action;
+  if (!action) return null;
+  const parts = [`[data-action="${action}"]`];
+  for (const key of ["qid", "id", "side", "val", "lang"] as const) {
+    const v = el.dataset[key];
+    if (v) parts.push(`[data-${key === "qid" ? "qid" : key}="${v}"]`);
+  }
+  return parts.join("");
+}
+
+function rerender(opts: { scrollToTop?: boolean; focusHeading?: boolean } = {}): void {
   const root = document.getElementById("main");
   if (!root) return;
-  // Reset listener bindings by full re-render
+  const prevFocusKey = focusKeyFor(document.activeElement);
   renderSurvey(root);
-  window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  if (opts.scrollToTop) {
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  }
+  if (opts.focusHeading) {
+    focusFirstHeading(root);
+    return;
+  }
+  if (prevFocusKey) {
+    const next = root.querySelector<HTMLElement>(prevFocusKey);
+    next?.focus();
+  }
 }
 
 export function resetSurvey(): void {

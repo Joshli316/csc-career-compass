@@ -14,12 +14,17 @@
   "header": {
     "brand": "Brújula Profesional CSC"
   },
+  "page_title": {
+    "landing": "Brújula Profesional CSC — Encuentra tu carrera en LA",
+    "survey": "Evaluación · Brújula Profesional CSC",
+    "results": "Tus resultados · Brújula Profesional CSC"
+  },
   "landing": {
     "h1": "Descubre tus habilidades, intereses y mejores opciones de carrera.",
     "subhead": "Una herramienta de autoconocimiento de unos 8 minutos para Los Ángeles. Gratis. Sin cuenta. Privada.",
-    "bullet_free": "Gratis — sin necesidad de cuenta",
-    "bullet_private": "Privada — nada se envía a un servidor",
-    "bullet_time": "Toma unos 8 a 9 minutos en tu celular",
+    "bullet_outcome": "Te llevarás un resumen de 1 página sobre quién eres en el trabajo, más 3 trabajos en LA que encajan contigo",
+    "bullet_free": "Gratis, sin cuenta, unos 8 minutos",
+    "bullet_private": "Se queda en tu celular — nada se envía a un servidor",
     "start": "Empezar →",
     "resume": "Continuar donde lo dejaste"
   },
@@ -88,6 +93,7 @@
   },
   "results": {
     "title": "Tu brújula profesional",
+    "complete_badge": "Evaluación completada",
     "section_a_title": "Esto es lo que escuchamos sobre TI",
     "section_b_title": "Carreras en LA que encajan contigo",
     "section_b_intro": "Con base en todo lo anterior, estos 3 trabajos en LA encajan con quién eres y con el trabajo que puedes tomar ahora.",
@@ -103,12 +109,12 @@
     "soft_lead": "Estas son habilidades que has desarrollado.",
     "growing_h": "Habilidades que quieres desarrollar",
     "growing_lead": "Estas son habilidades que dijiste que aún estás desarrollando.",
-    "no_matches": "No encontramos coincidencias con estos criterios. Pide una cita con un especialista de CSC para opciones personalizadas.",
+    "no_matches": "No encontramos coincidencias con estos criterios. Pide una cita con un especialista de empleo de CSC para opciones personalizadas.",
     "pdf_button": "Descargar PDF",
-    "pdf_helper": "Guarda el PDF, imprímelo o compártelo con tu familia.",
+    "pdf_helper": "Lleva esto a tu cita de CSC. También puedes imprimirlo o enviárselo a tu familia.",
     "specialist_note": "Lleva esto a tu especialista de empleo de CSC — pueden ayudarte a planear capacitación, fondos y los próximos pasos.",
-    "restart_note": "¿Quieres hacer la evaluación de nuevo?",
-    "restart_link": "Empezar de nuevo",
+    "restart_note": "¿Quieres probar con respuestas diferentes?",
+    "restart_link": "Empezar de nuevo →",
     "why_fit_h": "Por qué esto encaja contigo",
     "wage_label": "Salario mediano en LA",
     "training_label": "Cómo empezar",

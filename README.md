@@ -20,7 +20,7 @@ This is a **v0 test build**. The full-featured v1 spec lives in `~/Desktop/Proje
    - **"Here's what we heard about YOU"** — six sub-headings: interests, what you're passionate about, natural attributes, what you're naturally good at, soft skills, skills you want to grow.
    - **"Careers in LA that fit who you are"** — 3 occupation cards with LA wage + training note.
    - **"Optional next step"** — Download PDF or Print (the same OS print sheet on phones offers "Save as PDF" or "Send to printer"). Then bring it to CSC.
-5. Saves the PDF, prints it, or simply takes a screenshot — and brings it to their CSC Employment Outreach appointment.
+5. Saves the PDF, prints it, or takes a screenshot — and brings it to their CSC Employment Outreach appointment.
 
 **Accessibility features built in:**
 - 18px body text, 4.5:1 contrast, 48px tap targets, keyboard-navigable.
@@ -48,6 +48,17 @@ Translation review status:
 - 🟡 Chinese (Simplified): all strings are DeepL drafts pending native Mandarin review.
 
 The footer disclaimer on every page positions this as a starting point, not professional counseling, in all three languages.
+
+## Running the tests
+
+```bash
+npm install            # one-time
+npm test               # 55 unit tests (scoring + state machine)
+npm run test:e2e:install  # one-time: download chromium (~150 MB)
+npm run test:e2e          # 12 Playwright E2E specs (mobile + desktop)
+```
+
+CI can run `npm test` cheaply on every push; reserve `test:e2e` for pre-deploy.
 
 ## Files
 

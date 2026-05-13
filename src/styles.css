@@ -72,6 +72,12 @@ h1, h2, h3 {
   color: var(--text);
 }
 
+h1[tabindex="-1"]:focus,
+h2[tabindex="-1"]:focus,
+h3[tabindex="-1"]:focus {
+  outline: none;
+}
+
 h1 { font-size: 28px; }
 h2 { font-size: 22px; }
 h3 { font-size: 18px; }
@@ -310,6 +316,7 @@ a:hover { color: var(--primary-hover); }
 .module-intro {
   background: var(--surface-elevated);
   border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
   border-radius: var(--radius);
   padding: 16px 20px;
   margin-bottom: 20px;
@@ -548,11 +555,25 @@ a:hover { color: var(--primary-hover); }
 }
 
 /* ===== Results ===== */
+.complete-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--success);
+  background: #dcfce7;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin: 0 0 12px;
+}
+.complete-badge span { font-size: 12px; }
+
 .results .section { margin-bottom: 32px; }
 .results h2 {
   border-bottom: 2px solid var(--border);
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
 }
 
 .summary-block { margin-bottom: 20px; }

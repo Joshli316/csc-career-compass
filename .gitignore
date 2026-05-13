@@ -7,3 +7,5 @@ dist/
 .env.*
 .shots/
 .playwright-mcp/
+playwright-report/
+test-results/
