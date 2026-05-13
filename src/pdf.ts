@@ -12,7 +12,9 @@ async function loadHtml2Pdf(): Promise<((opts: unknown) => unknown) | null> {
   return new Promise((resolve) => {
     const script = document.createElement("script");
     script.src = "https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js";
+    script.integrity = "sha384-Yv5O+t3uE3hunW8uyrbpPW3iw6/5/Y7HitWJBLgqfMoA36NogMmy+8wWZMpn3HWc";
     script.crossOrigin = "anonymous";
+    script.referrerPolicy = "no-referrer";
     script.onload = () => {
       const win = window as unknown as { html2pdf?: unknown };
       resolve((win.html2pdf as (opts: unknown) => unknown) ?? null);

@@ -290,6 +290,14 @@ a:hover { color: var(--primary-hover); }
   transition: width 220ms ease;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 .step-counter {
   text-align: center;
   font-size: 15px;

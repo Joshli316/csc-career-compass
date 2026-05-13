@@ -1,6 +1,7 @@
 import { t, pickShort, getLang, pickLocalized } from "./i18n";
 import type { SurveyState, LikertValue, AbilityValue, SkillValue } from "./state";
 import { emptyState, loadState, saveState } from "./state";
+import { escapeHtml } from "./util";
 
 import miniIpData from "./data/mini-ip.json";
 import tagCloudData from "./data/tag-cloud.json";
@@ -78,19 +79,6 @@ function clearError() {
 }
 
 // ===== Renderers per page type =====
-
-function escapeHtml(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => {
-    switch (c) {
-      case "&": return "&amp;";
-      case "<": return "&lt;";
-      case ">": return "&gt;";
-      case "\"": return "&quot;";
-      case "'": return "&#39;";
-      default: return c;
-    }
-  });
-}
 
 function renderModuleIntro(titleKey: string, whyKey: string): string {
   return `
@@ -327,8 +315,8 @@ function validateCurrent(): string | null {
       return unanswered ? t("survey.pick_one_each") : null;
     }
     case "interests-tags":
-      // Allowed to skip (tap any), but require at least 1 to be meaningful
-      return state.tags.length === 0 ? t("survey.pick_one") : null;
+      // Plan: "tap any, no max" — allow 0.
+      return null;
     case "interests-visual":
       return state.workspace === null ? t("survey.pick_one") : null;
     case "passions":
@@ -382,8 +370,12 @@ export function renderSurvey(root: HTMLElement): void {
     .replace("{total}", String(TOTAL_PAGES));
 
   root.innerHTML = `
-    <div class="progress" aria-hidden="true">
-      <span class="bar"><span class="fill" style="width:${progressPct()}%"></span></span>
+    <div class="progress">
+      <span class="bar" role="progressbar"
+            aria-valuenow="${state.pageIndex + 1}" aria-valuemin="1" aria-valuemax="${TOTAL_PAGES}"
+            aria-label="${escapeHtml(t("survey.step_counter").replace("{current}", String(state.pageIndex + 1)).replace("{total}", String(TOTAL_PAGES)))}">
+        <span class="fill" style="width:${progressPct()}%"></span>
+      </span>
     </div>
     <div class="survey-page" data-page-index="${state.pageIndex}">
       ${body}

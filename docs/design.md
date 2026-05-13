@@ -158,3 +158,41 @@ If completion rate < 60%, the survey is too long — shrink the Mini-IP from 30 
 - Report 09 — O\*NET deep dive
 - Report 10 — Recommendation engine logic (we use a simplified version in v0)
 - Report 12 — Synthesis design plan (v1 spec)
+
+## Scoring algorithm (v0)
+
+The recommendation engine is implemented in `src/results.ts`. Two-stage pipeline:
+
+### Stage 1 — Build the user's 6-dimensional RIASEC vector
+
+We aggregate signal across five survey channels into a 6-vector `[R, I, A, S, E, C]`.
+
+| Channel | Per-item contribution | Why this weight |
+|---|---|---|
+| Mini-IP Likert | `Like=+2 / Not-sure=+1 / Dislike=0` to the item's letter | Mini-IP is the most validated channel (α 0.78–0.85); give it the largest single-item swing |
+| Tag cloud | `+1` per chosen tag to its letter | Tags are self-descriptive and additive; 24 items spread evenly across letters |
+| Workspace pick | `+2` to the chosen tile's letter | A single decision that the user spent ~10 seconds on, worth the same as the strongest Likert response |
+| Passion tiles | `riasec_weight[L] × 1` (weights 0/1/2) for each of 3 picks | Some passions map strongly (helping = S+2) and some are mixed (building = R+2, A+1); the weight encodes that |
+| This-or-That | `+1` to the chosen side's letter | A forced choice carries less signal than a Likert because the user must pick one of two; weight kept small |
+
+The raw vector is then unit-normalized before cosine matching to keep magnitude-of-engagement from dominating.
+
+### Stage 2 — Filter and rank occupations
+
+1. **Hard filter** on three constraints:
+   - English level: occupation's required level ≤ user's reported level + 1 (one stretch tier allowed)
+   - Job zone: occupation's job zone ≤ user's education level + 1
+   - Work auth: occupations marked `us_only` are hidden if the user reported "not yet" or "unsure"
+2. **Cosine similarity** between the user's normalized vector and each remaining occupation's `riasec_vector` (the canonical 3-letter Holland code expressed as weights 0.5/0.3/0.2 for primary/secondary/tertiary, 0 elsewhere).
+3. **Top 3** by score.
+
+### Why cosine and not weighted Euclidean
+
+Cosine measures *direction* (which RIASEC pattern the user resembles) and ignores *magnitude* (how many items they engaged with). Two users who both peak in S — one cautious, one eager — should match the same Social occupations even if the cautious user clicked fewer Likes. v1 may revisit if real client data shows the cautious users getting noisier matches.
+
+### Known limits in v0
+
+- No "explore vs. exploit" — top-3 are pure score, not diversified across categories.
+- No tie-breaking on wage or training time; ties default to data order.
+- Constraint filtering is binary (pass/fail) — v1 should soften to a penalty so a near-miss occupation can still surface.
+- Mini-IP English/Spanish strings are verbatim public-domain instruments. Mini-IP Chinese is a DeepL draft and may carry small interpretation drift until a native reviewer pass.

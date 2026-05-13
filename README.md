@@ -30,6 +30,25 @@ This is a **v0 test build**. The full-featured v1 spec lives in `~/Desktop/Proje
 **Deliberately cut from v0 (planned for v0.1 after first client sessions):**
 read-aloud audio toggle, dedicated About page, in-app "Did this sound like you?" feedback strip, Web Share API. v0 keeps the survey + scoring + results + PDF tight so client sessions can start fast and feedback comes face-to-face.
 
+## For the Employment Outreach Specialist — face-to-face debrief
+
+For the first 5–10 client sessions, the EOS sits with the client right after they finish (or before — if the client picked up the QR code outside their appointment). After they hand over the PDF, ask the client:
+
+1. **"Did the summary of your interests, attributes, and skills sound like you?"** — target ≥7 of 10 yes.
+2. **"Did the 3 careers feel like real options for you?"** — target ≥6 of 10 yes.
+3. **"What words from the summary will you use when someone asks what you're good at?"** — listening for whether the tool actually gave them language.
+4. **"Were there any words on the screen that felt confusing or wrong in your language?"** — Chinese + Spanish locales are **DeepL drafts** (Mini-IP Spanish is verbatim Mi Próximo Paso, validated; everything else is draft). Note specific wording issues for same-day fix.
+5. **"What was the part you almost stopped at?"** — drop-off signal.
+
+Capture answers on paper, not in the app. Send notes to the build maintainer at the end of each week so v0.1 can be scoped against actual signal.
+
+Translation review status:
+- 🟢 English: native-authored, instrument items public-domain (O*NET Mini-IP).
+- 🟡 Spanish: Mini-IP items public-domain (Mi Próximo Paso); UI strings + NACE skills + work values + occupation titles + why-fit templates are DeepL drafts pending native Latin American Spanish review.
+- 🟡 Chinese (Simplified): all strings are DeepL drafts pending native Mandarin review.
+
+The footer disclaimer on every page positions this as a starting point, not professional counseling, in all three languages.
+
 ## Files
 
 - `CLAUDE.md` — project context for Claude Code

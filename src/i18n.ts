@@ -32,6 +32,18 @@ export function getLang(): Lang {
   return currentLang;
 }
 
+const ZH_FONT_URL =
+  "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap";
+
+function ensureZhFontLoaded(): void {
+  if (document.getElementById("font-zh")) return;
+  const link = document.createElement("link");
+  link.id = "font-zh";
+  link.rel = "stylesheet";
+  link.href = ZH_FONT_URL;
+  document.head.appendChild(link);
+}
+
 export function setLang(lang: Lang): void {
   if (!(ALLOWED as string[]).includes(lang)) return;
   currentLang = lang;
@@ -41,6 +53,7 @@ export function setLang(lang: Lang): void {
     /* ignore */
   }
   document.documentElement.lang = lang;
+  if (lang === "zh-Hans") ensureZhFontLoaded();
   for (const fn of listeners) fn(lang);
 }
 
@@ -77,6 +90,7 @@ export function t(key: string): string {
 /** Initialize html[lang] from saved/default value. Call once at startup. */
 export function initLang(): void {
   document.documentElement.lang = currentLang;
+  if (currentLang === "zh-Hans") ensureZhFontLoaded();
 }
 
 /** Resolve a trilingual data record { foo_en, foo_zh, foo_es } shape. */
