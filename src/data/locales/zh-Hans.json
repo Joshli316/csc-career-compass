@@ -1,0 +1,117 @@
+{
+  "_meta": {
+    "lang": "zh-Hans",
+    "draft": true,
+    "name": "简体中文",
+    "note": "DeepL drafts — review by a native Mandarin reader before client testing."
+  },
+  "lang": {
+    "en": "EN",
+    "zh": "中文",
+    "es": "Español"
+  },
+  "header": {
+    "brand": "CSC 职业指南针"
+  },
+  "landing": {
+    "h1": "发现你的技能、兴趣，以及最合适的职业。",
+    "subhead": "一个约 8 分钟的自我探索工具，专为洛杉矶居民设计。免费。无需注册。完全私密。",
+    "bullet_free": "免费——无需注册",
+    "bullet_private": "私密——不会发送到任何服务器",
+    "bullet_time": "在手机上大约需要 8 到 9 分钟",
+    "start": "开始 →",
+    "resume": "继续上次未完成的"
+  },
+  "footer": {
+    "disclaimer": "这只是一个起点，并非专业职业咨询。如需个性化指导，请联系您的 CSC 就业服务专员。"
+  },
+  "survey": {
+    "back": "← 上一步",
+    "next": "下一步 →",
+    "finish": "查看我的结果 →",
+    "step_counter": "第 {current} 步，共 {total} 步",
+    "page_counter": "第 {current} 题，共 {total} 题",
+    "answer_first": "请先回答这道题再继续。",
+    "pick_exact_3": "请选择恰好 3 项后再继续。",
+    "pick_one": "请选择一项后再继续。",
+    "pick_one_each": "请回答每一项后再继续。",
+    "pick_one_per_row": "请为每一行选择一个选项。",
+    "selected_count": "已选 {n} / {max}"
+  },
+  "scale": {
+    "like": "喜欢",
+    "neutral": "不确定",
+    "dislike": "不喜欢",
+    "comes_easily": "得心应手",
+    "can_do": "可以做到",
+    "hard": "对我来说难",
+    "have": "我具备",
+    "growing": "正在成长",
+    "not_yet": "尚未具备"
+  },
+  "modules": {
+    "interests_likert": {
+      "title": "第 1a 步：你喜欢什么样的工作？",
+      "why": "这能帮我们看出你被什么样的工作吸引。"
+    },
+    "interests_tags": {
+      "title": "第 1b 步：描述工作中的你",
+      "why": "点击任何符合你工作风格的词。"
+    },
+    "interests_visual": {
+      "title": "第 1c 步：你在哪里最自在？",
+      "why": "选择一个最像你的工作环境。",
+      "selected": "你选择了："
+    },
+    "passions": {
+      "title": "第 2 步：你对什么充满热情？",
+      "why": "这些是即使没人看着，你也愿意做的事。请选 3 项。"
+    },
+    "strengths": {
+      "title": "第 3 步：什么事对你来说轻而易举？",
+      "why": "这些显示什么对你来说是天生擅长的。"
+    },
+    "values": {
+      "title": "第 4 步：什么让你在工作中充满活力？",
+      "why": "这些告诉我们你在工作中需要什么才能做自己。请选 3 项。"
+    },
+    "skills": {
+      "title": "第 5 步：你的软技能",
+      "why": "这些是你随时间逐步建立的技能。"
+    },
+    "constraints": {
+      "title": "第 6 步：几个实际问题",
+      "why": "这能帮我们为你匹配现在就能开始的工作。"
+    },
+    "tot_intro": "稍作休息——哪一个听起来更适合你？"
+  },
+  "results": {
+    "title": "你的职业指南针",
+    "section_a_title": "这是我们从你身上听到的",
+    "section_b_title": "洛杉矶适合你的职业",
+    "section_b_intro": "结合以上所有信息，这 3 个洛杉矶的工作与你这个人，以及你目前能从事的工作相吻合。",
+    "section_c_title": "下一步（可选）",
+    "interests_h": "你的兴趣",
+    "passions_h": "你的热情所在",
+    "passions_lead": "这些是即使没人看着，你也愿意做的事。",
+    "attrs_h": "你的天然特质",
+    "attrs_lead": "这些是让你在工作中充满活力的东西。",
+    "strengths_h": "你天生擅长的事",
+    "strengths_lead": "这些对你来说是自然而然的。",
+    "soft_h": "你的软技能",
+    "soft_lead": "这些是你已经建立的技能。",
+    "growing_h": "你想成长的技能",
+    "growing_lead": "这些是你说自己仍在发展的技能。",
+    "no_matches": "在这些条件下没有匹配的职业。请预约 CSC 专员，获得个性化建议。",
+    "pdf_button": "下载 PDF",
+    "pdf_helper": "保存 PDF、打印或分享给家人。",
+    "specialist_note": "把这份带给你的 CSC 就业服务专员——他们能帮你规划培训、资金和接下来的步骤。",
+    "restart_note": "想重新测评吗？",
+    "restart_link": "重新开始",
+    "why_fit_h": "为什么这个适合你",
+    "wage_label": "洛杉矶中位时薪",
+    "training_label": "如何起步",
+    "time_label": "取得资格所需时间",
+    "months": "个月"
+  }
+}

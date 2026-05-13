@@ -1,0 +1,56 @@
+[
+  {
+    "id": "v_achievement",
+    "en": "Achievement",
+    "zh": "成就感",
+    "es": "Logro",
+    "one_liner_en": "I feel best when I use my abilities and see real results.",
+    "one_liner_zh": "我喜欢用自己的能力做事，并看到实际的成果。",
+    "one_liner_es": "Me siento mejor cuando uso mis capacidades y veo resultados reales."
+  },
+  {
+    "id": "v_independence",
+    "en": "Independence",
+    "zh": "独立",
+    "es": "Independencia",
+    "one_liner_en": "I want to work on my own and make my own decisions.",
+    "one_liner_zh": "我希望能独立工作，自己做决定。",
+    "one_liner_es": "Quiero trabajar por mi cuenta y tomar mis propias decisiones."
+  },
+  {
+    "id": "v_recognition",
+    "en": "Recognition",
+    "zh": "被认可",
+    "es": "Reconocimiento",
+    "one_liner_en": "I want my work to lead to respect or advancement.",
+    "one_liner_zh": "我希望我的工作能让我得到尊重或晋升的机会。",
+    "one_liner_es": "Quiero que mi trabajo me lleve a ser respetado o a crecer."
+  },
+  {
+    "id": "v_relationships",
+    "en": "Relationships",
+    "zh": "人际关系",
+    "es": "Relaciones",
+    "one_liner_en": "I do my best work alongside friendly people I trust.",
+    "one_liner_zh": "我在和善又信任的同事身边能发挥得最好。",
+    "one_liner_es": "Trabajo mejor junto a personas amables en las que confío."
+  },
+  {
+    "id": "v_support",
+    "en": "Support",
+    "zh": "支持",
+    "es": "Apoyo",
+    "one_liner_en": "I need a fair boss and a workplace that backs me up.",
+    "one_liner_zh": "我需要公平的上司和能给我支持的工作环境。",
+    "one_liner_es": "Necesito un jefe justo y un lugar de trabajo que me respalde."
+  },
+  {
+    "id": "v_conditions",
+    "en": "Working conditions",
+    "zh": "工作条件",
+    "es": "Condiciones laborales",
+    "one_liner_en": "I want steady hours, fair pay, and a safe place to work.",
+    "one_liner_zh": "我希望工时稳定、薪水公平、工作环境安全。",
+    "one_liner_es": "Quiero horarios estables, salario justo y un lugar seguro para trabajar."
+  }
+]

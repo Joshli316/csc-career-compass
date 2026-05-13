@@ -1,0 +1,118 @@
+{
+  "_meta": {
+    "lang": "es",
+    "dialect": "es-419 (Latin American)",
+    "draft": true,
+    "name": "Español",
+    "note": "DeepL drafts — review by a native Latin American Spanish reader before client testing. Mini-IP item strings come verbatim from Mi Próximo Paso (not draft)."
+  },
+  "lang": {
+    "en": "EN",
+    "zh": "中文",
+    "es": "Español"
+  },
+  "header": {
+    "brand": "Brújula Profesional CSC"
+  },
+  "landing": {
+    "h1": "Descubre tus habilidades, intereses y mejores opciones de carrera.",
+    "subhead": "Una herramienta de autoconocimiento de unos 8 minutos para Los Ángeles. Gratis. Sin cuenta. Privada.",
+    "bullet_free": "Gratis — sin necesidad de cuenta",
+    "bullet_private": "Privada — nada se envía a un servidor",
+    "bullet_time": "Toma unos 8 a 9 minutos en tu celular",
+    "start": "Empezar →",
+    "resume": "Continuar donde lo dejaste"
+  },
+  "footer": {
+    "disclaimer": "Este es un punto de partida, no una consulta profesional. Para orientación personalizada, habla con tu especialista de empleo de CSC."
+  },
+  "survey": {
+    "back": "← Atrás",
+    "next": "Siguiente →",
+    "finish": "Ver mis resultados →",
+    "step_counter": "Paso {current} de {total}",
+    "page_counter": "Pregunta {current} de {total}",
+    "answer_first": "Por favor responde antes de continuar.",
+    "pick_exact_3": "Por favor elige exactamente 3 para continuar.",
+    "pick_one": "Por favor elige uno para continuar.",
+    "pick_one_each": "Por favor responde cada elemento para continuar.",
+    "pick_one_per_row": "Por favor elige una opción en cada fila.",
+    "selected_count": "{n} de {max} seleccionado(s)"
+  },
+  "scale": {
+    "like": "Me gusta",
+    "neutral": "No estoy seguro",
+    "dislike": "No me gusta",
+    "comes_easily": "Me resulta fácil",
+    "can_do": "Puedo hacerlo",
+    "hard": "Es difícil para mí",
+    "have": "Lo tengo",
+    "growing": "Estoy creciendo",
+    "not_yet": "Todavía no"
+  },
+  "modules": {
+    "interests_likert": {
+      "title": "Paso 1a: ¿Qué tipo de trabajo te gusta?",
+      "why": "Esto nos ayuda a ver qué tipo de trabajo te atrae."
+    },
+    "interests_tags": {
+      "title": "Paso 1b: Palabras que te describen en el trabajo",
+      "why": "Toca cualquier palabra que coincida con cómo te gusta trabajar."
+    },
+    "interests_visual": {
+      "title": "Paso 1c: ¿Dónde te sentirías como en casa?",
+      "why": "Elige el lugar de trabajo que más te represente.",
+      "selected": "Elegiste:"
+    },
+    "passions": {
+      "title": "Paso 2: ¿Qué te apasiona?",
+      "why": "Estas son las cosas que harías incluso si nadie te estuviera mirando. Elige 3."
+    },
+    "strengths": {
+      "title": "Paso 3: ¿Qué te resulta fácil?",
+      "why": "Estas muestran lo que te sale de manera natural."
+    },
+    "values": {
+      "title": "Paso 4: ¿Qué te da energía en el trabajo?",
+      "why": "Estas nos dicen qué necesitas en el trabajo para sentirte tú mismo. Elige 3."
+    },
+    "skills": {
+      "title": "Paso 5: Tus habilidades blandas",
+      "why": "Son habilidades que has desarrollado con el tiempo."
+    },
+    "constraints": {
+      "title": "Paso 6: Algunas preguntas prácticas",
+      "why": "Esto nos ayuda a encontrar trabajos que puedas tomar ahora mismo."
+    },
+    "tot_intro": "Una pausa rápida — ¿cuál te suena mejor?"
+  },
+  "results": {
+    "title": "Tu brújula profesional",
+    "section_a_title": "Esto es lo que escuchamos sobre TI",
+    "section_b_title": "Carreras en LA que encajan contigo",
+    "section_b_intro": "Con base en todo lo anterior, estos 3 trabajos en LA encajan con quién eres y con el trabajo que puedes tomar ahora.",
+    "section_c_title": "Siguiente paso (opcional)",
+    "interests_h": "Tus intereses",
+    "passions_h": "Lo que te apasiona",
+    "passions_lead": "Estas son las cosas que harías incluso si nadie te estuviera mirando.",
+    "attrs_h": "Tus atributos naturales",
+    "attrs_lead": "Estos son los que te dan energía en el trabajo.",
+    "strengths_h": "En qué eres bueno naturalmente",
+    "strengths_lead": "Estas cosas te salen de manera natural.",
+    "soft_h": "Tus habilidades blandas",
+    "soft_lead": "Estas son habilidades que has desarrollado.",
+    "growing_h": "Habilidades que quieres desarrollar",
+    "growing_lead": "Estas son habilidades que dijiste que aún estás desarrollando.",
+    "no_matches": "No encontramos coincidencias con estos criterios. Pide una cita con un especialista de CSC para opciones personalizadas.",
+    "pdf_button": "Descargar PDF",
+    "pdf_helper": "Guarda el PDF, imprímelo o compártelo con tu familia.",
+    "specialist_note": "Lleva esto a tu especialista de empleo de CSC — pueden ayudarte a planear capacitación, fondos y los próximos pasos.",
+    "restart_note": "¿Quieres hacer la evaluación de nuevo?",
+    "restart_link": "Empezar de nuevo",
+    "why_fit_h": "Por qué esto encaja contigo",
+    "wage_label": "Salario mediano en LA",
+    "training_label": "Cómo empezar",
+    "time_label": "Tiempo para obtener la credencial",
+    "months": "meses"
+  }
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "p_helping",
+    "riasec_weight": {"R": 0, "I": 0, "A": 0, "S": 2, "E": 0, "C": 0},
+    "label_en": "Helping someone in need",
+    "label_zh": "帮助需要帮助的人",
+    "label_es": "Ayudar a alguien que lo necesita",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M32 54l-14-12c-6-5-6-13 0-17 5-3 11-1 14 3 3-4 9-6 14-3 6 4 6 12 0 17z'/></svg>"
+  },
+  {
+    "id": "p_fixing",
+    "riasec_weight": {"R": 2, "I": 1, "A": 0, "S": 0, "E": 0, "C": 0},
+    "label_en": "Fixing what's broken",
+    "label_zh": "修理坏掉的东西",
+    "label_es": "Arreglar lo que está roto",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M44 12l8 8-6 6-8-8z'/><path d='M40 22L18 44'/><path d='M14 48l-4 8 8-4'/><circle cx='18' cy='48' r='2'/></svg>"
+  },
+  {
+    "id": "p_learning",
+    "riasec_weight": {"R": 0, "I": 2, "A": 0, "S": 0, "E": 0, "C": 1},
+    "label_en": "Learning new ideas",
+    "label_zh": "学习新知识",
+    "label_es": "Aprender nuevas ideas",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M8 22l24-10 24 10-24 10z'/><path d='M16 26v14c0 4 8 8 16 8s16-4 16-8V26'/><path d='M56 22v16'/></svg>"
+  },
+  {
+    "id": "p_beautiful",
+    "riasec_weight": {"R": 0, "I": 0, "A": 2, "S": 0, "E": 0, "C": 0},
+    "label_en": "Making something beautiful",
+    "label_zh": "创造美的事物",
+    "label_es": "Crear algo hermoso",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M14 50h36'/><path d='M22 50l4-22c1-5 6-8 10-8s9 3 10 8l4 22'/><circle cx='32' cy='14' r='4'/><path d='M40 22l8-6'/></svg>"
+  },
+  {
+    "id": "p_organize",
+    "riasec_weight": {"R": 0, "I": 0, "A": 0, "S": 0, "E": 0, "C": 2},
+    "label_en": "Organizing a system",
+    "label_zh": "整理或建立秩序",
+    "label_es": "Organizar un sistema",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='10' y='12' width='44' height='10' rx='1'/><rect x='10' y='27' width='44' height='10' rx='1'/><rect x='10' y='42' width='44' height='10' rx='1'/><path d='M16 17h2M16 32h2M16 47h2'/></svg>"
+  },
+  {
+    "id": "p_lead",
+    "riasec_weight": {"R": 0, "I": 0, "A": 0, "S": 1, "E": 2, "C": 0},
+    "label_en": "Leading a group",
+    "label_zh": "带领一群人",
+    "label_es": "Liderar a un grupo",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><circle cx='32' cy='16' r='5'/><circle cx='14' cy='22' r='4'/><circle cx='50' cy='22' r='4'/><path d='M22 44c0-6 4-10 10-10s10 4 10 10'/><path d='M6 50c0-5 3-8 8-8'/><path d='M58 50c0-5-3-8-8-8'/></svg>"
+  },
+  {
+    "id": "p_building",
+    "riasec_weight": {"R": 2, "I": 0, "A": 1, "S": 0, "E": 0, "C": 0},
+    "label_en": "Building with my hands",
+    "label_zh": "亲手搭建东西",
+    "label_es": "Construir con mis manos",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='12' y='28' width='16' height='12'/><rect x='28' y='28' width='16' height='12'/><rect x='20' y='40' width='16' height='12'/><rect x='36' y='40' width='16' height='12'/><path d='M10 20l22-10 22 10'/></svg>"
+  },
+  {
+    "id": "p_caring",
+    "riasec_weight": {"R": 0, "I": 0, "A": 0, "S": 2, "E": 0, "C": 0},
+    "label_en": "Caring for kids or elders",
+    "label_zh": "照顾小孩或老人",
+    "label_es": "Cuidar a niños o personas mayores",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><circle cx='22' cy='20' r='5'/><circle cx='44' cy='20' r='5'/><path d='M12 50c0-6 4-10 10-10s10 4 10 10'/><path d='M34 50c0-6 4-10 10-10s10 4 10 10'/><path d='M32 32v8'/></svg>"
+  },
+  {
+    "id": "p_stories",
+    "riasec_weight": {"R": 0, "I": 0, "A": 2, "S": 1, "E": 0, "C": 0},
+    "label_en": "Telling stories",
+    "label_zh": "讲故事",
+    "label_es": "Contar historias",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><rect x='10' y='12' width='44' height='32' rx='2'/><path d='M18 22h28M18 28h28M18 34h20'/><path d='M22 48l4 8'/><path d='M42 48l-4 8'/></svg>"
+  },
+  {
+    "id": "p_puzzles",
+    "riasec_weight": {"R": 0, "I": 2, "A": 0, "S": 0, "E": 0, "C": 1},
+    "label_en": "Solving puzzles",
+    "label_zh": "解决谜题",
+    "label_es": "Resolver acertijos",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M12 12h18v8a4 4 0 0 0 4 4 4 4 0 0 0 4-4v-8h14v18h-8a4 4 0 0 0-4 4 4 4 0 0 0 4 4h8v14H34v-8a4 4 0 0 0-4-4 4 4 0 0 0-4 4v8H12z'/></svg>"
+  },
+  {
+    "id": "p_gardening",
+    "riasec_weight": {"R": 2, "I": 0, "A": 0, "S": 0, "E": 0, "C": 0},
+    "label_en": "Growing things or gardening",
+    "label_zh": "种植或园艺",
+    "label_es": "Cultivar plantas o jardinería",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M32 54V28'/><path d='M32 28c0-8 6-14 14-14 0 8-6 14-14 14z'/><path d='M32 36c0-7-5-12-12-12 0 7 5 12 12 12z'/><path d='M16 54h32'/></svg>"
+  },
+  {
+    "id": "p_business",
+    "riasec_weight": {"R": 0, "I": 0, "A": 0, "S": 0, "E": 2, "C": 1},
+    "label_en": "Running a small business",
+    "label_zh": "经营一家小生意",
+    "label_es": "Tener un pequeño negocio",
+    "svg_inline": "<svg viewBox='0 0 64 64' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true'><path d='M10 24l4-8h36l4 8'/><rect x='10' y='24' width='44' height='28'/><path d='M22 52V36h20v16'/><circle cx='44' cy='28' r='2'/></svg>"
+  }
+]

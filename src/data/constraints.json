@@ -1,0 +1,50 @@
+[
+  {
+    "id": "education",
+    "label_en": "Highest level of school you've finished",
+    "label_zh": "你完成的最高学历",
+    "label_es": "Nivel de escolaridad más alto que terminaste",
+    "options": [
+      {"id": "less_hs", "level": 1, "label_en": "Less than high school", "label_zh": "高中以下", "label_es": "Menos que preparatoria"},
+      {"id": "hs", "level": 2, "label_en": "High school / GED", "label_zh": "高中 / GED", "label_es": "Preparatoria / GED"},
+      {"id": "some_college", "level": 3, "label_en": "Some college or certificate", "label_zh": "一些大学课程或证书", "label_es": "Algo de universidad o certificado"},
+      {"id": "associate", "level": 4, "label_en": "Associate / 2-year degree", "label_zh": "副学士 / 2年学位", "label_es": "Grado asociado / 2 años"},
+      {"id": "bachelor", "level": 5, "label_en": "Bachelor's or higher", "label_zh": "本科或更高", "label_es": "Licenciatura o más"}
+    ]
+  },
+  {
+    "id": "english",
+    "label_en": "How is your English?",
+    "label_zh": "你的英语水平如何？",
+    "label_es": "¿Cómo es tu inglés?",
+    "options": [
+      {"id": "beginner", "level": 1, "label_en": "Just starting", "label_zh": "刚开始学", "label_es": "Recién empezando"},
+      {"id": "conversational", "level": 2, "label_en": "I can hold a basic conversation", "label_zh": "能进行基本对话", "label_es": "Puedo tener una conversación básica"},
+      {"id": "advanced", "level": 3, "label_en": "I can work in English", "label_zh": "能用英语工作", "label_es": "Puedo trabajar en inglés"},
+      {"id": "native", "level": 4, "label_en": "Native speaker", "label_zh": "母语水平", "label_es": "Hablante nativo"}
+    ]
+  },
+  {
+    "id": "work_auth",
+    "label_en": "Can you legally work in the US right now?",
+    "label_zh": "你现在能在美国合法工作吗？",
+    "label_es": "¿Puedes trabajar legalmente en EE. UU. ahora mismo?",
+    "options": [
+      {"id": "yes", "value": "us_only", "label_en": "Yes — citizen or work permit", "label_zh": "可以——公民或有工作许可", "label_es": "Sí — ciudadano o con permiso de trabajo"},
+      {"id": "no", "value": "any", "label_en": "Not yet", "label_zh": "暂时不行", "label_es": "Todavía no"},
+      {"id": "unsure", "value": "any", "label_en": "I'm not sure", "label_zh": "不太确定", "label_es": "No estoy seguro"}
+    ]
+  },
+  {
+    "id": "hours",
+    "label_en": "Hours you have available each week",
+    "label_zh": "你每周能投入的工作时间",
+    "label_es": "Horas que tienes disponibles cada semana",
+    "options": [
+      {"id": "lt20", "label_en": "Less than 20 hours", "label_zh": "少于 20 小时", "label_es": "Menos de 20 horas"},
+      {"id": "20_30", "label_en": "20–30 hours", "label_zh": "20–30 小时", "label_es": "20–30 horas"},
+      {"id": "30_40", "label_en": "30–40 hours", "label_zh": "30–40 小时", "label_es": "30–40 horas"},
+      {"id": "ft", "label_en": "Full time", "label_zh": "全职", "label_es": "Tiempo completo"}
+    ]
+  }
+]

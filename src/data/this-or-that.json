@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tot1",
+    "a": {"riasec": "C", "label_en": "Organize a closet", "label_zh": "整理一个杂物柜", "label_es": "Organizar un clóset"},
+    "b": {"riasec": "I", "label_en": "Figure out how a clock works", "label_zh": "搞懂一个钟表的原理", "label_es": "Descubrir cómo funciona un reloj"}
+  },
+  {
+    "id": "tot2",
+    "a": {"riasec": "S", "label_en": "Teach a friend a new skill", "label_zh": "教朋友一项新技能", "label_es": "Enseñarle a un amigo una nueva habilidad"},
+    "b": {"riasec": "E", "label_en": "Pitch a friend on a business idea", "label_zh": "向朋友推荐一个生意点子", "label_es": "Convencer a un amigo de una idea de negocio"}
+  },
+  {
+    "id": "tot3",
+    "a": {"riasec": "A", "label_en": "Paint a wall a bold new color", "label_zh": "把一面墙刷成大胆的新颜色", "label_es": "Pintar una pared de un color nuevo y atrevido"},
+    "b": {"riasec": "R", "label_en": "Plant a vegetable garden", "label_zh": "种一个菜园子", "label_es": "Plantar un huerto de verduras"}
+  },
+  {
+    "id": "tot4",
+    "a": {"riasec": "E", "label_en": "Lead a team meeting", "label_zh": "主持一次团队会议", "label_es": "Dirigir una reunión de equipo"},
+    "b": {"riasec": "I", "label_en": "Solve a tricky math problem alone", "label_zh": "独自解一道难的数学题", "label_es": "Resolver un problema de matemáticas difícil tú solo"}
+  }
+]

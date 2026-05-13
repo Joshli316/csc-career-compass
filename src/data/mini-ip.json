@@ -1,0 +1,22 @@
+[
+  {"id":"ip01","riasec":"R","en":"Build kitchen cabinets","es":"Construir gabinetes de cocina","zh":"搭建厨柜"},
+  {"id":"ip02","riasec":"R","en":"Lay brick or tile","es":"Colocar ladrillos o baldosas","zh":"铺砖或瓷砖"},
+  {"id":"ip03","riasec":"R","en":"Repair household appliances","es":"Reparar electrodomésticos","zh":"修理家用电器"},
+  {"id":"ip04","riasec":"R","en":"Drive a truck to deliver packages to offices and homes","es":"Conducir un camión para entregar paquetes a oficinas y casas","zh":"开卡车给办公室和家庭送包裹"},
+  {"id":"ip05","riasec":"I","en":"Develop a new medicine","es":"Desarrollar un nuevo medicamento","zh":"研发一种新药"},
+  {"id":"ip06","riasec":"I","en":"Study ways to reduce water pollution","es":"Estudiar maneras de reducir la contaminación del agua","zh":"研究减少水污染的方法"},
+  {"id":"ip07","riasec":"I","en":"Conduct chemical experiments","es":"Realizar experimentos químicos","zh":"做化学实验"},
+  {"id":"ip08","riasec":"I","en":"Study the movement of planets","es":"Estudiar el movimiento de los planetas","zh":"研究行星的运动"},
+  {"id":"ip09","riasec":"A","en":"Write books or plays","es":"Escribir libros u obras de teatro","zh":"写书或剧本"},
+  {"id":"ip10","riasec":"A","en":"Play a musical instrument","es":"Tocar un instrumento musical","zh":"演奏一种乐器"},
+  {"id":"ip11","riasec":"A","en":"Compose or arrange music","es":"Componer o arreglar música","zh":"作曲或编曲"},
+  {"id":"ip12","riasec":"A","en":"Draw pictures","es":"Dibujar","zh":"画画"},
+  {"id":"ip13","riasec":"S","en":"Teach an individual an exercise routine","es":"Enseñarle a una persona una rutina de ejercicios","zh":"教别人做一套健身动作"},
+  {"id":"ip14","riasec":"S","en":"Help people with personal or emotional problems","es":"Ayudar a personas con problemas personales o emocionales","zh":"帮助有个人或情绪困扰的人"},
+  {"id":"ip15","riasec":"S","en":"Give career guidance to people","es":"Orientar a personas en la elección de su carrera","zh":"给别人提供职业指导"},
+  {"id":"ip16","riasec":"E","en":"Buy and sell stocks and bonds","es":"Comprar y vender acciones y bonos","zh":"买卖股票和债券"},
+  {"id":"ip17","riasec":"E","en":"Manage a retail store","es":"Administrar una tienda minorista","zh":"管理一家零售店"},
+  {"id":"ip18","riasec":"E","en":"Sell merchandise at a department store","es":"Vender mercancía en una tienda por departamentos","zh":"在百货商店卖商品"},
+  {"id":"ip19","riasec":"C","en":"Develop a spreadsheet using computer software","es":"Crear una hoja de cálculo usando programas de computadora","zh":"用电脑软件做一份电子表格"},
+  {"id":"ip20","riasec":"C","en":"Keep shipping and receiving records","es":"Llevar registros de envíos y recibos","zh":"记录货物的收发"}
+]

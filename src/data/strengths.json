@@ -1,0 +1,62 @@
+[
+  {
+    "id": "s_details",
+    "riasec": "C",
+    "label_en": "Noticing small details",
+    "label_zh": "注意到小细节",
+    "label_es": "Notar detalles pequeños",
+    "example_en": "You catch typos in a sign that others walk past.",
+    "example_zh": "别人没看见的错别字，你能一眼发现。",
+    "example_es": "Te das cuenta de errores en un letrero que otros no notan."
+  },
+  {
+    "id": "s_calming",
+    "riasec": "S",
+    "label_en": "Calming people who are upset",
+    "label_zh": "安抚情绪激动的人",
+    "label_es": "Calmar a personas alteradas",
+    "example_en": "Your friend cries and you know what to say next.",
+    "example_zh": "朋友哭的时候，你知道该说什么。",
+    "example_es": "Cuando un amigo llora, sabes qué decir después."
+  },
+  {
+    "id": "s_explaining",
+    "riasec": "S",
+    "label_en": "Explaining things clearly",
+    "label_zh": "把事情讲得清楚",
+    "label_es": "Explicar las cosas con claridad",
+    "example_en": "You teach a coworker something once and they get it.",
+    "example_zh": "你教同事一次，他就学会了。",
+    "example_es": "Le explicas algo a un compañero una vez y lo entiende."
+  },
+  {
+    "id": "s_fixing",
+    "riasec": "R",
+    "label_en": "Fixing what's broken",
+    "label_zh": "修理坏掉的东西",
+    "label_es": "Arreglar lo que está roto",
+    "example_en": "A faucet drips and you take it apart to find the cause.",
+    "example_zh": "水龙头漏水，你能拆开找问题。",
+    "example_es": "Una llave gotea y la desarmas para encontrar el problema."
+  },
+  {
+    "id": "s_patterns",
+    "riasec": "I",
+    "label_en": "Seeing patterns and connections",
+    "label_zh": "看出规律和联系",
+    "label_es": "Ver patrones y conexiones",
+    "example_en": "You notice when two unrelated things share a cause.",
+    "example_zh": "你能看出两件看似无关的事其实有共同的起因。",
+    "example_es": "Notas cuando dos cosas distintas tienen una causa en común."
+  },
+  {
+    "id": "s_organize",
+    "riasec": "C",
+    "label_en": "Organizing a messy situation",
+    "label_zh": "把混乱的局面理顺",
+    "label_es": "Organizar una situación desordenada",
+    "example_en": "A pile of paperwork becomes a tidy stack with you.",
+    "example_zh": "一堆文件经你的手就变得整整齐齐。",
+    "example_es": "Un montón de papeles termina ordenado contigo."
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "R": {
+    "name_en": "Doer / Realistic",
+    "name_zh": "实干家 / 现实型",
+    "name_es": "Práctico / Realista",
+    "desc_en": "You're drawn to hands-on, practical work. You like seeing real results — fixing, building, growing, or operating equipment. Indoor or outdoor, you do your best work when your hands and head are both engaged.",
+    "desc_zh": "你被动手实干的工作吸引。你喜欢看到实在的成果——修理、建造、种植或操作设备。无论在室内还是户外，当双手和大脑都在使用时，你最能发挥。",
+    "desc_es": "Te atrae el trabajo práctico y con las manos. Te gusta ver resultados concretos — reparar, construir, cultivar o manejar equipos. Trabajas mejor cuando tus manos y tu mente están en acción al mismo tiempo."
+  },
+  "I": {
+    "name_en": "Thinker / Investigative",
+    "name_zh": "思考者 / 研究型",
+    "name_es": "Pensador / Investigador",
+    "desc_en": "You're drawn to ideas and problems. You like understanding how things work, finding patterns, and figuring out the right answer carefully. Curiosity is one of your strengths.",
+    "desc_zh": "你被想法和问题吸引。你喜欢弄清事情的原理，找出规律，仔细想出最正确的答案。好奇心是你的一大优势。",
+    "desc_es": "Te atraen las ideas y los problemas. Te gusta entender cómo funcionan las cosas, encontrar patrones y llegar con cuidado a la respuesta correcta. La curiosidad es una de tus fortalezas."
+  },
+  "A": {
+    "name_en": "Creator / Artistic",
+    "name_zh": "创作者 / 艺术型",
+    "name_es": "Creador / Artístico",
+    "desc_en": "You're drawn to creative, expressive work. You like making something where there was nothing before — words, designs, music, or images. You notice color, sound, and feeling more than most.",
+    "desc_zh": "你被有创造力和表达力的工作吸引。你喜欢从无到有——文字、设计、音乐或图像。你比一般人更容易留意色彩、声音和情感。",
+    "desc_es": "Te atrae el trabajo creativo y expresivo. Te gusta crear algo donde antes no había nada — palabras, diseños, música o imágenes. Notas el color, el sonido y los sentimientos más que la mayoría."
+  },
+  "S": {
+    "name_en": "Helper / Social",
+    "name_zh": "助人者 / 社交型",
+    "name_es": "Ayudante / Social",
+    "desc_en": "You're drawn to working with people and helping them grow. You like work where you can listen, teach, or care. People often turn to you when they need someone steady.",
+    "desc_zh": "你被与人合作、帮助他人成长的工作吸引。你喜欢能倾听、教导或关怀的工作。人们需要稳定可靠的支持时，常常会找你。",
+    "desc_es": "Te atrae trabajar con personas y ayudarlas a crecer. Te gusta el trabajo en el que puedes escuchar, enseñar o cuidar. La gente recurre a ti cuando necesita a alguien firme y confiable."
+  },
+  "E": {
+    "name_en": "Leader / Enterprising",
+    "name_zh": "开拓者 / 进取型",
+    "name_es": "Líder / Emprendedor",
+    "desc_en": "You're drawn to influencing people, making decisions, and getting things moving. You like work where you can lead, sell, persuade, or run something. You're energized when there's a goal to hit.",
+    "desc_zh": "你被影响他人、做决定、推动事情前进的工作吸引。你喜欢可以带领、销售、说服或经营的工作。有明确目标时你最有干劲。",
+    "desc_es": "Te atrae influir en las personas, tomar decisiones y poner las cosas en marcha. Te gusta el trabajo en el que puedes liderar, vender, persuadir o dirigir. Tienes más energía cuando hay una meta clara."
+  },
+  "C": {
+    "name_en": "Organizer / Conventional",
+    "name_zh": "组织者 / 常规型",
+    "name_es": "Organizador / Convencional",
+    "desc_en": "You're drawn to clear systems, accurate records, and orderly work. You like work where you can plan, track, and keep things running smoothly. You notice details others miss.",
+    "desc_zh": "你被清晰的流程、准确的记录和有序的工作吸引。你喜欢可以规划、追踪、让事情顺畅运转的工作。别人忽略的细节，你能看见。",
+    "desc_es": "Te atraen los sistemas claros, los registros exactos y el trabajo ordenado. Te gusta el trabajo en el que puedes planear, dar seguimiento y mantener todo funcionando bien. Notas detalles que otros pasan por alto."
+  }
+}

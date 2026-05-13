@@ -1,0 +1,98 @@
+[
+  {
+    "id": "sk_career",
+    "name_en": "Career & Self-Development",
+    "name_zh": "职业与自我发展",
+    "name_es": "Carrera y desarrollo personal",
+    "description_en": "Managing my own career growth and asking for feedback.",
+    "description_zh": "主动管理自己的职业成长，并主动寻求反馈。",
+    "description_es": "Manejo mi propio crecimiento profesional y pido retroalimentación.",
+    "example_en": "I ask my supervisor what I can improve.",
+    "example_zh": "我会问主管：‘我哪里还能做得更好？’",
+    "example_es": "Le pregunto a mi supervisor en qué puedo mejorar."
+  },
+  {
+    "id": "sk_comm",
+    "name_en": "Communication",
+    "name_zh": "沟通",
+    "name_es": "Comunicación",
+    "description_en": "Sharing ideas clearly in speech and writing.",
+    "description_zh": "用清楚的口头或书面方式分享想法。",
+    "description_es": "Comparto ideas con claridad al hablar y al escribir.",
+    "example_en": "I write emails my coworkers understand quickly.",
+    "example_zh": "我写的邮件，同事一看就懂。",
+    "example_es": "Escribo correos que mis compañeros entienden rápido."
+  },
+  {
+    "id": "sk_critical",
+    "name_en": "Critical Thinking",
+    "name_zh": "批判性思维",
+    "name_es": "Pensamiento crítico",
+    "description_en": "Looking at a problem and figuring out a smart next step.",
+    "description_zh": "看清问题，想出聪明的下一步。",
+    "description_es": "Veo un problema y pienso cuál es el mejor próximo paso.",
+    "example_en": "When something breaks, I look for the cause before I guess.",
+    "example_zh": "出问题的时候，我先找原因，不乱猜。",
+    "example_es": "Cuando algo falla, busco la causa antes de adivinar."
+  },
+  {
+    "id": "sk_equity",
+    "name_en": "Equity & Inclusion",
+    "name_zh": "公平与包容",
+    "name_es": "Equidad e inclusión",
+    "description_en": "Working well with people whose lives are different from mine.",
+    "description_zh": "和与我不一样的人也能合作得好。",
+    "description_es": "Trabajo bien con personas cuyas vidas son distintas a la mía.",
+    "example_en": "I listen first when I'm with someone from a different background.",
+    "example_zh": "和不同背景的人在一起，我会先听。",
+    "example_es": "Cuando estoy con alguien de otro origen, primero escucho."
+  },
+  {
+    "id": "sk_lead",
+    "name_en": "Leadership",
+    "name_zh": "领导力",
+    "name_es": "Liderazgo",
+    "description_en": "Helping a group reach a goal together.",
+    "description_zh": "帮助一个小组一起达成目标。",
+    "description_es": "Ayudo a un grupo a alcanzar una meta en conjunto.",
+    "example_en": "I help my team finish on time without taking over.",
+    "example_zh": "我帮团队按时完成任务，但不会一个人包办。",
+    "example_es": "Ayudo a mi equipo a terminar a tiempo sin tomar el control."
+  },
+  {
+    "id": "sk_prof",
+    "name_en": "Professionalism",
+    "name_zh": "职业素养",
+    "name_es": "Profesionalismo",
+    "description_en": "Showing up on time, ready, and reliable.",
+    "description_zh": "准时到岗、准备充分、值得信赖。",
+    "description_es": "Llego a tiempo, preparado y confiable.",
+    "example_en": "I show up on time and finish what I promise.",
+    "example_zh": "我会准时上班，说到做到。",
+    "example_es": "Llego a tiempo y termino lo que prometo."
+  },
+  {
+    "id": "sk_team",
+    "name_en": "Teamwork",
+    "name_zh": "团队合作",
+    "name_es": "Trabajo en equipo",
+    "description_en": "Working well with others toward a shared goal.",
+    "description_zh": "和别人一起朝着共同目标好好合作。",
+    "description_es": "Trabajo bien con los demás hacia una meta común.",
+    "example_en": "I jump in to help a coworker when they're behind.",
+    "example_zh": "看到同事忙不过来，我会主动搭把手。",
+    "example_es": "Le ayudo a un compañero cuando va atrasado."
+  },
+  {
+    "id": "sk_tech",
+    "name_en": "Technology",
+    "name_zh": "技术与电脑",
+    "name_es": "Tecnología",
+    "description_en": "Using a computer, phone, or apps for everyday work.",
+    "description_zh": "在日常工作中使用电脑、手机或应用程序。",
+    "description_es": "Uso la computadora, el celular o aplicaciones para el trabajo diario.",
+    "example_en": "I can use email, a spreadsheet, and a scheduling app.",
+    "example_zh": "我会用电邮、电子表格和排班软件。",
+    "example_es": "Sé usar correo, hojas de cálculo y aplicaciones para citas."
+  }
+]

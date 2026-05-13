@@ -1,0 +1,482 @@
+[
+  {
+    "id": "medical-assistant",
+    "soc": "31-9092",
+    "title_en": "Medical Assistant",
+    "title_zh": "医疗助理",
+    "title_es": "Asistente Médico",
+    "riasec": "SCR",
+    "riasec_vector": [0.2, 0, 0, 0.5, 0, 0.3],
+    "wage_la_median_hourly": 23.5,
+    "job_zone": 3,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 10,
+    "training_note_en": "Earn a Medical Assistant certificate at a community college or vocational program in 9–12 months. Bilingual skills are a hiring asset at Kaiser, AltaMed, and FQHCs.",
+    "training_note_zh": "在社区大学或职业培训学校用9–12个月考取医疗助理证书。会双语在凯撒、AltaMed等诊所很受欢迎。",
+    "training_note_es": "Obtén un certificado de Asistente Médico en un colegio comunitario o programa vocacional en 9–12 meses. Ser bilingüe es una gran ventaja en Kaiser, AltaMed y clínicas comunitarias.",
+    "why_fit_template_en": [
+      "You'd spend your day helping patients and supporting a care team — work that puts people first.",
+      "Stable hours, steady demand, and one of the largest hiring pools in LA County.",
+      "You can start a 9–12 month certificate at a community college or WIOA-funded program."
+    ],
+    "why_fit_template_zh": [
+      "每天的工作都是帮助病人、配合医护团队——以人为本的服务工作。",
+      "工时稳定、需求旺盛，是洛杉矶最大的招聘行业之一。",
+      "可以在社区大学或WIOA资助项目中9–12个月内拿到证书。"
+    ],
+    "why_fit_template_es": [
+      "Pasarías el día ayudando a pacientes y apoyando al equipo de salud — un trabajo centrado en las personas.",
+      "Horarios estables, demanda constante, y una de las industrias que más contrata en Los Ángeles.",
+      "Puedes empezar un certificado de 9–12 meses en un colegio comunitario o programa financiado por WIOA."
+    ]
+  },
+  {
+    "id": "cna",
+    "soc": "31-1131",
+    "title_en": "Certified Nursing Assistant (CNA)",
+    "title_zh": "注册护理助理（CNA）",
+    "title_es": "Asistente de Enfermería Certificado (CNA)",
+    "riasec": "SRC",
+    "riasec_vector": [0.3, 0, 0, 0.5, 0, 0.2],
+    "wage_la_median_hourly": 20.0,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 3,
+    "training_note_en": "Complete a 160-hour state-approved CNA program and pass the CDPH license exam in 6–12 weeks. Many hospitals and skilled nursing facilities offer paid training.",
+    "training_note_zh": "完成160小时的州批准CNA课程并通过CDPH执照考试，约6–12周。许多医院和护理中心提供带薪培训。",
+    "training_note_es": "Completa un programa CNA aprobado por el estado de 160 horas y aprueba el examen de CDPH en 6–12 semanas. Muchos hospitales y centros de enfermería ofrecen capacitación pagada.",
+    "why_fit_template_en": [
+      "You'd work directly with patients, providing comfort and care at the bedside.",
+      "A meaningful way to help others while earning steady hospital wages.",
+      "You can finish CNA training in just 6–12 weeks at LATTC or local Red Cross programs."
+    ],
+    "why_fit_template_zh": [
+      "你将直接照顾病人，为他们提供日常关怀。",
+      "既能帮助别人，又能在医院获得稳定收入。",
+      "在LATTC或红十字会课程6–12周即可完成培训。"
+    ],
+    "why_fit_template_es": [
+      "Trabajarías directamente con pacientes, brindando cuidado y comodidad al lado de la cama.",
+      "Una forma significativa de ayudar a otros mientras ganas un salario estable de hospital.",
+      "Puedes terminar el entrenamiento CNA en solo 6–12 semanas en LATTC o programas locales de Cruz Roja."
+    ]
+  },
+  {
+    "id": "hha",
+    "soc": "31-1121",
+    "title_en": "Home Health / Personal Care Aide",
+    "title_zh": "家庭健康护理员",
+    "title_es": "Asistente de Salud en el Hogar",
+    "riasec": "SCR",
+    "riasec_vector": [0.2, 0, 0, 0.5, 0, 0.3],
+    "wage_la_median_hourly": 17.5,
+    "job_zone": 1,
+    "english_level": "beginner",
+    "work_auth_required": "any",
+    "time_to_credential_months": 1,
+    "training_note_en": "Complete a 75-hour HHA training and register with the CA Home Care Aide Registry in 2–4 weeks. IHSS and home care agencies hire quickly.",
+    "training_note_zh": "完成75小时家庭健康护理培训并在加州登记，约2–4周。IHSS和家庭护理公司招聘很快。",
+    "training_note_es": "Completa una capacitación HHA de 75 horas y regístrate en el registro estatal en 2–4 semanas. IHSS y agencias de cuidado en el hogar contratan rápido.",
+    "why_fit_template_en": [
+      "You'd care for elders and people with disabilities in their homes — gentle, one-on-one work.",
+      "A flexible way to help others while building toward higher healthcare roles.",
+      "You can start in just 2–4 weeks with a 75-hour HHA training, often free through IHSS."
+    ],
+    "why_fit_template_zh": [
+      "你将上门照顾老人和残障人士——温和、一对一的工作。",
+      "工作灵活，既能帮助他人，也能为日后进入医疗行业打基础。",
+      "通过IHSS等渠道，2–4周即可完成免费的75小时培训上岗。"
+    ],
+    "why_fit_template_es": [
+      "Cuidarías a personas mayores y con discapacidades en sus hogares — un trabajo amable y uno a uno.",
+      "Una forma flexible de ayudar a otros mientras te preparas para roles más altos en salud.",
+      "Puedes empezar en solo 2–4 semanas con la capacitación HHA de 75 horas, a menudo gratis vía IHSS."
+    ]
+  },
+  {
+    "id": "pharmacy-tech",
+    "soc": "29-2052",
+    "title_en": "Pharmacy Technician",
+    "title_zh": "药房技术员",
+    "title_es": "Técnico de Farmacia",
+    "riasec": "CRI",
+    "riasec_vector": [0.3, 0.2, 0, 0, 0, 0.5],
+    "wage_la_median_hourly": 24.0,
+    "job_zone": 3,
+    "english_level": "advanced",
+    "work_auth_required": "any",
+    "time_to_credential_months": 9,
+    "training_note_en": "Complete a Pharmacy Tech program (6–12 months), get licensed by the CA Board of Pharmacy, and earn the PTCB certification. CVS, Walgreens, and Kaiser hire continuously.",
+    "training_note_zh": "完成药房技术员课程（6–12个月），通过加州药剂师委员会执照考试，并取得PTCB认证。CVS、Walgreens、凯撒长期招聘。",
+    "training_note_es": "Completa un programa de Técnico de Farmacia (6–12 meses), obtén la licencia del Board of Pharmacy de California y la certificación PTCB. CVS, Walgreens y Kaiser contratan constantemente.",
+    "why_fit_template_en": [
+      "You'd work with prescriptions, inventory, and careful measurements — detail-driven work that matters.",
+      "Steady retail or hospital schedules with clear paths to raises and promotions.",
+      "You can finish a Pharmacy Tech program in 6–12 months at LACCD or a vocational school."
+    ],
+    "why_fit_template_zh": [
+      "你将处理处方、库存和精确剂量——是一份精细而重要的工作。",
+      "零售或医院药房工时稳定，晋升和加薪路径清晰。",
+      "在LACCD或职业学校6–12个月内即可完成培训。"
+    ],
+    "why_fit_template_es": [
+      "Trabajarías con recetas, inventario y mediciones precisas — un trabajo detallado e importante.",
+      "Horarios estables en farmacias o hospitales con caminos claros para subir de puesto.",
+      "Puedes terminar un programa de Técnico de Farmacia en 6–12 meses en LACCD o una escuela vocacional."
+    ]
+  },
+  {
+    "id": "dental-assistant",
+    "soc": "31-9091",
+    "title_en": "Dental Assistant (RDA)",
+    "title_zh": "牙科助理（RDA）",
+    "title_es": "Asistente Dental (RDA)",
+    "riasec": "SRC",
+    "riasec_vector": [0.3, 0, 0, 0.5, 0, 0.2],
+    "wage_la_median_hourly": 22.0,
+    "job_zone": 3,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 10,
+    "training_note_en": "Complete a Registered Dental Assistant program (9–12 months) including X-ray certification. Western Dental, Pacific Dental, and FQHC clinics hire bilingual staff.",
+    "training_note_zh": "完成注册牙科助理课程（9–12个月），含X光证书。Western Dental、Pacific Dental和社区诊所重视会双语的员工。",
+    "training_note_es": "Completa un programa de Asistente Dental Registrado (9–12 meses) incluyendo certificación de rayos X. Western Dental, Pacific Dental y clínicas FQHC contratan personal bilingüe.",
+    "why_fit_template_en": [
+      "You'd assist dentists chairside and help patients feel at ease — caring, hands-on work.",
+      "Stable daytime hours in clinics close to home, with bilingual skills as a strong advantage.",
+      "You can finish a Registered Dental Assistant program in 9–12 months at LACCD or Concorde."
+    ],
+    "why_fit_template_zh": [
+      "你将协助牙医、安抚患者——是一份既温暖又动手的工作。",
+      "白天班次稳定，社区诊所遍布全城，会双语更受欢迎。",
+      "在LACCD或Concorde等学校9–12个月可完成RDA培训。"
+    ],
+    "why_fit_template_es": [
+      "Asistirías a los dentistas y ayudarías a los pacientes a sentirse cómodos — un trabajo cercano y práctico.",
+      "Horarios estables de día en clínicas cerca de casa, con el bilingüismo como gran ventaja.",
+      "Puedes terminar el programa RDA en 9–12 meses en LACCD o Concorde."
+    ]
+  },
+  {
+    "id": "emt",
+    "soc": "29-2042",
+    "title_en": "Emergency Medical Technician (EMT)",
+    "title_zh": "急救医疗技术员（EMT）",
+    "title_es": "Técnico en Emergencias Médicas (EMT)",
+    "riasec": "RIS",
+    "riasec_vector": [0.5, 0.3, 0, 0.2, 0, 0],
+    "wage_la_median_hourly": 20.5,
+    "job_zone": 3,
+    "english_level": "advanced",
+    "work_auth_required": "any",
+    "time_to_credential_months": 5,
+    "training_note_en": "Complete a 160-hour EMT-Basic course and pass NREMT + CA certification in 3–6 months. AMR, McCormick Ambulance, and the LAFD pipeline hire steadily.",
+    "training_note_zh": "完成160小时EMT-B课程并通过NREMT和加州证书，约3–6个月。AMR、McCormick以及通往洛杉矶消防局的渠道都在招人。",
+    "training_note_es": "Completa un curso EMT-Básico de 160 horas y aprueba la certificación NREMT y de California en 3–6 meses. AMR, McCormick y la ruta hacia LAFD contratan constantemente.",
+    "why_fit_template_en": [
+      "You'd respond to emergencies and use your hands and quick thinking to save lives.",
+      "Action-packed, hands-on work with a real sense of mission every shift.",
+      "You can certify as an EMT in 3–6 months at LATTC, UCLA Center for Prehospital Care, or Daniel Freeman."
+    ],
+    "why_fit_template_zh": [
+      "你将出现场处理急救——既要动手，又要快速判断，能救人于危急。",
+      "工作节奏紧张，每一班都有使命感。",
+      "在LATTC、UCLA急救中心或Daniel Freeman学校3–6个月即可考取证书。"
+    ],
+    "why_fit_template_es": [
+      "Responderías a emergencias usando tus manos y pensamiento rápido para salvar vidas.",
+      "Un trabajo dinámico y práctico con un fuerte sentido de misión en cada turno.",
+      "Puedes certificarte como EMT en 3–6 meses en LATTC, UCLA o Daniel Freeman."
+    ]
+  },
+  {
+    "id": "bookkeeper",
+    "soc": "43-3031",
+    "title_en": "Bookkeeper / Accounting Clerk",
+    "title_zh": "记账员／会计文员",
+    "title_es": "Tenedor de Libros / Auxiliar Contable",
+    "riasec": "CRE",
+    "riasec_vector": [0.3, 0, 0, 0, 0.2, 0.5],
+    "wage_la_median_hourly": 26.0,
+    "job_zone": 3,
+    "english_level": "advanced",
+    "work_auth_required": "any",
+    "time_to_credential_months": 4,
+    "training_note_en": "Earn a QuickBooks certification or a community college bookkeeping certificate in 2–6 months. Small businesses, CPA firms, and nonprofits across LA hire constantly.",
+    "training_note_zh": "在2–6个月内考取QuickBooks证书或社区大学的记账员证书。洛杉矶的小企业、会计师事务所和非营利机构都长期需要这类人才。",
+    "training_note_es": "Obtén una certificación de QuickBooks o un certificado de tenedor de libros en un colegio comunitario en 2–6 meses. Pequeñas empresas, despachos y organizaciones sin fines de lucro contratan constantemente.",
+    "why_fit_template_en": [
+      "You'd work with numbers, records, and clear procedures — calm, organized desk work.",
+      "Stable office hours with the option to do remote or part-time bookkeeping on the side.",
+      "You can earn QuickBooks certification in 2–6 months at LACCD or through SCORE LA workshops."
+    ],
+    "why_fit_template_zh": [
+      "你将每天与数字、账目和规范打交道——节奏稳、思路清。",
+      "办公室工时稳定，将来也可以兼职远程接小生意的账。",
+      "通过LACCD课程或SCORE LA工作坊，2–6个月即可考取QuickBooks证书。"
+    ],
+    "why_fit_template_es": [
+      "Trabajarías con números, registros y procedimientos claros — un trabajo de oficina tranquilo y organizado.",
+      "Horarios estables con la opción de hacer trabajo remoto o medio tiempo aparte.",
+      "Puedes obtener la certificación QuickBooks en 2–6 meses en LACCD o talleres de SCORE LA."
+    ]
+  },
+  {
+    "id": "it-support",
+    "soc": "15-1232",
+    "title_en": "IT Support Specialist (Help Desk)",
+    "title_zh": "IT技术支持专员",
+    "title_es": "Especialista de Soporte Técnico (Help Desk)",
+    "riasec": "RCI",
+    "riasec_vector": [0.5, 0.2, 0, 0, 0, 0.3],
+    "wage_la_median_hourly": 28.0,
+    "job_zone": 3,
+    "english_level": "advanced",
+    "work_auth_required": "any",
+    "time_to_credential_months": 5,
+    "training_note_en": "Self-study for the CompTIA A+ exam (6–12 weeks) or take a community college Help Desk certificate in 3–6 months. LA County, school districts, and MSPs hire actively.",
+    "training_note_zh": "自学6–12周可考CompTIA A+，或在社区大学3–6个月拿IT支持证书。洛杉矶县政府、学区和IT外包公司都在招人。",
+    "training_note_es": "Estudia por tu cuenta para el examen CompTIA A+ (6–12 semanas) o toma un certificado de Help Desk en un colegio comunitario en 3–6 meses. LA County, distritos escolares y MSPs contratan activamente.",
+    "why_fit_template_en": [
+      "You'd troubleshoot computers, networks, and software — practical, problem-solving work.",
+      "A clear ladder from help desk into networking, cloud, or cybersecurity over time.",
+      "You can earn CompTIA A+ in 3–6 months through self-study or LATTC's IT program."
+    ],
+    "why_fit_template_zh": [
+      "你将解决电脑、网络和软件问题——动手又动脑，问题驱动型的工作。",
+      "从客服台起步，可逐步发展到网络、云、甚至网络安全方向。",
+      "通过自学或LATTC的IT课程，3–6个月可考取CompTIA A+证书。"
+    ],
+    "why_fit_template_es": [
+      "Resolverías problemas de computadoras, redes y software — trabajo práctico de solución de problemas.",
+      "Una escalera clara desde Help Desk hacia redes, nube o ciberseguridad con el tiempo.",
+      "Puedes obtener CompTIA A+ en 3–6 meses con autoestudio o el programa de TI de LATTC."
+    ]
+  },
+  {
+    "id": "cdl-driver",
+    "soc": "53-3032",
+    "title_en": "CDL-A Truck Driver",
+    "title_zh": "商用大货车司机（CDL-A）",
+    "title_es": "Conductor de Camión CDL-A",
+    "riasec": "RCE",
+    "riasec_vector": [0.5, 0, 0, 0, 0.2, 0.3],
+    "wage_la_median_hourly": 24.2,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 2,
+    "training_note_en": "Get your CA Class A CDL in 4–9 weeks. Many port carriers, UPS, FedEx, and Sysco pay for or reimburse training. WIOA can also cover tuition.",
+    "training_note_zh": "在4–9周内考取加州CDL-A大货车驾照。许多港口运输公司、UPS、FedEx、Sysco会报销学费，WIOA也可资助。",
+    "training_note_es": "Obtén tu licencia CDL-A de California en 4–9 semanas. Muchas empresas del puerto, UPS, FedEx y Sysco pagan o reembolsan la capacitación. WIOA también puede cubrirla.",
+    "why_fit_template_en": [
+      "You'd spend the day on the road, operating heavy equipment — independent, hands-on work.",
+      "Strong steady wages from day one, with employer-paid training at many companies.",
+      "You can earn your CDL-A in 4–9 weeks at LATTC, employer-sponsored schools, or WIOA-funded programs."
+    ],
+    "why_fit_template_zh": [
+      "你将整天在路上开大货车——独立、动手、节奏自由。",
+      "上岗即有稳定工资，许多公司还报销学费。",
+      "通过LATTC、雇主合作的培训学校或WIOA资助，4–9周即可拿到CDL-A证书。"
+    ],
+    "why_fit_template_es": [
+      "Pasarías el día en la carretera, manejando equipo pesado — trabajo independiente y práctico.",
+      "Salarios fuertes y estables desde el primer día, con capacitación pagada por muchas empresas.",
+      "Puedes obtener tu CDL-A en 4–9 semanas en LATTC, escuelas patrocinadas por empleadores o programas WIOA."
+    ]
+  },
+  {
+    "id": "hvac-tech",
+    "soc": "49-9021",
+    "title_en": "HVAC Technician",
+    "title_zh": "空调暖通技术员（HVAC）",
+    "title_es": "Técnico de HVAC (Aire Acondicionado)",
+    "riasec": "RIC",
+    "riasec_vector": [0.5, 0.3, 0, 0, 0, 0.2],
+    "wage_la_median_hourly": 30.0,
+    "job_zone": 3,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 6,
+    "training_note_en": "Pass the EPA 608 refrigerant exam in 2–4 weeks to start as a helper, then enter a 4-year apprenticeship for full journeyman pay. Service Champions and Western Allied hire helpers.",
+    "training_note_zh": "在2–4周内考取EPA 608制冷剂证书，从助手做起，再进入4年学徒制达到熟练工水平。Service Champions、Western Allied等公司在招学徒助手。",
+    "training_note_es": "Aprueba el examen EPA 608 en 2–4 semanas para empezar como ayudante, luego entra a un aprendizaje de 4 años para llegar a journeyman. Service Champions y Western Allied contratan ayudantes.",
+    "why_fit_template_en": [
+      "You'd install and repair real systems, working with your hands and tools every day.",
+      "Strong wages, year-round demand in LA's heat, and a clear path from helper to journeyman.",
+      "You can earn EPA 608 in 2–4 weeks at LATTC and start as a helper while you train."
+    ],
+    "why_fit_template_zh": [
+      "你将动手安装维修空调暖通系统——是一份实实在在的技术活。",
+      "洛杉矶常年用空调，工作不断，从助手到熟练工路径明确。",
+      "在LATTC等学校2–4周即可考取EPA 608，可一边做学徒一边学习。"
+    ],
+    "why_fit_template_es": [
+      "Instalarías y repararías sistemas reales, trabajando con tus manos y herramientas cada día.",
+      "Buenos salarios, demanda todo el año en el calor de LA y un camino claro de ayudante a journeyman.",
+      "Puedes obtener EPA 608 en 2–4 semanas en LATTC y empezar como ayudante mientras te capacitas."
+    ]
+  },
+  {
+    "id": "solar-installer",
+    "soc": "47-2231",
+    "title_en": "Solar Photovoltaic Installer",
+    "title_zh": "太阳能光伏板安装员",
+    "title_es": "Instalador de Paneles Solares",
+    "riasec": "RCI",
+    "riasec_vector": [0.5, 0.2, 0, 0, 0, 0.3],
+    "wage_la_median_hourly": 25.0,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 2,
+    "training_note_en": "Complete GRID Alternatives' free 200-hour IBT-200 solar installer training in 5–8 weeks — includes OSHA-10 and CPR. Sunrun, Tesla Energy, and LADWP contractors hire graduates.",
+    "training_note_zh": "通过GRID Alternatives的免费IBT-200太阳能培训（5–8周，含OSHA-10和CPR）。Sunrun、Tesla Energy和LADWP承包商都在招毕业生。",
+    "training_note_es": "Completa la capacitación gratuita IBT-200 de GRID Alternatives en 5–8 semanas — incluye OSHA-10 y CPR. Sunrun, Tesla Energy y contratistas de LADWP contratan a los graduados.",
+    "why_fit_template_en": [
+      "You'd work outdoors on rooftops, installing real equipment with a small crew.",
+      "A growing clean-energy field with hands-on work and strong starting wages.",
+      "GRID Alternatives offers free 5–8 week solar training in LA, including safety certs."
+    ],
+    "why_fit_template_zh": [
+      "你将在屋顶上户外作业，与小团队一起安装太阳能板。",
+      "属于不断扩张的清洁能源行业，起薪不低、动手感强。",
+      "GRID Alternatives在洛杉矶提供5–8周免费培训，包括安全证书。"
+    ],
+    "why_fit_template_es": [
+      "Trabajarías al aire libre en techos, instalando equipo real con un equipo pequeño.",
+      "Un campo de energía limpia en crecimiento con trabajo práctico y buen salario inicial.",
+      "GRID Alternatives ofrece capacitación solar gratuita de 5–8 semanas en LA, incluyendo certificados de seguridad."
+    ]
+  },
+  {
+    "id": "ece-teacher",
+    "soc": "25-2011",
+    "title_en": "Early Childhood Educator",
+    "title_zh": "幼儿教师",
+    "title_es": "Maestra de Educación Temprana",
+    "riasec": "SAE",
+    "riasec_vector": [0, 0, 0.3, 0.5, 0.2, 0],
+    "wage_la_median_hourly": 18.5,
+    "job_zone": 3,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 6,
+    "training_note_en": "Complete 12+ ECE units (1–2 semesters) at a community college and apply for a CA Child Development Permit. LAUSD TK pays around $30/hr; Head Start and Crystal Stairs also hire.",
+    "training_note_zh": "在社区大学修12个以上幼教学分（1–2个学期），并申请加州幼教许可证。LAUSD的TK项目时薪约$30，Head Start和Crystal Stairs也长期招聘。",
+    "training_note_es": "Completa 12+ unidades de ECE (1–2 semestres) en un colegio comunitario y solicita el Permiso de Desarrollo Infantil de California. LAUSD TK paga unos $30/hr; Head Start y Crystal Stairs también contratan.",
+    "why_fit_template_en": [
+      "You'd nurture young children through play, song, and structure — warm, creative work.",
+      "Helping families and shaping the next generation, with rising wages thanks to TK expansion.",
+      "You can finish 12 ECE units in 1–2 semesters at LACCD with WIOA support."
+    ],
+    "why_fit_template_zh": [
+      "你将通过游戏、儿歌和日常照顾陪伴小孩成长——温暖又有创造性的工作。",
+      "帮助家庭、塑造下一代，加州TK扩展使工资也在上涨。",
+      "在LACCD用1–2个学期完成12个幼教学分，WIOA可资助。"
+    ],
+    "why_fit_template_es": [
+      "Cuidarías a niños pequeños con juegos, canciones y rutinas — un trabajo cálido y creativo.",
+      "Ayudas a familias y formas a la próxima generación, con salarios que suben gracias a la expansión de TK.",
+      "Puedes terminar 12 unidades de ECE en 1–2 semestres en LACCD, con apoyo de WIOA."
+    ]
+  },
+  {
+    "id": "bilingual-receptionist",
+    "soc": "43-4171",
+    "title_en": "Bilingual Receptionist / Front Desk",
+    "title_zh": "双语前台接待员",
+    "title_es": "Recepcionista Bilingüe",
+    "riasec": "CSE",
+    "riasec_vector": [0, 0, 0, 0.3, 0.2, 0.5],
+    "wage_la_median_hourly": 21.0,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 1,
+    "training_note_en": "No formal credential required — strong English plus a second language (Spanish, Mandarin, Korean, Armenian) is the asset. Free WorkSource workshops help with resume and interview prep.",
+    "training_note_zh": "无需正式证书——会双语（西语、中文、韩语、亚美尼亚语等）就是最大优势。WorkSource提供免费简历和面试辅导。",
+    "training_note_es": "No se requiere credencial formal — saber dos idiomas (español, mandarín, coreano, armenio) es la ventaja. Los talleres gratuitos de WorkSource ayudan con currículum y entrevista.",
+    "why_fit_template_en": [
+      "You'd greet visitors, answer phones, and keep an office running smoothly — friendly, organized work.",
+      "Steady office hours and a great way to use your bilingual skills every day.",
+      "You can start right away — WorkSource centers offer free resume and interview prep."
+    ],
+    "why_fit_template_zh": [
+      "你将负责接待、接电话、保持办公室运转——既亲切又条理清晰的工作。",
+      "工时稳定，会双语正好派上用场。",
+      "几乎可以立即上岗——WorkSource提供免费简历和面试辅导。"
+    ],
+    "why_fit_template_es": [
+      "Recibirías visitantes, contestarías llamadas y mantendrías la oficina funcionando — un trabajo amable y organizado.",
+      "Horarios estables y una gran manera de usar tu bilingüismo todos los días.",
+      "Puedes empezar de inmediato — los centros WorkSource ofrecen ayuda gratis con currículum y entrevista."
+    ]
+  },
+  {
+    "id": "phlebotomist",
+    "soc": "31-9097",
+    "title_en": "Phlebotomy Technician (CPT1)",
+    "title_zh": "采血技术员（CPT1）",
+    "title_es": "Técnico de Flebotomía (CPT1)",
+    "riasec": "RIS",
+    "riasec_vector": [0.5, 0.3, 0, 0.2, 0, 0],
+    "wage_la_median_hourly": 23.0,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 2,
+    "training_note_en": "Complete an 80-hour CDPH-approved phlebotomy course plus 50 venipunctures in 4–8 weeks. Quest Diagnostics, LabCorp, and hospitals hire continuously.",
+    "training_note_zh": "完成80小时CDPH批准的采血课程，并完成50次实操，约4–8周。Quest Diagnostics、LabCorp和各大医院长期招聘。",
+    "training_note_es": "Completa un curso de flebotomía de 80 horas aprobado por CDPH más 50 venopunciones en 4–8 semanas. Quest Diagnostics, LabCorp y hospitales contratan constantemente.",
+    "why_fit_template_en": [
+      "You'd draw blood and prep samples — precise, hands-on work that doctors depend on.",
+      "One of the fastest ways into healthcare, with steady wages and good shift options.",
+      "You can certify as a phlebotomist in 4–8 weeks at CALRegional or KPSAHS, sometimes WIOA-funded."
+    ],
+    "why_fit_template_zh": [
+      "你将负责抽血、准备样本——精细、动手、关键的医疗工作。",
+      "是进入医疗行业最快的途径之一，工时稳、班次灵活。",
+      "在CALRegional或KPSAHS等学校4–8周即可考取CPT1证书，部分可由WIOA资助。"
+    ],
+    "why_fit_template_es": [
+      "Extraerías sangre y prepararías muestras — un trabajo preciso y práctico del que los médicos dependen.",
+      "Una de las formas más rápidas de entrar al sector salud, con salario estable y turnos flexibles.",
+      "Puedes certificarte como flebotomista en 4–8 semanas en CALRegional o KPSAHS, a veces con apoyo de WIOA."
+    ]
+  },
+  {
+    "id": "security-guard",
+    "soc": "33-9032",
+    "title_en": "Security Guard",
+    "title_zh": "保安员",
+    "title_es": "Guardia de Seguridad",
+    "riasec": "RSE",
+    "riasec_vector": [0.5, 0, 0, 0.3, 0.2, 0],
+    "wage_la_median_hourly": 19.5,
+    "job_zone": 2,
+    "english_level": "conversational",
+    "work_auth_required": "any",
+    "time_to_credential_months": 1,
+    "training_note_en": "Complete a 40-hour BSIS Guard Card course in 1–2 weeks (about $150). Allied Universal, Securitas, and hospital/school contracts hire quickly.",
+    "training_note_zh": "完成40小时BSIS保安证课程，1–2周内即可拿证，费用约$150。Allied Universal、Securitas以及医院、学校的保安岗位招聘很快。",
+    "training_note_es": "Completa el curso BSIS Guard Card de 40 horas en 1–2 semanas (unos $150). Allied Universal, Securitas y contratos en hospitales y escuelas contratan rápido.",
+    "why_fit_template_en": [
+      "You'd patrol, observe, and keep people safe — calm, watchful, hands-on work.",
+      "A fast on-ramp to steady wages with many shift options, including overnight.",
+      "You can get your BSIS Guard Card in just 1–2 weeks for around $150."
+    ],
+    "why_fit_template_zh": [
+      "你将巡逻、观察、保障他人安全——是一份冷静而有责任感的工作。",
+      "上岗快、班次多样，可选白班、夜班或周末。",
+      "1–2周即可考取BSIS保安证，费用大约$150。"
+    ],
+    "why_fit_template_es": [
+      "Patrullarías, observarías y mantendrías a la gente segura — un trabajo tranquilo, atento y práctico.",
+      "Una entrada rápida a un salario estable con muchas opciones de turno, incluyendo nocturno.",
+      "Puedes obtener tu tarjeta BSIS Guard Card en solo 1–2 semanas por unos $150."
+    ]
+  }
+]
