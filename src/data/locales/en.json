@@ -34,6 +34,7 @@
     "next": "Next →",
     "finish": "See my results →",
     "step_counter": "Step {current} of {total}",
+    "or_separator": "— or —",
     "page_counter": "Question {current} of {total}",
     "answer_first": "Please answer this before continuing.",
     "pick_exact_3": "Please pick exactly 3 to continue.",

@@ -9,3 +9,5 @@ dist/
 .playwright-mcp/
 playwright-report/
 test-results/
+verify-tot/
+verify-tot-prod.mjs

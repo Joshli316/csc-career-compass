@@ -232,7 +232,7 @@ function renderTotPage(page: Page & { kind: "tot" }): string {
     <div class="tot-wrap">
       <button type="button" class="tot-card" data-action="tot" data-id="${item.id}" data-side="a"
         aria-pressed="${chosen === "a"}">${escapeHtml(aLabel)}</button>
-      <span class="tot-or" aria-hidden="true">— or —</span>
+      <span class="tot-or" aria-hidden="true">${escapeHtml(t("survey.or_separator"))}</span>
       <button type="button" class="tot-card" data-action="tot" data-id="${item.id}" data-side="b"
         aria-pressed="${chosen === "b"}">${escapeHtml(bLabel)}</button>
     </div>
