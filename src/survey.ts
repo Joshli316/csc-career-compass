@@ -44,11 +44,32 @@ function clearError() {
 
 // ===== Renderers per page type =====
 
+// Module chapter numbers — the six self-discovery dimensions. Repeats for
+// interests sub-pages (likert/tags/visual) so the user feels anchored in
+// "still on module 1 of 6" while the format varies.
+const MODULE_NUM_BY_KEY: Record<string, number> = {
+  "modules.interests_likert.title": 1,
+  "modules.interests_tags.title": 1,
+  "modules.interests_visual.title": 1,
+  "modules.passions.title": 2,
+  "modules.strengths.title": 3,
+  "modules.values.title": 4,
+  "modules.skills.title": 5,
+  "modules.constraints.title": 6,
+};
+
 function renderModuleIntro(titleKey: string, whyKey: string): string {
+  const num = MODULE_NUM_BY_KEY[titleKey];
+  const numEl = num
+    ? `<span class="module-num" aria-hidden="true">${num}</span>`
+    : "";
   return `
     <section class="module-intro" aria-labelledby="mod-title">
-      <h2 id="mod-title">${escapeHtml(t(titleKey))}</h2>
-      <p>${escapeHtml(t(whyKey))}</p>
+      ${numEl}
+      <div class="module-intro-body">
+        <h2 id="mod-title">${escapeHtml(t(titleKey))}</h2>
+        <p>${escapeHtml(t(whyKey))}</p>
+      </div>
     </section>
   `;
 }

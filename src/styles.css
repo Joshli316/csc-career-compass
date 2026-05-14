@@ -324,9 +324,27 @@ a:hover { color: var(--primary-hover); }
   border-radius: var(--radius);
   padding: 16px 20px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
+.module-intro-body { flex: 1; min-width: 0; }
 .module-intro h2 { margin-bottom: 6px; }
 .module-intro p { margin: 0; color: var(--text-muted); }
+.module-num {
+  font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 0.85;
+  color: var(--primary);
+  opacity: 0.32;
+  flex: 0 0 auto;
+  margin-top: -4px;
+  font-feature-settings: "lnum" 1;
+}
+@media (min-width: 768px) {
+  .module-num { font-size: 84px; }
+}
 
 /* Radio rows (Likert / ability / skills) — hairline-divided rows, not cards.
    Lets the module intro be the page's only card so it anchors the eye. */
@@ -532,11 +550,20 @@ a:hover { color: var(--primary-hover); }
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: transform 140ms ease, box-shadow 140ms ease,
+              border-color 80ms ease, background-color 80ms ease;
+  transform-origin: center;
 }
 .tot-card[aria-pressed="true"] {
-  border-color: var(--primary);
-  background: var(--primary-tint);
+  border-color: var(--accent);
+  border-width: 2px;
+  padding: 19px;
+  background: #fff;
+  box-shadow: 0 6px 18px -8px rgba(194, 65, 12, 0.35);
+  transform: scale(1.04);
 }
+.tot-card[aria-pressed="false"] { opacity: 0.7; }
+.tot-wrap:not(:has([aria-pressed="true"])) .tot-card { opacity: 1; }
 .tot-card:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
 .tot-or {
   color: var(--text-muted);
