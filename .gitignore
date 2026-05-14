@@ -10,4 +10,4 @@ dist/
 playwright-report/
 test-results/
 verify-tot/
-verify-tot-prod.mjs
+verify-*.mjs

@@ -1,17 +1,20 @@
 /* ===== CSC Career Compass — Civic Plain ===== */
 
 :root {
-  --primary: #1d4ed8;
-  --primary-hover: #1e40af;
-  --primary-tint: #dbeafe;
-  --surface: #f8fafc;
+  /* Civic-paper palette: federal blue + warm paper + rust accent for CTAs. */
+  --primary: #0f4c81;
+  --primary-hover: #0a3a66;
+  --primary-tint: #dde7f0;
+  --accent: #c2410c;
+  --accent-hover: #9a340a;
+  --surface: #faf7f2;
   --surface-elevated: #ffffff;
-  --border: #e2e8f0;
-  --text: #0f172a;
-  --text-muted: #475569;
-  --success: #15803d;
+  --border: #e5dfd3;
+  --text: #0b1726;
+  --text-muted: #4a5663;
+  --success: #0f6b3e;
   --warning: #b45309;
-  --focus-ring: #1d4ed8;
+  --focus-ring: #c2410c;
 
   --max-width: 640px;
   --pad-mobile: 16px;
@@ -204,8 +207,8 @@ a:hover { color: var(--primary-hover); }
   min-height: 48px;
   padding: 12px 24px;
   border-radius: var(--radius);
-  border: 1px solid var(--primary);
-  background: var(--primary);
+  border: 1px solid var(--accent);
+  background: var(--accent);
   color: #fff;
   font: inherit;
   font-weight: 600;
@@ -214,7 +217,7 @@ a:hover { color: var(--primary-hover); }
   line-height: 1.2;
   transition: background-color 80ms ease;
 }
-.btn:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+.btn:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 .btn:focus-visible {
   outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
@@ -293,7 +296,7 @@ a:hover { color: var(--primary-hover); }
 .progress .fill {
   display: block;
   height: 100%;
-  background: var(--primary);
+  background: var(--accent);
   width: 0%;
   transition: width 220ms ease;
 }
