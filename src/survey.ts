@@ -222,8 +222,8 @@ function renderSkillsPage(): string {
 
 function renderTotPage(page: Page & { kind: "tot" }): string {
   const item = totData[page.index];
-  const aLabel = pickShort(item.a);
-  const bLabel = pickShort(item.b);
+  const aLabel = pickLocalized(item.a, "label");
+  const bLabel = pickLocalized(item.b, "label");
   const chosen = state.tot[item.id];
   return `
     <section class="module-intro">
