@@ -94,8 +94,12 @@ function renderRatingPage(opts: {
   action: RatingAction;
   scale: { 2: string; 1: string; 0: string };
   selected: (id: string) => 0 | 1 | 2 | undefined;
+  counter?: string;
 }): string {
   const intro = opts.showIntro ? renderModuleIntro(opts.introTitleKey, opts.introWhyKey) : "";
+  const counterEl = opts.counter
+    ? `<p class="question-range" aria-live="polite">${escapeHtml(opts.counter)}</p>`
+    : "";
   const rows = opts.items.map((item) => {
     const v = opts.selected(item.id);
     const hasExample = typeof item.example === "string" && item.example.length > 0;
@@ -120,10 +124,14 @@ function renderRatingPage(opts: {
   const listLabel = opts.showIntro
     ? ""
     : ` aria-label="${escapeHtml(t(opts.introTitleKey))}"`;
-  return `${intro}<ul class="q-list"${listLabel}>${rows}</ul>`;
+  return `${intro}${counterEl}<ul class="q-list"${listLabel}>${rows}</ul>`;
 }
 
 function renderLikertPage(page: Page & { kind: "interests-likert" }): string {
+  const perPage = page.items.length;
+  const start = (page.pageOfModule - 1) * perPage + 1;
+  const end = start + perPage - 1;
+  const total = perPage * page.totalPagesInModule;
   return renderRatingPage({
     introTitleKey: "modules.interests_likert.title",
     introWhyKey: "modules.interests_likert.why",
@@ -132,6 +140,7 @@ function renderLikertPage(page: Page & { kind: "interests-likert" }): string {
     action: "likert",
     scale: { 2: t("scale.like"), 1: t("scale.neutral"), 0: t("scale.dislike") },
     selected: (id) => state.miniIp[id],
+    counter: formatT("survey.question_range", { start, end, total }),
   });
 }
 

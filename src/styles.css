@@ -10,6 +10,7 @@
   --surface: #faf7f2;
   --surface-elevated: #ffffff;
   --border: #e5dfd3;
+  --hairline: #cdc1aa;
   --text: #0b1726;
   --text-muted: #4a5663;
   --success: #0f6b3e;
@@ -17,6 +18,8 @@
   --focus-ring: #c2410c;
 
   --max-width: 640px;
+  --max-width-survey: 760px;
+  --max-width-survey-wide: 980px;
   --pad-mobile: 16px;
   --pad-tablet: 24px;
   --pad-desktop: 32px;
@@ -62,9 +65,41 @@ main {
 
 @media (min-width: 768px) {
   main { padding: 32px var(--pad-tablet) 40px; }
+  main:has(.survey-page) { max-width: var(--max-width-survey); }
 }
 @media (min-width: 1024px) {
   main { padding: 40px var(--pad-desktop) 48px; }
+  main:has(.survey-page) { max-width: var(--max-width-survey-wide); }
+
+  /* Two-column survey layout: module intro becomes a sticky left rail
+     while questions flow on the right. On subpages without a rail
+     (e.g., Likert page 2-4), we still hold the grid so the right-column
+     content stays at the same horizontal position — no layout jump
+     between pages. */
+  .survey-page {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    column-gap: 56px;
+    align-items: start;
+  }
+  .survey-page > .module-intro {
+    grid-column: 1;
+    grid-row: 1 / span 99;
+    position: sticky;
+    top: 24px;
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .survey-page > .module-intro .module-num {
+    font-size: 128px;
+    margin-top: -12px;
+    margin-bottom: -8px;
+  }
+  .survey-page > *:not(.module-intro) {
+    grid-column: 2;
+  }
 }
 
 h1, h2, h3 {
@@ -329,7 +364,23 @@ a:hover { color: var(--primary-hover); }
   gap: 16px;
 }
 .module-intro-body { flex: 1; min-width: 0; }
-.module-intro h2 { margin-bottom: 6px; }
+.module-intro h2 {
+  margin-bottom: 6px;
+  letter-spacing: -0.005em;
+}
+/* Editorial serif for EN/ES module titles; ZH keeps its sans for clarity. */
+html[lang="en"] .module-intro h2,
+html[lang="es"] .module-intro h2 {
+  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+@media (min-width: 768px) {
+  html[lang="en"] .module-intro h2,
+  html[lang="es"] .module-intro h2 { font-size: 30px; }
+}
 .module-intro p { margin: 0; color: var(--text-muted); }
 .module-num {
   font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
@@ -346,17 +397,24 @@ a:hover { color: var(--primary-hover); }
   .module-num { font-size: 84px; }
 }
 
+.question-range {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
 /* Radio rows (Likert / ability / skills) — hairline-divided rows, not cards.
    Lets the module intro be the page's only card so it anchors the eye. */
 .q-list {
   list-style: none;
   padding: 0;
   margin: 0 0 24px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--hairline);
 }
 .q-row {
   padding: 14px 4px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--hairline);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -370,18 +428,27 @@ a:hover { color: var(--primary-hover); }
 }
 .q-row .label { font-size: 17px; line-height: 1.45; }
 .q-row .ex { color: var(--text-muted); font-size: 14px; }
+/* Segmented control: one bordered container, 3 segments divided by hairlines.
+   Replaces the previous 3-bordered-pills-per-question pattern that read as
+   15 bordered rectangles per page. */
 .q-row .opts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-elevated);
+  transition: opacity 120ms ease;
 }
 .opt {
   appearance: none;
   min-height: 48px;
   padding: 10px 8px;
-  border: 1px solid var(--border);
+  border: 0;
+  border-right: 1px solid var(--border);
+  border-radius: 0;
   background: var(--surface-elevated);
-  border-radius: var(--radius);
   font: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -392,14 +459,41 @@ a:hover { color: var(--primary-hover); }
   justify-content: center;
   gap: 6px;
   text-align: center;
+  transition: background-color 80ms ease, opacity 120ms ease;
 }
+.opt:last-child { border-right: 0; }
 .opt[aria-pressed="true"] {
-  border-color: var(--primary);
   background: var(--primary-tint);
   color: var(--primary-hover);
 }
-.opt:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+.opt:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+  z-index: 1;
+  position: relative;
+}
+.opt:hover:not([aria-pressed="true"]) { background: rgba(15, 76, 129, 0.04); }
 .opt svg { width: 18px; height: 18px; }
+
+/* Answered-row rhythm: when any segment is pressed, the row marks itself
+   complete with a rust leading rail and the unpicked segments dim. Turns
+   the static list into a self-tracking progress surface. */
+.q-row:has(.opt[aria-pressed="true"]) {
+  position: relative;
+}
+.q-row:has(.opt[aria-pressed="true"])::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 16px;
+  bottom: 16px;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.q-row:has(.opt[aria-pressed="true"]) .opt[aria-pressed="false"] {
+  opacity: 0.45;
+}
 
 .field-error {
   color: var(--warning);
@@ -584,6 +678,10 @@ a:hover { color: var(--primary-hover); }
   min-width: calc(50% - 4px);
   padding: 10px 12px;
   font-size: 14px;
+  /* Constraints are not a segmented control — restore standalone-button
+     border + radius the base .opt rules stripped. */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 /* Nav buttons */

@@ -37,6 +37,7 @@
     "step_counter": "第 {current} 步，共 {total} 步",
     "or_separator": "—— 或 ——",
     "page_counter": "第 {current} 题，共 {total} 题",
+    "question_range": "第 {start}–{end} 题，共 {total} 题",
     "answer_first": "请先回答这道题再继续。",
     "pick_exact_3": "请选择恰好 3 项后再继续。",
     "pick_one": "请选择一项后再继续。",
