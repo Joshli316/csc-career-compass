@@ -37,7 +37,6 @@
     "finish": "Ver mis resultados →",
     "step_counter": "Paso {current} de {total}",
     "or_separator": "— o —",
-    "page_counter": "Pregunta {current} de {total}",
     "question_range": "Preguntas {start}–{end} de {total}",
     "answer_first": "Por favor responde antes de continuar.",
     "pick_exact_3": "Por favor elige exactamente 3 para continuar.",

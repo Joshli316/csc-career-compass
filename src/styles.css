@@ -27,6 +27,7 @@
 
   --font-en: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-zh: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
   --font-stack: var(--font-en);
 }
 
@@ -371,7 +372,7 @@ a:hover { color: var(--primary-hover); }
 /* Editorial serif for EN/ES module titles; ZH keeps its sans for clarity. */
 html[lang="en"] .module-intro h2,
 html[lang="es"] .module-intro h2 {
-  font-family: "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 26px;
   line-height: 1.18;
@@ -383,7 +384,7 @@ html[lang="es"] .module-intro h2 {
 }
 .module-intro p { margin: 0; color: var(--text-muted); }
 .module-num {
-  font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
   font-weight: 500;
   font-size: 64px;
   line-height: 0.85;
