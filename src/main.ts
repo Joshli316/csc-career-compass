@@ -1,6 +1,6 @@
 import { t, getLang, setLang, onLangChange, initLang } from "./i18n";
 import type { Lang } from "./i18n";
-import { renderSurvey, resetSurvey, reloadStateFromStorage, setPageIndex } from "./survey";
+import { renderSurvey, resetSurvey, reloadStateFromStorage } from "./survey";
 import { renderResults } from "./results";
 import { loadState, isFresh, clearState } from "./state";
 import { downloadPdf } from "./pdf";
@@ -13,7 +13,7 @@ function renderHeader(): void {
   header.innerHTML = `
     <div class="inner">
       <a class="brand" href="#/" data-action="home">${escapeHtml(t("header.brand"))}</a>
-      <div class="lang-toggle" role="group" aria-label="Language">
+      <div class="lang-toggle" role="group" aria-label="${escapeHtml(t("lang.aria_label"))}">
         <button type="button" data-lang="en" aria-pressed="${lang === "en"}">${escapeHtml(t("lang.en"))}</button>
         <button type="button" data-lang="zh-Hans" aria-pressed="${lang === "zh-Hans"}">${escapeHtml(t("lang.zh"))}</button>
         <button type="button" data-lang="es" aria-pressed="${lang === "es"}">${escapeHtml(t("lang.es"))}</button>
@@ -98,11 +98,10 @@ function route(): void {
     renderLanding(root);
     document.title = t("page_title.landing");
   } else if (hash.startsWith("/q")) {
-    // Survey routes — single state machine; sub-paths just kept for back/forward UX
+    // Survey routes — single state machine; sub-paths just kept for back/forward UX.
+    // pageIndex is owned by the click handlers in renderLanding (start = reset → 0,
+    // resume = reload saved index); the route handler must NOT overwrite it.
     reloadStateFromStorage();
-    if (hash === "/q/start") {
-      setPageIndex(0);
-    }
     renderSurvey(root);
     document.title = t("page_title.survey");
   } else if (hash === "/results") {

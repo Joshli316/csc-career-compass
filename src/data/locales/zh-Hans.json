@@ -8,7 +8,8 @@
   "lang": {
     "en": "EN",
     "zh": "中文",
-    "es": "Español"
+    "es": "Español",
+    "aria_label": "语言"
   },
   "header": {
     "brand": "CSC 职业指南针"

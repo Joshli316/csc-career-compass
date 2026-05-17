@@ -164,7 +164,8 @@ function renderWorkspacePage(): string {
     const label = pickLocalized(w, "label");
     const active = state.workspace === w.id;
     return `
-      <button type="button" class="tile" data-action="workspace" data-id="${w.id}" aria-pressed="${active}">
+      <button type="button" class="tile" data-action="workspace" data-id="${w.id}"
+        role="radio" aria-checked="${active}" aria-pressed="${active}">
         <span class="svg-wrap" aria-hidden="true">${w.svg_inline}</span>
         <span class="label">${escapeHtml(label)}</span>
       </button>
@@ -278,6 +279,7 @@ function renderConstraintsPage(): string {
       const optLabel = pickLocalized(o, "label");
       return `
         <button type="button" class="opt" data-action="constraint" data-qid="${q.id}" data-val="${o.id}"
+          role="radio" aria-checked="${current === o.id ? "true" : "false"}"
           aria-pressed="${current === o.id ? "true" : "false"}">
           ${escapeHtml(optLabel)}
         </button>
@@ -516,7 +518,3 @@ export function reloadStateFromStorage(): void {
   }
 }
 
-export function setPageIndex(idx: number): void {
-  state.pageIndex = Math.max(0, Math.min(idx, TOTAL_PAGES - 1));
-  saveState(state);
-}

@@ -9,7 +9,8 @@
   "lang": {
     "en": "EN",
     "zh": "中文",
-    "es": "Español"
+    "es": "Español",
+    "aria_label": "Idioma"
   },
   "header": {
     "brand": "Brújula Profesional CSC"
@@ -113,7 +114,7 @@
     "no_matches": "No encontramos coincidencias con estos criterios. Pide una cita con un especialista de empleo de CSC para opciones personalizadas.",
     "pdf_button": "Descargar PDF",
     "pdf_helper": "Lleva esto a tu cita de CSC. También puedes imprimirlo o enviárselo a tu familia.",
-    "specialist_note": "Lleva esto a tu especialista de empleo de CSC — pueden ayudarte a planear capacitación, fondos y los próximos pasos.",
+    "specialist_note": "Lleva esto a tu especialista de empleo de CSC. Pueden ayudarte a planear capacitación, fondos y los próximos pasos.",
     "restart_note": "¿Quieres probar con respuestas diferentes?",
     "restart_link": "Empezar de nuevo →",
     "why_fit_h": "Por qué esto encaja contigo",

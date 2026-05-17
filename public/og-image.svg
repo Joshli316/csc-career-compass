@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="CSC Career Compass">
-  <rect width="1200" height="630" fill="#1d4ed8"/>
+  <rect width="1200" height="630" fill="#0f4c81"/>
+  <rect x="0" y="610" width="1200" height="20" fill="#c2410c"/>
   <g fill="#ffffff" font-family="Inter, system-ui, -apple-system, sans-serif">
     <text x="80" y="180" font-size="56" font-weight="700">CSC Career Compass</text>
     <text x="80" y="270" font-size="40" font-weight="400" opacity="0.92">Discover your skills, interests,</text>

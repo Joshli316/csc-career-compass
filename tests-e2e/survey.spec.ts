@@ -138,6 +138,29 @@ test("results page Download PDF button is present and clickable", async ({ page 
   // Don't actually click — we don't want to trigger window.print() in CI
 });
 
+test("resume link returns user to the page they left, not page 1", async ({ page }) => {
+  // Seed mid-survey state at pageIndex 5 (a passions/tags-ish point)
+  await page.evaluate(() => {
+    const state = {
+      version: 1, startedAt: Date.now(), updatedAt: Date.now(), lang: "en",
+      pageIndex: 5,
+      miniIp: { ip01: 1, ip02: 1, ip03: 1, ip04: 1, ip05: 1 },
+      tags: [], workspace: null, passions: [], strengths: {}, values: [],
+      skills: {}, tot: {}, constraints: {},
+    };
+    localStorage.setItem("cscCompass.state", JSON.stringify(state));
+  });
+  await page.reload();
+  await expect(page.locator('[data-action="resume"]')).toBeVisible();
+  await page.click('[data-action="resume"]');
+  // After resume, the survey state object must keep pageIndex at 5, not reset to 0.
+  const parsed = await page.evaluate(() => {
+    const raw = localStorage.getItem("cscCompass.state");
+    return raw ? JSON.parse(raw) : null;
+  });
+  expect(parsed?.pageIndex).toBe(5);
+});
+
 test("restart link returns to landing and resets the survey state", async ({ page }) => {
   await page.click('button[data-action="start"]');
   // Answer one item to ensure non-empty state

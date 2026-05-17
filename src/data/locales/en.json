@@ -7,7 +7,8 @@
   "lang": {
     "en": "EN",
     "zh": "中文",
-    "es": "Español"
+    "es": "Español",
+    "aria_label": "Language"
   },
   "header": {
     "brand": "CSC Career Compass"
@@ -111,7 +112,7 @@
     "no_matches": "We couldn't find matches with these constraints. Book a CSC Employment Specialist appointment for personalized options.",
     "pdf_button": "Download PDF",
     "pdf_helper": "Take this to your CSC appointment. You can also print it or send it to family.",
-    "specialist_note": "Bring this to your CSC Employment Specialist — they can help you plan training, funding, and the next steps.",
+    "specialist_note": "Bring this to your CSC Employment Specialist. They can help you plan training, funding, and the next steps.",
     "restart_note": "Done? Try it again with different answers:",
     "restart_link": "Start over →",
     "why_fit_h": "Why this fits you",
