@@ -155,7 +155,12 @@ function renderTagsPage(): string {
       </button>
     `;
   }).join("");
-  return `${intro}<div class="tag-cloud" role="group" aria-label="${escapeHtml(t("modules.interests_tags.title"))}">${chips}</div>`;
+  const counter = formatT("survey.selected_count", { n: state.tags.length, max: 5 });
+  return `
+    ${intro}
+    <div class="tag-cloud" role="group" aria-label="${escapeHtml(t("modules.interests_tags.title"))}">${chips}</div>
+    <p class="step-counter" aria-live="polite">${escapeHtml(counter)}</p>
+  `;
 }
 
 function renderWorkspacePage(): string {
@@ -390,10 +395,7 @@ function onClick(ev: Event): void {
       break;
     }
     case "tag": {
-      const id = actionEl.dataset.id!;
-      const idx = state.tags.indexOf(id);
-      if (idx >= 0) state.tags.splice(idx, 1);
-      else state.tags.push(id);
+      state.tags = togglePick(state.tags, actionEl.dataset.id!, 5);
       saveState(state);
       rerender();
       break;
