@@ -10,7 +10,7 @@ export default defineConfig({
     trace: "off",
   },
   webServer: {
-    command: "npx vite --port 3000",
+    command: "bun run dev",
     port: 3000,
     reuseExistingServer: true,
     timeout: 30_000,

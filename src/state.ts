@@ -19,10 +19,11 @@ export interface SurveyState {
   skills: Record<string, SkillValue>;
   tot: Record<string, "a" | "b">;
   constraints: Record<string, string>;
+  barriers: string[];
 }
 
 const LS_STATE_KEY = "cscCompass.state";
-const STATE_VERSION = 1;
+const STATE_VERSION = 2;
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
 export function emptyState(lang: Lang): SurveyState {
@@ -42,6 +43,7 @@ export function emptyState(lang: Lang): SurveyState {
     skills: {},
     tot: {},
     constraints: {},
+    barriers: [],
   };
 }
 
@@ -50,9 +52,13 @@ export function loadState(): SurveyState | null {
     const raw = localStorage.getItem(LS_STATE_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as SurveyState;
-    if (parsed.version !== STATE_VERSION) return null;
+    if (parsed.version !== STATE_VERSION) {
+      clearState();
+      return null;
+    }
     return parsed;
   } catch {
+    clearState();
     return null;
   }
 }

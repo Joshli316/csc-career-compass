@@ -34,17 +34,5 @@
       {"id": "no", "value": "any", "label_en": "Not yet", "label_zh": "暂时不行", "label_es": "Todavía no"},
       {"id": "unsure", "value": "any", "label_en": "I'm not sure", "label_zh": "不太确定", "label_es": "No estoy seguro"}
     ]
-  },
-  {
-    "id": "hours",
-    "label_en": "Hours you have available each week",
-    "label_zh": "你每周能投入的工作时间",
-    "label_es": "Horas que tienes disponibles cada semana",
-    "options": [
-      {"id": "lt20", "label_en": "Less than 20 hours", "label_zh": "少于 20 小时", "label_es": "Menos de 20 horas"},
-      {"id": "20_30", "label_en": "20–30 hours", "label_zh": "20–30 小时", "label_es": "20–30 horas"},
-      {"id": "30_40", "label_en": "30–40 hours", "label_zh": "30–40 小时", "label_es": "30–40 horas"},
-      {"id": "ft", "label_en": "Full time", "label_zh": "全职", "label_es": "Tiempo completo"}
-    ]
   }
 ]

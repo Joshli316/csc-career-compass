@@ -20,7 +20,8 @@ export type Page =
   | { kind: "strengths" }
   | { kind: "values" }
   | { kind: "skills" }
-  | { kind: "constraints" };
+  | { kind: "constraints" }
+  | { kind: "barriers" };
 
 export function buildPageList(): Page[] {
   const pages: Page[] = [];
@@ -43,6 +44,7 @@ export function buildPageList(): Page[] {
   pages.push({ kind: "tot", index: 3 });
   pages.push({ kind: "skills" });
   pages.push({ kind: "constraints" });
+  pages.push({ kind: "barriers" });
   return pages;
 }
 
@@ -87,6 +89,9 @@ export function validatePage(state: SurveyState, page: Page): ValidationCode {
       const unanswered = constraintsData.some((c) => state.constraints[c.id] === undefined);
       return unanswered ? "pick_one_each" : null;
     }
+    case "barriers":
+      // Optional disclosures — page is always valid; "no selection" = "no disclosure".
+      return null;
   }
 }
 

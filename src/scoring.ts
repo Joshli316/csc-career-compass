@@ -21,25 +21,19 @@ export interface OccupationEntry {
   title_es: string;
   riasec: string;
   riasec_vector: number[];
+  wage_la_entry_hourly: number;
   wage_la_median_hourly: number;
   job_zone: number;
   english_level: "beginner" | "conversational" | "advanced" | "native";
   work_auth_required: "any" | "us_only";
   time_to_credential_months: number;
-  training_note_en: string;
-  training_note_zh: string;
-  training_note_es: string;
-  why_fit_template_en: string[];
-  why_fit_template_zh: string[];
-  why_fit_template_es: string[];
 }
 
-const ENGLISH_LEVEL_RANK: Record<string, number> = {
-  beginner: 1,
-  conversational: 2,
-  advanced: 3,
-  native: 4,
-};
+function levelOf(constraintId: string, optionId: string | undefined): number | undefined {
+  const c = constraintsData.find((c) => c.id === constraintId);
+  const o = c?.options.find((o) => o.id === optionId);
+  return (o as { level?: number } | undefined)?.level;
+}
 
 export function computeRiasecVector(state: SurveyState): number[] {
   const v = [0, 0, 0, 0, 0, 0];
@@ -94,16 +88,23 @@ export function topLetters(v: number[], n: number): Letter[] {
   return ranked.slice(0, n).map((x) => x.l);
 }
 
+const ENGLISH_LEVEL_RANK: Record<string, number> = {
+  beginner: 1,
+  conversational: 2,
+  advanced: 3,
+  native: 4,
+};
+
 export function filterOccupationsByConstraints(state: SurveyState): OccupationEntry[] {
-  const userEnglish = ENGLISH_LEVEL_RANK[state.constraints.english ?? "native"] ?? 4;
-  const educationOpt = constraintsData
-    .find((c) => c.id === "education")?.options
-    .find((o) => o.id === state.constraints.education);
-  const userEdu = ((educationOpt as { level?: number })?.level) ?? 5;
+  // Defaults are deliberately MOST-PERMISSIVE on the user side, not least.
+  // Missing data = client never answered, so we should not silently filter
+  // them out as if they had a high-level credential or native English.
+  const userEnglish = levelOf("english", state.constraints.english) ?? 1;
+  const userEdu = levelOf("education", state.constraints.education) ?? 1;
   const workAuthOpt = constraintsData
     .find((c) => c.id === "work_auth")?.options
     .find((o) => o.id === state.constraints.work_auth);
-  const userAuth = ((workAuthOpt as { value?: string })?.value) ?? "us_only";
+  const userAuth = ((workAuthOpt as { value?: string } | undefined)?.value) ?? "any";
 
   return (occupationsData as OccupationEntry[]).filter((occ) => {
     if (ENGLISH_LEVEL_RANK[occ.english_level] > userEnglish + 1) return false;
@@ -113,12 +114,22 @@ export function filterOccupationsByConstraints(state: SurveyState): OccupationEn
   });
 }
 
-export function rankOccupations(state: SurveyState): OccupationEntry[] {
+export interface InterestArea {
+  letter: Letter;
+  samples: OccupationEntry[];
+}
+
+export function getInterestAreas(state: SurveyState, samplesPerArea = 3): InterestArea[] {
   const userVec = computeRiasecVector(state);
+  const tops = topLetters(userVec, 3);
   const candidates = filterOccupationsByConstraints(state);
-  if (candidates.length === 0) return [];
-  const scored = candidates
-    .map((occ) => ({ occ, score: cosine(userVec, occ.riasec_vector) }))
-    .sort((a, b) => b.score - a.score);
-  return scored.slice(0, 3).map((x) => x.occ);
+  return tops.map((letter) => {
+    const inArea = candidates
+      .filter((occ) => occ.riasec[0] === letter)
+      .map((occ) => ({ occ, score: cosine(userVec, occ.riasec_vector) }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, samplesPerArea)
+      .map((x) => x.occ);
+    return { letter, samples: inArea };
+  });
 }

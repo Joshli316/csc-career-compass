@@ -15,11 +15,11 @@ function st(overrides: Partial<SurveyState> = {}): SurveyState {
 describe("buildPageList", () => {
   const pages = buildPageList();
 
-  it("produces 15 pages total", () => {
-    expect(pages.length).toBe(15);
+  it("produces 16 pages total", () => {
+    expect(pages.length).toBe(16);
   });
 
-  it("orders modules: 4 likert → tot → tags → tot → visual → passions → tot → strengths → values → tot → skills → constraints", () => {
+  it("orders modules: 4 likert → tot → tags → tot → visual → passions → tot → strengths → values → tot → skills → constraints → barriers", () => {
     const kinds = pages.map((p) => p.kind);
     expect(kinds).toEqual([
       "interests-likert", "interests-likert", "interests-likert", "interests-likert",
@@ -34,6 +34,7 @@ describe("buildPageList", () => {
       "tot",
       "skills",
       "constraints",
+      "barriers",
     ]);
   });
 
@@ -178,6 +179,17 @@ describe("validatePage — constraints", () => {
     const constraints: SurveyState["constraints"] = {};
     for (const c of constraintsData) constraints[c.id] = c.options[0].id;
     expect(validatePage(st({ constraints }), page)).toBe(null);
+  });
+});
+
+describe("validatePage — barriers (optional disclosures)", () => {
+  const page = buildPageList().find((p) => p.kind === "barriers")!;
+  it("passes when nothing selected (skipping is valid)", () => {
+    expect(validatePage(st(), page)).toBe(null);
+  });
+  it("passes when any subset selected", () => {
+    expect(validatePage(st({ barriers: ["veteran"] }), page)).toBe(null);
+    expect(validatePage(st({ barriers: ["veteran", "housing", "disability"] }), page)).toBe(null);
   });
 });
 

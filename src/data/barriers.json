@@ -1,0 +1,38 @@
+[
+  {
+    "id": "justice_involved",
+    "label_en": "I have a past conviction (justice-involved)",
+    "label_zh": "我有犯罪记录（曾涉司法）",
+    "label_es": "Tengo una condena previa (involucrado con el sistema judicial)"
+  },
+  {
+    "id": "disability",
+    "label_en": "I need disability accommodations at work",
+    "label_zh": "我在工作中需要残障人士便利",
+    "label_es": "Necesito adaptaciones por discapacidad en el trabajo"
+  },
+  {
+    "id": "veteran",
+    "label_en": "I'm a veteran (or eligible spouse)",
+    "label_zh": "我是退伍军人（或符合条件的配偶）",
+    "label_es": "Soy veterano/a (o cónyuge elegible)"
+  },
+  {
+    "id": "housing",
+    "label_en": "My housing isn't stable right now",
+    "label_zh": "我目前的住房不稳定",
+    "label_es": "Mi vivienda no es estable en este momento"
+  },
+  {
+    "id": "public_assistance",
+    "label_en": "I receive CalWORKs, SNAP, GA, or SSI",
+    "label_zh": "我正在领取 CalWORKs、SNAP、GA 或 SSI 等公共补助",
+    "label_es": "Recibo CalWORKs, SNAP, GA o SSI"
+  },
+  {
+    "id": "supportive_services",
+    "label_en": "I need help with childcare or transportation to work",
+    "label_zh": "我在儿童看护或上下班交通方面需要帮助",
+    "label_es": "Necesito ayuda con el cuidado de niños o el transporte al trabajo"
+  }
+]

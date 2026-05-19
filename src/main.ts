@@ -1,10 +1,20 @@
-import { t, getLang, setLang, onLangChange, initLang } from "./i18n";
+import { t, formatT, getLang, setLang, onLangChange, initLang } from "./i18n";
 import type { Lang } from "./i18n";
-import { renderSurvey, resetSurvey, reloadStateFromStorage } from "./survey";
+import { renderSurvey, resetSurvey, reloadStateFromStorage, TOTAL_PAGES } from "./survey";
 import { renderResults } from "./results";
 import { loadState, isFresh, clearState } from "./state";
 import { downloadPdf } from "./pdf";
 import { escapeHtml } from "./util";
+
+import enMeta from "./data/locales/en.json";
+import zhMeta from "./data/locales/zh-Hans.json";
+import esMeta from "./data/locales/es.json";
+
+const LOCALE_DRAFT: Record<Lang, boolean> = {
+  en: (enMeta as { _meta?: { draft?: boolean } })._meta?.draft === true,
+  "zh-Hans": (zhMeta as { _meta?: { draft?: boolean } })._meta?.draft === true,
+  es: (esMeta as { _meta?: { draft?: boolean } })._meta?.draft === true,
+};
 
 function renderHeader(): void {
   const header = document.getElementById("site-header");
@@ -35,13 +45,23 @@ function renderFooter(): void {
 
 function renderLanding(root: HTMLElement): void {
   const saved = loadState();
-  const showResume =
-    !!saved &&
-    isFresh(saved) &&
-    saved.pageIndex > 0;
+  const isMidSurvey = !!saved && isFresh(saved) && saved.pageIndex > 0 && saved.pageIndex < TOTAL_PAGES - 1;
+  const isFinished = !!saved && isFresh(saved) && saved.pageIndex >= TOTAL_PAGES - 1;
+
+  let secondaryLink = "";
+  if (isMidSurvey && saved) {
+    const label = formatT("landing.resume_with_step", {
+      current: saved.pageIndex + 1,
+      total: TOTAL_PAGES,
+    });
+    secondaryLink = `<p class="resume-link"><a href="#/q/start" data-action="resume">${escapeHtml(label)}</a></p>`;
+  } else if (isFinished) {
+    secondaryLink = `<p class="resume-link"><a href="#/results" data-action="view-results">${escapeHtml(t("landing.view_results"))}</a></p>`;
+  }
 
   root.innerHTML = `
     <section class="landing" aria-labelledby="l-title">
+      ${draftBannerHtml()}
       <h1 id="l-title">${escapeHtml(t("landing.h1"))}</h1>
       <p class="subhead">${escapeHtml(t("landing.subhead"))}</p>
       <ul class="bullets">
@@ -50,11 +70,7 @@ function renderLanding(root: HTMLElement): void {
         <li>${escapeHtml(t("landing.bullet_private"))}</li>
       </ul>
       <button type="button" class="btn block" data-action="start">${escapeHtml(t("landing.start"))}</button>
-      ${
-        showResume
-          ? `<p class="resume-link"><a href="#/q/start" data-action="resume">${escapeHtml(t("landing.resume"))}</a></p>`
-          : ""
-      }
+      ${secondaryLink}
     </section>
   `;
 
@@ -67,6 +83,11 @@ function renderLanding(root: HTMLElement): void {
     reloadStateFromStorage();
     location.hash = "#/q/start";
   });
+}
+
+function draftBannerHtml(): string {
+  if (!LOCALE_DRAFT[getLang()]) return "";
+  return `<p class="draft-banner" role="status">${escapeHtml(t("landing.draft_banner"))}</p>`;
 }
 
 function renderResultsView(root: HTMLElement): void {
@@ -111,7 +132,17 @@ function route(): void {
     renderLanding(root);
     document.title = t("page_title.landing");
   }
-  window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+  // Two-arg form: works in all WebViews including WeChat/FB in-app browsers.
+  window.scrollTo(0, 0);
+  announce(document.title);
+}
+
+function announce(text: string): void {
+  const el = document.getElementById("sr-announce");
+  if (!el) return;
+  el.textContent = "";
+  // Force re-announcement by toggling on next tick.
+  requestAnimationFrame(() => { el.textContent = text; });
 }
 
 function ensureCanonicalAndOgUrl(): void {
@@ -132,6 +163,17 @@ function ensureCanonicalAndOgUrl(): void {
     document.head.appendChild(ogUrl);
   }
   ogUrl.content = url;
+
+  // Many social crawlers (WhatsApp, Facebook) prefer absolute URLs for og:image.
+  // Promote whatever was set statically to an origin-prefixed absolute URL.
+  const base = `${location.origin}${location.pathname.replace(/[^/]*$/, "")}`;
+  for (const sel of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
+    const tag = document.querySelector<HTMLMetaElement>(sel);
+    if (!tag) continue;
+    const src = tag.content;
+    if (!src || /^https?:/i.test(src)) continue;
+    tag.content = new URL(src, base).href;
+  }
 }
 
 function init(): void {

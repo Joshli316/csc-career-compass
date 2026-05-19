@@ -21,11 +21,14 @@
   "landing": {
     "h1": "Discover your skills, interests, and best-fit careers.",
     "subhead": "An ~8-minute self-discovery tool for Los Angeles. Free. No account. Private.",
-    "bullet_outcome": "You'll get a 1-page summary of who you are at work, plus 3 LA jobs that fit",
+    "bullet_outcome": "You'll get a 1-page summary of who you are at work — your interests, passions, and strengths — plus sample LA roles to explore",
     "bullet_free": "Free, no account, about 8 minutes",
     "bullet_private": "Stays on your phone — nothing sent to a server",
     "start": "Start →",
-    "resume": "Resume where you left off"
+    "resume": "Resume where you left off",
+    "resume_with_step": "Resume — Step {current} of {total}",
+    "view_results": "View my results →",
+    "draft_banner": "This translation is still being reviewed. The English version is available."
   },
   "footer": {
     "disclaimer": "This is a starting point, not professional career counseling. For personalized guidance, talk to your CSC Employment Outreach Specialist."
@@ -62,7 +65,8 @@
     },
     "interests_tags": {
       "title": "Step 1b: Words that describe you at work",
-      "why": "Tap up to 5 words that fit how you like to work."
+      "why": "Tap up to 5 words that fit how you like to work.",
+      "skip_hint": "You can skip this — or tap any words that fit you."
     },
     "interests_visual": {
       "title": "Step 1c: Where would you feel at home?",
@@ -71,7 +75,7 @@
     },
     "passions": {
       "title": "Step 2: What are you passionate about?",
-      "why": "These are the things you'd do even when no one is watching. Pick 3."
+      "why": "These are things you'd do even when no one is watching. Pick 3."
     },
     "strengths": {
       "title": "Step 3: What comes easily to you?",
@@ -89,36 +93,43 @@
       "title": "Step 6: A few practical questions",
       "why": "This helps us match you to jobs you can take on right now."
     },
+    "barriers": {
+      "title": "Optional: A few things your specialist should know",
+      "why": "These help your CSC Specialist match you with the right support and funding. Tap any that fit — skip any you'd rather not share.",
+      "skip_hint": "Stays on your phone. Only shared if you bring your PDF to your specialist."
+    },
     "tot_intro": "Quick break — which one sounds better to you?"
   },
   "results": {
     "title": "Your Career Compass",
     "complete_badge": "Survey complete",
-    "section_a_title": "Here's what we heard about YOU",
-    "section_b_title": "Careers in LA that fit who you are",
-    "section_b_intro": "Based on everything above, these 3 LA jobs line up with who you are and the work you can take on right now.",
-    "section_c_title": "Optional next step",
+    "section_a_title": "What you told us about yourself",
+    "section_b_title": "Your top interest areas",
+    "section_b_intro": "These are the kinds of work that match your interests. The sample LA roles below are starting points to explore with your CSC Specialist — not a prescription.",
+    "sample_roles_h": "Sample LA roles to explore",
+    "no_samples_in_area": "No sample roles match your current constraints in this area. Your CSC Specialist can help you explore options.",
+    "barriers_callout_h": "Things to discuss with your CSC Specialist",
+    "barriers_callout_intro": "You shared the following — your specialist can help connect you to the right support and funding:",
+    "section_c_title": "Take your results with you",
     "interests_h": "Your interests",
     "passions_h": "What you're passionate about",
-    "passions_lead": "These are the things you'd do even if no one was watching.",
-    "attrs_h": "Your natural attributes",
-    "attrs_lead": "These are what energize you at work.",
+    "passions_lead": "These are things you'd do even when no one is watching.",
+    "attrs_h": "What you value at work",
+    "attrs_lead": "These are what you said you need to feel like yourself at work.",
     "strengths_h": "What you're naturally good at",
     "strengths_lead": "These come naturally to you.",
+    "strengths_empty": "You said everything is still developing — that's a great starting point. Your CSC Specialist can help you spot strengths you may be overlooking.",
     "soft_h": "Your soft skills",
     "soft_lead": "These are skills you've built.",
+    "soft_empty": "You said your soft skills are still growing — many people understate these. Your CSC Specialist can help you name the ones you already use.",
     "growing_h": "Skills you want to grow",
     "growing_lead": "These are skills you said you're still developing.",
-    "no_matches": "We couldn't find matches with these constraints. Book a CSC Employment Specialist appointment for personalized options.",
     "pdf_button": "Download PDF",
     "pdf_helper": "Take this to your CSC appointment. You can also print it or send it to family.",
     "specialist_note": "Bring this to your CSC Employment Specialist. They can help you plan training, funding, and the next steps.",
     "restart_note": "Done? Try it again with different answers:",
     "restart_link": "Start over →",
-    "why_fit_h": "Why this fits you",
-    "wage_label": "Median wage in LA",
-    "training_label": "How to get there",
-    "time_label": "Time to credential",
+    "wage_legend": "Starting pay → typical hourly pay in LA · months to get certified. Data: BLS, May 2024 (LA area).",
     "months": "months"
   }
 }

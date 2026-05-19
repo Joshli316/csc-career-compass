@@ -5,7 +5,7 @@ import {
   normalize,
   topLetters,
   filterOccupationsByConstraints,
-  rankOccupations,
+  getInterestAreas,
   LETTER_INDEX,
 } from "./scoring";
 import { emptyState } from "./state";
@@ -123,11 +123,18 @@ describe("computeRiasecVector", () => {
 });
 
 describe("filterOccupationsByConstraints", () => {
-  it("returns all 15 when user has no constraints filled", () => {
-    const s = emptyState("en"); // empty constraints, defaults to most permissive on read path
+  it("returns a conservative subset when user has no constraints filled", () => {
+    // Defaults flipped to most-permissive on user side: beginner English (rank 1),
+    // education level 1, work_auth='any'. Filter still requires occupations to be
+    // within reach (english ≤ user+1, job_zone ≤ user+1). This protects vulnerable
+    // clients from being filtered into roles they can't reach when they skip the page.
+    const s = emptyState("en");
     const candidates = filterOccupationsByConstraints(s);
-    // defaults: english=native (rank 4), edu=5 (highest), auth='us_only' — all 15 should pass
-    expect(candidates.length).toBe(15);
+    expect(candidates.length).toBeGreaterThan(0);
+    expect(candidates.length).toBeLessThan(15);
+    // No advanced/native English roles, no roles requiring US auth
+    expect(candidates.every((o) => o.english_level === "beginner" || o.english_level === "conversational")).toBe(true);
+    expect(candidates.every((o) => o.work_auth_required === "any")).toBe(true);
   });
 
   it("filters out occupations requiring more English than user has", () => {
@@ -158,8 +165,8 @@ describe("filterOccupationsByConstraints", () => {
   });
 });
 
-describe("rankOccupations", () => {
-  it("returns top 3 sorted by cosine score (Social-heavy profile)", () => {
+describe("getInterestAreas", () => {
+  it("returns top 3 RIASEC areas in score order (Social-heavy profile)", () => {
     const s = stateWith({
       miniIp: { ip13: 2, ip14: 2, ip15: 2 }, // all S
       tags: ["t_teach", "t_help", "t_listen"], // all S
@@ -167,31 +174,52 @@ describe("rankOccupations", () => {
       passions: ["p_helping", "p_caring", "p_organize"], // S, S, C
       tot: { tot1: "a", tot2: "a", tot3: "b", tot4: "a" }, // C, S, R, E
     });
-    const top = rankOccupations(s);
-    expect(top).toHaveLength(3);
-    // S-primary or S-secondary occupations should dominate the top
-    const sHeavy = top.filter((o) => o.riasec[0] === "S" || o.riasec[1] === "S");
-    expect(sHeavy.length).toBeGreaterThanOrEqual(2);
+    const areas = getInterestAreas(s);
+    expect(areas).toHaveLength(3);
+    expect(areas[0].letter).toBe("S");
   });
 
-  it("returns up to 3 even when fewer than 15 survive constraints", () => {
+  it("samples for each area are filtered by primary RIASEC letter", () => {
+    const s = stateWith({
+      miniIp: { ip13: 2, ip14: 2, ip15: 2 }, // S-heavy
+      tags: ["t_teach", "t_help", "t_listen"],
+    });
+    const areas = getInterestAreas(s);
+    for (const area of areas) {
+      for (const occ of area.samples) {
+        expect(occ.riasec[0]).toBe(area.letter);
+      }
+    }
+  });
+
+  it("respects constraint filter when picking samples", () => {
     const s = stateWith({
       constraints: { ...baseConstraints, english: "beginner" },
       miniIp: { ip01: 2 }, // R signal
     });
-    const top = rankOccupations(s);
-    expect(top.length).toBeGreaterThan(0);
-    expect(top.length).toBeLessThanOrEqual(3);
+    const areas = getInterestAreas(s);
+    const allSamples = areas.flatMap((a) => a.samples);
+    // beginner English clients shouldn't see advanced/native-required roles
+    for (const occ of allSamples) {
+      expect(["beginner", "conversational"]).toContain(occ.english_level);
+    }
   });
 
-  it("returns an empty array when no occupations survive (impossible constraints)", () => {
-    // Use an unmapped english level to force everything out
+  it("returns 3 areas even when one has zero samples (empty samples array)", () => {
     const s = stateWith({
-      constraints: { ...baseConstraints, english: "__nonexistent__" },
+      constraints: { ...baseConstraints, english: "beginner" },
     });
-    const candidates = filterOccupationsByConstraints(s);
-    // userEnglish defaults to 4 (native) when the key isn't in the rank table → all roles pass.
-    // That's expected behavior; explicitly verify we don't crash on bad input.
-    expect(Array.isArray(candidates)).toBe(true);
+    const areas = getInterestAreas(s);
+    expect(areas).toHaveLength(3);
+    // each area is well-formed even if samples is empty
+    for (const a of areas) expect(Array.isArray(a.samples)).toBe(true);
+  });
+
+  it("respects samplesPerArea parameter", () => {
+    const s = stateWith({
+      miniIp: { ip13: 2, ip14: 2, ip15: 2 },
+    });
+    const areas = getInterestAreas(s, 1);
+    for (const a of areas) expect(a.samples.length).toBeLessThanOrEqual(1);
   });
 });

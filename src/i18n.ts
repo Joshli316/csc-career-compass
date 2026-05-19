@@ -21,7 +21,18 @@ function readSaved(): Lang {
     const v = localStorage.getItem(LS_LANG_KEY);
     if (v && (ALLOWED as string[]).includes(v)) return v as Lang;
   } catch {
-    /* localStorage unavailable */
+    /* localStorage unavailable — fall through to browser preference */
+  }
+  try {
+    const prefs = (navigator as { languages?: readonly string[] }).languages ?? [navigator.language];
+    for (const p of prefs) {
+      const tag = (p ?? "").toLowerCase();
+      if (tag.startsWith("zh")) return "zh-Hans";
+      if (tag.startsWith("es")) return "es";
+      if (tag.startsWith("en")) return "en";
+    }
+  } catch {
+    /* navigator unavailable in some sandboxed environments */
   }
   return "en";
 }
@@ -120,21 +131,6 @@ export function pickLocalized(obj: unknown, prefix: string): string {
   if (typeof v === "string" && v) return v;
   const fallback = rec[`${prefix}_en`];
   return typeof fallback === "string" ? fallback : "";
-}
-
-/** Like pickLocalized but for array-valued fields, e.g. why_fit_template_en. */
-export function pickLocalizedArray(obj: unknown, prefix: string): string[] {
-  if (!obj || typeof obj !== "object") return [];
-  const rec = obj as Record<string, unknown>;
-  const map: Record<Lang, string> = {
-    en: `${prefix}_en`,
-    "zh-Hans": `${prefix}_zh`,
-    es: `${prefix}_es`,
-  };
-  const v = rec[map[currentLang]];
-  if (Array.isArray(v)) return v as string[];
-  const fallback = rec[`${prefix}_en`];
-  return Array.isArray(fallback) ? (fallback as string[]) : [];
 }
 
 /** For data entries with short keys: { en, zh, es }. */

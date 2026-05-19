@@ -1,10 +1,11 @@
-import { t, pickShort, pickLocalized, pickLocalizedArray, formatWage } from "./i18n";
+import { t, pickShort, pickLocalized, formatWage } from "./i18n";
 import type { SurveyState } from "./state";
 import { escapeHtml } from "./util";
 import {
   computeRiasecVector,
-  rankOccupations,
+  getInterestAreas,
   topLetters,
+  type InterestArea,
   type Letter,
   type OccupationEntry,
 } from "./scoring";
@@ -13,17 +14,17 @@ import passionsData from "./data/passions.json";
 import strengthsData from "./data/strengths.json";
 import valuesData from "./data/values.json";
 import skillsData from "./data/skills.json";
+import barriersData from "./data/barriers.json";
 import riasecDescriptors from "./data/riasec-descriptors.json";
 
-export { computeRiasecVector, rankOccupations } from "./scoring";
+export { computeRiasecVector, getInterestAreas } from "./scoring";
+
+type AreaDescriptor = { name_en: string; name_zh: string; name_es: string; desc_en: string; desc_zh: string; desc_es: string };
 
 // ===== Rendering =====
 
-function renderInterestsBlock(state: SurveyState): string {
-  const v = computeRiasecVector(state);
-  const tops = topLetters(v, 2);
+function renderInterestsBlock(primary: Letter): string {
   const desc = riasecDescriptors as Record<Letter, { desc_en: string; desc_zh: string; desc_es: string }>;
-  const primary = tops[0];
   const paragraph = pickLocalized(desc[primary], "desc");
   return `
     <section class="summary-block">
@@ -69,34 +70,40 @@ function renderAttributesBlock(state: SurveyState): string {
 
 function renderStrengthsBlock(state: SurveyState): string {
   const comesEasily = strengthsData.filter((s) => state.strengths[s.id] === 2);
-  if (comesEasily.length === 0) return "";
-  const items = comesEasily.slice(0, 3).map((s) => {
-    const label = pickLocalized(s, "label");
-    const example = pickLocalized(s, "example");
-    return `<li><strong>${escapeHtml(label)}</strong><span class="example">${escapeHtml(example)}</span></li>`;
-  }).join("");
+  const body = comesEasily.length === 0
+    ? `<p class="lead-in">${escapeHtml(t("results.strengths_empty"))}</p>`
+    : `
+      <p class="lead-in">${escapeHtml(t("results.strengths_lead"))}</p>
+      <ul>${comesEasily.slice(0, 3).map((s) => {
+        const label = pickLocalized(s, "label");
+        const example = pickLocalized(s, "example");
+        return `<li><strong>${escapeHtml(label)}</strong><span class="example">${escapeHtml(example)}</span></li>`;
+      }).join("")}</ul>
+    `;
   return `
     <section class="summary-block">
       <h3>${escapeHtml(t("results.strengths_h"))}</h3>
-      <p class="lead-in">${escapeHtml(t("results.strengths_lead"))}</p>
-      <ul>${items}</ul>
+      ${body}
     </section>
   `;
 }
 
 function renderSoftSkillsBlock(state: SurveyState): string {
   const have = skillsData.filter((s) => state.skills[s.id] === 2).slice(0, 3);
-  if (have.length === 0) return "";
-  const items = have.map((s) => {
-    const name = pickLocalized(s, "name");
-    const ex = pickLocalized(s, "example");
-    return `<li><strong>${escapeHtml(name)}</strong><span class="example">${escapeHtml(ex)}</span></li>`;
-  }).join("");
+  const body = have.length === 0
+    ? `<p class="lead-in">${escapeHtml(t("results.soft_empty"))}</p>`
+    : `
+      <p class="lead-in">${escapeHtml(t("results.soft_lead"))}</p>
+      <ul>${have.map((s) => {
+        const name = pickLocalized(s, "name");
+        const ex = pickLocalized(s, "example");
+        return `<li><strong>${escapeHtml(name)}</strong><span class="example">${escapeHtml(ex)}</span></li>`;
+      }).join("")}</ul>
+    `;
   return `
     <section class="summary-block">
       <h3>${escapeHtml(t("results.soft_h"))}</h3>
-      <p class="lead-in">${escapeHtml(t("results.soft_lead"))}</p>
-      <ul>${items}</ul>
+      ${body}
     </section>
   `;
 }
@@ -117,34 +124,59 @@ function renderGrowingBlock(state: SurveyState): string {
   `;
 }
 
-function renderOccupationCard(occ: OccupationEntry): string {
-  const title = pickLocalized(occ, "title");
-  const training = pickLocalized(occ, "training_note");
-  const bullets = pickLocalizedArray(occ, "why_fit_template");
-  const wage = formatWage(occ.wage_la_median_hourly);
-  const months = `${occ.time_to_credential_months} ${t("results.months")}`;
-  const items = bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("");
+function renderBarriersCallout(state: SurveyState): string {
+  if (!state.barriers || state.barriers.length === 0) return "";
+  const picks = state.barriers
+    .map((id) => barriersData.find((b) => b.id === id))
+    .filter((b): b is (typeof barriersData)[number] => Boolean(b));
+  if (picks.length === 0) return "";
+  const items = picks.map((b) => `<li>${escapeHtml(pickLocalized(b, "label"))}</li>`).join("");
   return `
-    <article class="occ-card">
-      <h3>${escapeHtml(title)}</h3>
-      <p class="meta">
-        <strong>${escapeHtml(t("results.wage_label"))}:</strong> ${escapeHtml(wage)} ·
-        <strong>${escapeHtml(t("results.time_label"))}:</strong> ${escapeHtml(months)}
-      </p>
-      <p class="meta"><strong>${escapeHtml(t("results.training_label"))}:</strong> ${escapeHtml(training)}</p>
-      <div class="why">
-        <h4>${escapeHtml(t("results.why_fit_h"))}</h4>
-        <ul>${items}</ul>
-      </div>
+    <section class="section barriers-callout" aria-labelledby="sec-barriers">
+      <h2 id="sec-barriers">${escapeHtml(t("results.barriers_callout_h"))}</h2>
+      <p>${escapeHtml(t("results.barriers_callout_intro"))}</p>
+      <ul>${items}</ul>
+    </section>
+  `;
+}
+
+function renderSampleRole(occ: OccupationEntry): string {
+  const title = pickLocalized(occ, "title");
+  const entry = formatWage(occ.wage_la_entry_hourly);
+  const median = formatWage(occ.wage_la_median_hourly);
+  const months = `${occ.time_to_credential_months} ${t("results.months")}`;
+  const wageRange = occ.wage_la_entry_hourly === occ.wage_la_median_hourly
+    ? entry
+    : `${entry} → ${median}`;
+  return `<li><strong>${escapeHtml(title)}</strong> <span class="example">${escapeHtml(wageRange)} · ${escapeHtml(months)}</span></li>`;
+}
+
+function renderInterestArea(area: InterestArea, rank: number): string {
+  const desc = (riasecDescriptors as Record<Letter, AreaDescriptor>)[area.letter];
+  const name = pickLocalized(desc, "name");
+  const paragraph = pickLocalized(desc, "desc");
+  const samples = area.samples.length > 0
+    ? `
+      <h4>${escapeHtml(t("results.sample_roles_h"))}</h4>
+      <p class="wage-legend">${escapeHtml(t("results.wage_legend"))}</p>
+      <ul class="sample-roles">${area.samples.map(renderSampleRole).join("")}</ul>
+    `
+    : `<p class="lead-in">${escapeHtml(t("results.no_samples_in_area"))}</p>`;
+  return `
+    <article class="interest-area" data-rank="${rank}">
+      <h3>${escapeHtml(name)}</h3>
+      <p>${escapeHtml(paragraph)}</p>
+      ${samples}
     </article>
   `;
 }
 
 export function renderResults(state: SurveyState, root: HTMLElement): void {
-  const occs = rankOccupations(state);
-  const occCards = occs.length > 0
-    ? occs.map((o) => renderOccupationCard(o)).join("")
-    : `<p>${escapeHtml(t("results.no_matches"))}</p>`;
+  const areas = getInterestAreas(state);
+  // Single source of truth for the primary RIASEC letter so Section A's
+  // narrative and Section B's first card cannot disagree on tie-breaks.
+  const primary: Letter = areas[0]?.letter ?? topLetters(computeRiasecVector(state), 1)[0] ?? "R";
+  const areaCards = areas.map((a, i) => renderInterestArea(a, i + 1)).join("");
 
   root.innerHTML = `
     <article class="results" aria-labelledby="r-title">
@@ -153,7 +185,7 @@ export function renderResults(state: SurveyState, root: HTMLElement): void {
 
       <section class="section" aria-labelledby="sec-a">
         <h2 id="sec-a">${escapeHtml(t("results.section_a_title"))}</h2>
-        ${renderInterestsBlock(state)}
+        ${renderInterestsBlock(primary)}
         ${renderPassionsBlock(state)}
         ${renderAttributesBlock(state)}
         ${renderStrengthsBlock(state)}
@@ -164,8 +196,10 @@ export function renderResults(state: SurveyState, root: HTMLElement): void {
       <section class="section" aria-labelledby="sec-b">
         <h2 id="sec-b">${escapeHtml(t("results.section_b_title"))}</h2>
         <p>${escapeHtml(t("results.section_b_intro"))}</p>
-        ${occCards}
+        ${areaCards}
       </section>
+
+      ${renderBarriersCallout(state)}
 
       <section class="section" aria-labelledby="sec-c">
         <h2 id="sec-c">${escapeHtml(t("results.section_c_title"))}</h2>

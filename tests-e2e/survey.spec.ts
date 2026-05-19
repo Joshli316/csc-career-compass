@@ -97,28 +97,36 @@ test("full survey end-to-end completes and shows results", async ({ page }) => {
   }
   await page.click('button[data-action="next"]');
 
-  // constraints: answer 4
+  // constraints: answer 3 (education, english, work_auth — hours was removed)
   await page.click('[data-action="constraint"][data-qid="education"][data-val="hs"]');
   await page.click('[data-action="constraint"][data-qid="english"][data-val="conversational"]');
   await page.click('[data-action="constraint"][data-qid="work_auth"][data-val="yes"]');
-  await page.click('[data-action="constraint"][data-qid="hours"][data-val="ft"]');
+  await page.click('button[data-action="next"]');
+
+  // barriers (optional): pick one, then continue — exercises the new disclosure flow
+  await page.click('[data-action="barrier"][data-id="veteran"]');
   await page.click('button[data-action="next"]');
 
   // results
   await expect(page).toHaveURL(/#\/results$/);
   await expect(page.locator("h1")).toContainText("Your Career Compass");
   await expect(page.locator(".complete-badge")).toBeVisible();
-  await expect(page.locator(".occ-card")).toHaveCount(3);
-  // Social-heavy profile should surface S-primary or S-secondary occupations
-  const titles = await page.locator(".occ-card h3").allTextContents();
-  expect(titles.join(" ")).toMatch(/CNA|Nursing|Medical|Dental|Receptionist|Educator/);
+  await expect(page.locator(".interest-area")).toHaveCount(3);
+  // Social-heavy profile should put the Helper/Social area first with S-primary sample roles
+  const firstAreaName = await page.locator(".interest-area h3").first().textContent();
+  expect(firstAreaName).toMatch(/Helper|Social/i);
+  const sampleTitles = await page.locator(".interest-area .sample-roles li").allTextContents();
+  expect(sampleTitles.join(" ")).toMatch(/CNA|Nursing|Medical|Dental|Receptionist|Educator/);
+  // Barriers callout renders the one disclosure we made
+  await expect(page.locator(".barriers-callout")).toBeVisible();
+  await expect(page.locator(".barriers-callout")).toContainText(/veteran/i);
 });
 
 test("results page Download PDF button is present and clickable", async ({ page }) => {
   // Seed a completed state directly
   await page.evaluate(() => {
     const state = {
-      version: 1, startedAt: Date.now(), updatedAt: Date.now(), lang: "en", pageIndex: 14,
+      version: 2, startedAt: Date.now(), updatedAt: Date.now(), lang: "en", pageIndex: 15,
       miniIp: Object.fromEntries(
         ["ip01","ip02","ip03","ip04","ip05","ip06","ip07","ip08","ip09","ip10","ip11","ip12","ip13","ip14","ip15","ip16","ip17","ip18","ip19","ip20"]
           .map((id) => [id, 1]),
@@ -129,7 +137,8 @@ test("results page Download PDF button is present and clickable", async ({ page 
       values: ["v_relationships","v_support","v_conditions"],
       skills: { sk_career:1,sk_comm:2,sk_critical:1,sk_equity:2,sk_lead:0,sk_prof:2,sk_team:2,sk_tech:1 },
       tot: { tot1:"a",tot2:"a",tot3:"b",tot4:"a" },
-      constraints: { education:"hs",english:"conversational",work_auth:"yes",hours:"ft" }
+      constraints: { education:"hs",english:"conversational",work_auth:"yes",hours:"ft" },
+      barriers: []
     };
     localStorage.setItem("cscCompass.state", JSON.stringify(state));
   });
@@ -142,11 +151,11 @@ test("resume link returns user to the page they left, not page 1", async ({ page
   // Seed mid-survey state at pageIndex 5 (a passions/tags-ish point)
   await page.evaluate(() => {
     const state = {
-      version: 1, startedAt: Date.now(), updatedAt: Date.now(), lang: "en",
+      version: 2, startedAt: Date.now(), updatedAt: Date.now(), lang: "en",
       pageIndex: 5,
       miniIp: { ip01: 1, ip02: 1, ip03: 1, ip04: 1, ip05: 1 },
       tags: [], workspace: null, passions: [], strengths: {}, values: [],
-      skills: {}, tot: {}, constraints: {},
+      skills: {}, tot: {}, constraints: {}, barriers: [],
     };
     localStorage.setItem("cscCompass.state", JSON.stringify(state));
   });

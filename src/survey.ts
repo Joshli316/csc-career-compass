@@ -12,9 +12,10 @@ import valuesData from "./data/values.json";
 import skillsData from "./data/skills.json";
 import totData from "./data/this-or-that.json";
 import constraintsData from "./data/constraints.json";
+import barriersData from "./data/barriers.json";
 
 const PAGES = buildPageList();
-const TOTAL_PAGES = PAGES.length;
+export const TOTAL_PAGES = PAGES.length;
 
 let state: SurveyState = ((): SurveyState => {
   const saved = loadState();
@@ -108,10 +109,10 @@ function renderRatingPage(opts: {
         ${hasExample
           ? `<div><div class="label">${escapeHtml(item.label)}</div><div class="ex">${escapeHtml(item.example!)}</div></div>`
           : `<span class="label">${escapeHtml(item.label)}</span>`}
-        <div class="opts" role="radiogroup" aria-label="${escapeHtml(item.label)}">
+        <div class="opts" role="group" aria-label="${escapeHtml(item.label)}">
           ${[2, 1, 0].map((val) => `
             <button type="button" class="opt" data-action="${opts.action}" data-qid="${item.id}" data-val="${val}"
-              aria-pressed="${v === val ? "true" : "false"}" role="radio" aria-checked="${v === val ? "true" : "false"}">
+              aria-pressed="${v === val ? "true" : "false"}">
               ${escapeHtml(opts.scale[val as 0 | 1 | 2])}
             </button>
           `).join("")}
@@ -156,10 +157,14 @@ function renderTagsPage(): string {
     `;
   }).join("");
   const counter = formatT("survey.selected_count", { n: state.tags.length, max: 5 });
+  const skipHint = state.tags.length === 0
+    ? `<p class="barriers-hint">${escapeHtml(t("modules.interests_tags.skip_hint"))}</p>`
+    : "";
   return `
     ${intro}
     <div class="tag-cloud" role="group" aria-label="${escapeHtml(t("modules.interests_tags.title"))}">${chips}</div>
     <p class="step-counter" aria-live="polite">${escapeHtml(counter)}</p>
+    ${skipHint}
   `;
 }
 
@@ -170,13 +175,13 @@ function renderWorkspacePage(): string {
     const active = state.workspace === w.id;
     return `
       <button type="button" class="tile" data-action="workspace" data-id="${w.id}"
-        role="radio" aria-checked="${active}" aria-pressed="${active}">
+        aria-pressed="${active}">
         <span class="svg-wrap" aria-hidden="true">${w.svg_inline}</span>
         <span class="label">${escapeHtml(label)}</span>
       </button>
     `;
   }).join("");
-  return `${intro}<div class="tile-grid" role="radiogroup" aria-label="${escapeHtml(t("modules.interests_visual.title"))}">${tiles}</div>`;
+  return `${intro}<div class="tile-grid" role="group" aria-label="${escapeHtml(t("modules.interests_visual.title"))}">${tiles}</div>`;
 }
 
 function renderPassionsPage(): string {
@@ -185,8 +190,12 @@ function renderPassionsPage(): string {
     const label = pickLocalized(p, "label");
     const active = state.passions.includes(p.id);
     const order = state.passions.indexOf(p.id);
+    const ariaLabel = active
+      ? formatT("survey.tile_selected_rank", { label, rank: order + 1 })
+      : label;
     return `
-      <button type="button" class="tile" data-action="passion" data-id="${p.id}" aria-pressed="${active}">
+      <button type="button" class="tile" data-action="passion" data-id="${p.id}"
+        aria-pressed="${active}" aria-label="${escapeHtml(ariaLabel)}">
         ${active ? `<span class="count-badge" aria-hidden="true">${order + 1}</span>` : ""}
         <span class="svg-wrap" aria-hidden="true">${p.svg_inline}</span>
         <span class="label">${escapeHtml(label)}</span>
@@ -224,8 +233,12 @@ function renderValuesPage(): string {
     const one = pickLocalized(v, "one_liner");
     const active = state.values.includes(v.id);
     const order = state.values.indexOf(v.id);
+    const ariaLabel = active
+      ? formatT("survey.tile_selected_rank", { label: title, rank: order + 1 })
+      : title;
     return `
-      <button type="button" class="value-card" data-action="value" data-id="${v.id}" aria-pressed="${active}">
+      <button type="button" class="value-card" data-action="value" data-id="${v.id}"
+        aria-pressed="${active}" aria-label="${escapeHtml(ariaLabel)}">
         ${active ? `<span class="count-badge" aria-hidden="true">${order + 1}</span>` : ""}
         <span class="title">${escapeHtml(title)}</span>
         <span class="one-liner">${escapeHtml(one)}</span>
@@ -261,17 +274,38 @@ function renderTotPage(page: Page & { kind: "tot" }): string {
   const aLabel = pickLocalized(item.a, "label");
   const bLabel = pickLocalized(item.b, "label");
   const chosen = state.tot[item.id];
+  const groupLabel = t("modules.tot_intro");
   return `
-    <section class="module-intro">
-      <h2>${escapeHtml(t("modules.tot_intro"))}</h2>
+    <section class="module-intro" aria-labelledby="tot-title">
+      <h2 id="tot-title">${escapeHtml(groupLabel)}</h2>
     </section>
-    <div class="tot-wrap">
+    <div class="tot-wrap" role="group" aria-label="${escapeHtml(groupLabel)}">
       <button type="button" class="tot-card" data-action="tot" data-id="${item.id}" data-side="a"
         aria-pressed="${chosen === "a"}">${escapeHtml(aLabel)}</button>
       <span class="tot-or" aria-hidden="true">${escapeHtml(t("survey.or_separator"))}</span>
       <button type="button" class="tot-card" data-action="tot" data-id="${item.id}" data-side="b"
         aria-pressed="${chosen === "b"}">${escapeHtml(bLabel)}</button>
     </div>
+  `;
+}
+
+function renderBarriersPage(): string {
+  const intro = renderModuleIntro("modules.barriers.title", "modules.barriers.why");
+  const chips = barriersData.map((b) => {
+    const label = pickLocalized(b, "label");
+    const active = state.barriers.includes(b.id);
+    return `
+      <button type="button" class="barrier-chip" data-action="barrier" data-id="${b.id}"
+        aria-pressed="${active}">
+        <span class="check" aria-hidden="true"></span>
+        <span class="label">${escapeHtml(label)}</span>
+      </button>
+    `;
+  }).join("");
+  return `
+    ${intro}
+    <div class="barriers-list" role="group" aria-label="${escapeHtml(t("modules.barriers.title"))}">${chips}</div>
+    <p class="barriers-hint">${escapeHtml(t("modules.barriers.skip_hint"))}</p>
   `;
 }
 
@@ -284,7 +318,6 @@ function renderConstraintsPage(): string {
       const optLabel = pickLocalized(o, "label");
       return `
         <button type="button" class="opt" data-action="constraint" data-qid="${q.id}" data-val="${o.id}"
-          role="radio" aria-checked="${current === o.id ? "true" : "false"}"
           aria-pressed="${current === o.id ? "true" : "false"}">
           ${escapeHtml(optLabel)}
         </button>
@@ -293,7 +326,7 @@ function renderConstraintsPage(): string {
     return `
       <li class="q-row" data-qid="${q.id}">
         <div class="label">${escapeHtml(label)}</div>
-        <div class="select-row" role="radiogroup" aria-label="${escapeHtml(label)}">${opts}</div>
+        <div class="select-row" role="group" aria-label="${escapeHtml(label)}">${opts}</div>
       </li>
     `;
   }).join("");
@@ -325,6 +358,7 @@ export function renderSurvey(root: HTMLElement): void {
     case "values": body = renderValuesPage(); break;
     case "skills": body = renderSkillsPage(); break;
     case "constraints": body = renderConstraintsPage(); break;
+    case "barriers": body = renderBarriersPage(); break;
   }
 
   const isLast = state.pageIndex === TOTAL_PAGES - 1;
@@ -438,6 +472,17 @@ function onClick(ev: Event): void {
       rerender();
       break;
     }
+    case "barrier": {
+      // Uncapped multi-select — disclosures don't feed scoring, so the
+      // signal-dilution concern that caps tags/passions doesn't apply here.
+      const id = actionEl.dataset.id!;
+      const idx = state.barriers.indexOf(id);
+      if (idx >= 0) state.barriers.splice(idx, 1);
+      else state.barriers.push(id);
+      saveState(state);
+      rerender();
+      break;
+    }
     case "back": {
       if (state.pageIndex > 0) {
         clearError();
@@ -495,7 +540,9 @@ function rerender(opts: { scrollToTop?: boolean; focusHeading?: boolean } = {}):
   const prevFocusKey = focusKeyFor(document.activeElement);
   renderSurvey(root);
   if (opts.scrollToTop) {
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    // Two-arg form is universally supported including WeChat/FB in-app WebViews
+    // which silently ignore the ScrollOptions form.
+    window.scrollTo(0, 0);
   }
   if (opts.focusHeading) {
     focusFirstHeading(root);

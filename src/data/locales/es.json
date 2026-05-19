@@ -23,11 +23,14 @@
   "landing": {
     "h1": "Descubre tus habilidades, intereses y mejores opciones de carrera.",
     "subhead": "Una herramienta de autoconocimiento de unos 8 minutos para Los Ángeles. Gratis. Sin cuenta. Privada.",
-    "bullet_outcome": "Te llevarás un resumen de 1 página sobre quién eres en el trabajo, más 3 trabajos en LA que encajan contigo",
+    "bullet_outcome": "Te llevarás un resumen de 1 página sobre quién eres en el trabajo — tus intereses, pasiones y fortalezas — más puestos de muestra en LA para explorar",
     "bullet_free": "Gratis, sin cuenta, unos 8 minutos",
     "bullet_private": "Se queda en tu celular — nada se envía a un servidor",
     "start": "Empezar →",
-    "resume": "Continuar donde lo dejaste"
+    "resume": "Continuar donde lo dejaste",
+    "resume_with_step": "Continuar — Paso {current} de {total}",
+    "view_results": "Ver mis resultados →",
+    "draft_banner": "Esta traducción aún está en revisión. La versión en inglés está disponible."
   },
   "footer": {
     "disclaimer": "Este es un punto de partida, no una consulta profesional. Para orientación personalizada, habla con tu especialista de empleo de CSC."
@@ -64,7 +67,8 @@
     },
     "interests_tags": {
       "title": "Paso 1b: Palabras que te describen en el trabajo",
-      "why": "Toca hasta 5 palabras que coincidan con cómo te gusta trabajar."
+      "why": "Toca hasta 5 palabras que coincidan con cómo te gusta trabajar.",
+      "skip_hint": "Puedes saltarte esto — o tocar cualquier palabra que se ajuste a ti."
     },
     "interests_visual": {
       "title": "Paso 1c: ¿Dónde te sentirías como en casa?",
@@ -91,36 +95,43 @@
       "title": "Paso 6: Algunas preguntas prácticas",
       "why": "Esto nos ayuda a encontrar trabajos que puedas tomar ahora mismo."
     },
+    "barriers": {
+      "title": "Opcional: Algunas cosas que tu especialista debería saber",
+      "why": "Esto ayuda a tu especialista de empleo de CSC a conectarte con el apoyo y los fondos adecuados. Toca lo que se aplique a ti — salta lo que prefieras no compartir.",
+      "skip_hint": "Se queda en tu celular. Solo se comparte si llevas tu PDF a tu especialista."
+    },
     "tot_intro": "Una pausa rápida — ¿cuál te suena mejor?"
   },
   "results": {
     "title": "Tu brújula profesional",
     "complete_badge": "Evaluación completada",
-    "section_a_title": "Esto es lo que escuchamos sobre TI",
-    "section_b_title": "Carreras en LA que encajan contigo",
-    "section_b_intro": "Con base en todo lo anterior, estos 3 trabajos en LA encajan con quién eres y con el trabajo que puedes tomar ahora.",
-    "section_c_title": "Siguiente paso (opcional)",
+    "section_a_title": "Lo que nos contaste sobre ti",
+    "section_b_title": "Tus áreas de interés principales",
+    "section_b_intro": "Estos son los tipos de trabajo que encajan con tus intereses. Los puestos de muestra en LA son puntos de partida para explorar con tu especialista de empleo de CSC — no son una receta.",
+    "sample_roles_h": "Puestos de muestra en LA para explorar",
+    "no_samples_in_area": "Ningún puesto de muestra coincide con tus condiciones actuales en esta área. Tu especialista de empleo de CSC puede ayudarte a explorar opciones.",
+    "barriers_callout_h": "Temas para conversar con tu especialista de CSC",
+    "barriers_callout_intro": "Compartiste lo siguiente — tu especialista puede ayudarte a conectarte con el apoyo y los fondos adecuados:",
+    "section_c_title": "Llévate tus resultados",
     "interests_h": "Tus intereses",
     "passions_h": "Lo que te apasiona",
-    "passions_lead": "Estas son las cosas que harías incluso si nadie te estuviera mirando.",
-    "attrs_h": "Tus atributos naturales",
-    "attrs_lead": "Estos son los que te dan energía en el trabajo.",
+    "passions_lead": "Estas son cosas que harías incluso cuando nadie te está mirando.",
+    "attrs_h": "Lo que valoras en el trabajo",
+    "attrs_lead": "Esto es lo que dijiste que necesitas en el trabajo para sentirte tú mismo.",
     "strengths_h": "En qué eres bueno naturalmente",
     "strengths_lead": "Estas cosas te salen de manera natural.",
+    "strengths_empty": "Dijiste que todo aún está en desarrollo — ese es un buen punto de partida. Tu especialista de empleo de CSC puede ayudarte a reconocer fortalezas que tal vez no estés viendo.",
     "soft_h": "Tus habilidades blandas",
     "soft_lead": "Estas son habilidades que has desarrollado.",
+    "soft_empty": "Dijiste que tus habilidades blandas aún están creciendo — muchas personas las subestiman. Tu especialista de empleo de CSC puede ayudarte a nombrar las que ya usas.",
     "growing_h": "Habilidades que quieres desarrollar",
     "growing_lead": "Estas son habilidades que dijiste que aún estás desarrollando.",
-    "no_matches": "No encontramos coincidencias con estos criterios. Pide una cita con un especialista de empleo de CSC para opciones personalizadas.",
     "pdf_button": "Descargar PDF",
     "pdf_helper": "Lleva esto a tu cita de CSC. También puedes imprimirlo o enviárselo a tu familia.",
     "specialist_note": "Lleva esto a tu especialista de empleo de CSC. Pueden ayudarte a planear capacitación, fondos y los próximos pasos.",
     "restart_note": "¿Quieres probar con respuestas diferentes?",
     "restart_link": "Empezar de nuevo →",
-    "why_fit_h": "Por qué esto encaja contigo",
-    "wage_label": "Salario mediano en LA",
-    "training_label": "Cómo empezar",
-    "time_label": "Tiempo para obtener la credencial",
+    "wage_legend": "Sueldo inicial → sueldo típico por hora en LA · meses para certificarse. Datos: BLS, mayo 2024 (área de LA).",
     "months": "meses"
   }
 }
